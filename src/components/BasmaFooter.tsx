@@ -26,7 +26,7 @@ export const BasmaFooter: React.FC<BasmaFooterProps> = ({ lang }) => {
           </span>
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 pt-1">
             <a
-              href="https://wa.me/212600000000?text=Bonjour%20Aura%20Skin"
+              href="https://wa.me/212727707993"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#141414] text-[#ffdbe7] text-xs font-semibold hover:bg-[#2a2a2a] transition-colors shadow-xs"
@@ -36,7 +36,7 @@ export const BasmaFooter: React.FC<BasmaFooterProps> = ({ lang }) => {
             </a>
 
             <a
-              href="https://www.instagram.com/auraskin_maroc/"
+              href="https://www.instagram.com/auraskin_by_chayy?mdxt=bmwyYjkzNG51NHdw"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#ffdbe7] text-[#141414] text-xs font-semibold hover:bg-[#fce1eb] transition-colors border border-[#141414]/10"
@@ -45,21 +45,25 @@ export const BasmaFooter: React.FC<BasmaFooterProps> = ({ lang }) => {
               <span>Instagram</span>
             </a>
 
-            <span
-              title="Lien TikTok à ajouter"
+            <a
+              href="https://www.tiktok.com/@auraskin_by_chayy?_r=1&_t=ZS-9B6wZnUOLvp"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#141414] text-[#ffdbe7] text-xs font-semibold shadow-xs"
             >
               <Music2 size={15} />
               <span>TikTok</span>
-            </span>
+            </a>
 
-            <span
-              title="Lien Facebook à ajouter"
+            <a
+              href="https://www.facebook.com/share/1Hs6KmZEPU/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#1877F2] text-white text-xs font-semibold shadow-xs"
             >
               <Facebook size={15} />
               <span>Facebook</span>
-            </span>
+            </a>
           </div>
         </div>
 

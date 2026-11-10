@@ -104,7 +104,7 @@ export const BasmaSidebarMenu: React.FC<BasmaSidebarMenuProps> = ({
             </span>
 
             <a
-              href="https://wa.me/212600000000?text=Bonjour%20Aura%20Skin"
+              href="https://wa.me/212727707993"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full text-left px-3 py-2.5 rounded-2xl hover:bg-[#ffdbe7]/40 text-xs font-semibold text-[#141414] flex items-center gap-2.5 transition-colors"
