@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Poppins", sans-serif;
+  --font-arabic: "Cairo", sans-serif;
+  
+  --color-cream: #fff9fa;
+  --color-aura-noir: #141414;
+  --color-aura-pink: #ffdbe7;
+  --color-aura-pink-soft: #fce1eb;
+  --color-aura-rose: #e0558b;
+  --color-aura-rose-deep: #b8235f;
+  --color-ink: #1f1a1d;
+  --color-card: #ffffff;
+  --color-line: rgba(20, 20, 20, 0.08);
+  --color-price-strong: #141414;
+  --color-badge-bg: #141414;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    background-color: #fff9fa;
+    color: #1f1a1d;
+    overflow-x: hidden;
+  }
+
+  h1, h2, .font-brand {
+    font-family: var(--font-serif);
+  }
+
+  [dir="rtl"], .font-ar {
+    font-family: var(--font-arabic);
+  }
+}
+
+/* Aura Skin custom smooth scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #fff9fa;
+}
+::-webkit-scrollbar-thumb {
+  background: #f7cad9;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e0558b;
+}
+
+/* Infinite marquee ticker animation */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Smooth one-by-one announcement phrase fade */
+@keyframes phraseFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-phrase-in {
+  animation: phraseFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

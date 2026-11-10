@@ -1,0 +1,14 @@
+.git
+.env
+.env.*
+node_modules
+dist
+backend/target
+backend/.env
+backend/.env.*
+*.db
+*.db-shm
+*.db-wal
+*.log
+screenshot_cart.png
+.aistudio

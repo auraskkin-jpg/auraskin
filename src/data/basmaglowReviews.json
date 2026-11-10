@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "Imane B.",
+    "wilaya": "Casablanca",
+    "rating": 5,
+    "date": "Il y a 2 jours",
+    "comment": "Commande reçue en 24h à Casablanca ! Produit 100% original, le soin a transformé ma peau en 2 semaines.",
+    "initials": "IB"
+  },
+  {
+    "id": 2,
+    "name": "Salma K.",
+    "wilaya": "Rabat",
+    "rating": 5,
+    "date": "Il y a 3 jours",
+    "comment": "Paiement à la livraison après avoir vérifié le colis, emballage très soigné et petits échantillons offerts. Merci Aura Skin !",
+    "initials": "SK"
+  },
+  {
+    "id": 3,
+    "name": "Kenza M.",
+    "wilaya": "Marrakech",
+    "rating": 5,
+    "date": "Il y a 4 jours",
+    "comment": "Le kit apaisant est incroyable. Enfin de vrais cosmétiques coréens authentiques avec livraison rapide au Maroc !",
+    "initials": "KM"
+  },
+  {
+    "id": 4,
+    "name": "Nouhaila D.",
+    "wilaya": "Tanger",
+    "rating": 5,
+    "date": "Il y a 1 semaine",
+    "comment": "Service client WhatsApp au top, conseils personnalisés pour ma routine acné. Colis reçu rapidement par Amana.",
+    "initials": "ND"
+  },
+  {
+    "id": 5,
+    "name": "Meryem T.",
+    "wilaya": "Fès",
+    "rating": 5,
+    "date": "Il y a 1 semaine",
+    "comment": "Crème apaisante reçue hier, texture divine et effet apaisant immédiat sur mes rougeurs. Prix très corrects en DH !",
+    "initials": "MT"
+  },
+  {
+    "id": 6,
+    "name": "Rania H.",
+    "wilaya": "Agadir",
+    "rating": 5,
+    "date": "Il y a 2 semaines",
+    "comment": "Livraison super rapide, produits scellés avec code-barres authentique vérifié. Je recommanderai sans hésiter !",
+    "initials": "RH"
+  }
+]
