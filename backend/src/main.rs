@@ -1150,20 +1150,16 @@ fn validate_review(review: &Value) -> Result<(), ApiError> {
     Ok(())
 }
 
-fn city_delivery_fee(city_code: &str, delivery_type: &str) -> Option<f64> {
-    let (home, desk) = match city_code {
-        "CAS" => (30, 25),
-        "RAB" | "SAL" | "KEN" | "BER" => (35, 30),
-        "MOH" => (30, 25),
-        "RAK" | "TNG" | "FEZ" | "MEK" | "TET" | "JAD" | "LAR" => (40, 35),
-        "AGA" | "OUJ" | "NAD" | "SAF" | "KHO" | "ESS" | "TAZ" => (45, 40),
-        "BEN" => (45, 40),
-        "EUN" => (55, 45),
-        "VIL" => (60, 50),
-        "AUT" => (45, 40),
+fn city_delivery_fee(city_code: &str, _delivery_type: &str) -> Option<f64> {
+    // Livraison partout au Maroc : 19 DH à Casablanca, 40 DH pour toutes les autres villes.
+    let fee = match city_code {
+        "CAS" => 19.0,
+        "RAB" | "SAL" | "MOH" | "RAK" | "TNG" | "FEZ" | "AGA" | "MEK" | "OUJ" | "KEN" | "TET"
+        | "JAD" | "NAD" | "SAF" | "BEN" | "KHO" | "ESS" | "TAZ" | "LAR" | "BER" | "EUN"
+        | "VIL" | "AUT" => 40.0,
         _ => return None,
     };
-    Some((if delivery_type == "home" { home } else { desk }) as f64)
+    Some(fee)
 }
 
 fn valid_email(email: &str) -> bool {

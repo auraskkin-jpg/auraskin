@@ -26,7 +26,6 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
   lang,
 }) => {
   const [selectedCity, setSelectedCity] = useState(MOROCCO_CITIES[0]); // Default Casablanca
-  const [deliveryType, setDeliveryType] = useState<'home' | 'desk'>('home');
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
@@ -41,7 +40,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
 
   if (!isOpen) return null;
 
-  const currentFee = deliveryType === 'home' ? selectedCity.feeHome : selectedCity.feeDesk;
+  const currentFee = selectedCity.feeHome;
   const totals = calculateCartTotalsMAD(cartItems, currentFee, appliedPromo);
 
   const handleApplyPromo = (e: React.FormEvent) => {
@@ -76,7 +75,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
         phone: phone.trim(),
         address: address.trim(),
         cityCode: selectedCity.code,
-        deliveryType,
+        deliveryType: 'home',
         promoCode: appliedPromo,
         items: cartItems.map((item) => ({ productId: item.id, quantity: item.quantity })),
       });
@@ -361,42 +360,14 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
                     />
                   </div>
 
-                  {/* Mode de livraison toggle */}
-                  <div>
-                    <label className="block text-[11px] font-semibold text-[#141414] mb-1">
-                      Mode de livraison
-                    </label>
-                    <div className="grid grid-cols-2 gap-2">
-                      <button
-                        type="button"
-                        onClick={() => setDeliveryType('home')}
-                        className={`p-2 rounded-lg border text-left text-xs transition-all ${
-                          deliveryType === 'home'
-                            ? 'border-[#141414] bg-[#ffdbe7]/40 font-semibold text-[#141414]'
-                            : 'border-[#141414]/10 bg-white text-[#141414]/70'
-                        }`}
-                      >
-                        <span className="block font-bold">À domicile</span>
-                        <span className="text-[10px] text-[#141414]/60">
-                          {totals.isFreeDelivery ? 'Gratuit' : formatPriceMAD(selectedCity.feeHome)}
-                        </span>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => setDeliveryType('desk')}
-                        className={`p-2 rounded-lg border text-left text-xs transition-all ${
-                          deliveryType === 'desk'
-                            ? 'border-[#141414] bg-[#ffdbe7]/40 font-semibold text-[#141414]'
-                            : 'border-[#141414]/10 bg-white text-[#141414]/70'
-                        }`}
-                      >
-                        <span className="block font-bold">Point Relais / Agence</span>
-                        <span className="text-[10px] text-[#141414]/60">
-                          {totals.isFreeDelivery ? 'Gratuit' : formatPriceMAD(selectedCity.feeDesk)}
-                        </span>
-                      </button>
-                    </div>
+                  {/* Livraison partout au Maroc (à domicile) */}
+                  <div className="flex items-center gap-2 p-2.5 rounded-lg bg-[#fff9fa] border border-[#141414]/10">
+                    <Truck size={14} className="text-[#141414] shrink-0" />
+                    <span className="text-[11px] text-[#141414]/80">
+                      {lang === 'ar'
+                        ? `التوصيل إلى المنزل في جميع أنحاء المغرب — ${selectedCity.feeHome} درهم`
+                        : `Livraison à domicile partout au Maroc — ${formatPriceMAD(selectedCity.feeHome)}`}
+                    </span>
                   </div>
 
                   {formError && (

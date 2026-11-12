@@ -13,7 +13,7 @@ export const FREE_DELIVERY_THRESHOLD = 1000;
 
 export function calculateCartTotalsMAD(
   items: BGCartItem[],
-  cityFee: number = 35,
+  cityFee: number = 40,
   promoCode?: string
 ) {
   const subtotal = items.reduce((acc, item) => acc + item.price * item.quantity, 0);

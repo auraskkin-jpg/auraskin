@@ -82,8 +82,8 @@ export const FAQ_LIST = [
   {
     q: 'La livraison est-elle gratuite ?',
     qAr: 'هل التوصيل مجاني؟',
-    a: 'La livraison est gratuite à partir de 1000 DH d’achat partout au Maroc. Pour les paniers inférieurs à 1000 DH, la livraison est de 30 DH à Casablanca/Mohammedia et de 35 à 45 DH pour les autres villes.',
-    aAr: 'التوصيل مجاني لجميع مدن المغرب ابتداءً من 1000 درهم مشتريات. أقل من ذلك يتراوح سعر التوصيل بين 30 و 45 درهم.'
+    a: 'La livraison est gratuite à partir de 1000 DH d’achat partout au Maroc. Pour les paniers inférieurs à 1000 DH, la livraison est de 19 DH à Casablanca et de 40 DH pour toutes les autres villes du Maroc.',
+    aAr: 'التوصيل مجاني لجميع مدن المغرب ابتداءً من 1000 درهم مشتريات. أقل من ذلك، سعر التوصيل هو 19 درهم بالدار البيضاء و 40 درهم لباقي المدن المغربية.'
   }
 ];
 
@@ -92,34 +92,34 @@ export interface MoroccoCity {
   fr: string;
   ar: string;
   feeHome: number;
-  feeDesk: number;
 }
 
+// Livraison partout au Maroc : 19 DH à Casablanca, 40 DH pour toutes les autres villes.
 export const MOROCCO_CITIES: MoroccoCity[] = [
-  { code: 'CAS', fr: 'Casablanca', ar: 'الدار البيضاء', feeHome: 30, feeDesk: 25 },
-  { code: 'RAB', fr: 'Rabat', ar: 'الرباط', feeHome: 35, feeDesk: 30 },
-  { code: 'SAL', fr: 'Salé', ar: 'سلا', feeHome: 35, feeDesk: 30 },
-  { code: 'MOH', fr: 'Mohammédia', ar: 'المحمدية', feeHome: 30, feeDesk: 25 },
-  { code: 'RAK', fr: 'Marrakech', ar: 'مراكش', feeHome: 40, feeDesk: 35 },
-  { code: 'TNG', fr: 'Tanger', ar: 'طنجة', feeHome: 40, feeDesk: 35 },
-  { code: 'FEZ', fr: 'Fès', ar: 'فاس', feeHome: 40, feeDesk: 35 },
-  { code: 'AGA', fr: 'Agadir', ar: 'أكادير', feeHome: 45, feeDesk: 35 },
-  { code: 'MEK', fr: 'Meknès', ar: 'مكناس', feeHome: 40, feeDesk: 35 },
-  { code: 'OUJ', fr: 'Oujda', ar: 'وجدة', feeHome: 45, feeDesk: 40 },
-  { code: 'KEN', fr: 'Kénitra', ar: 'القنيطرة', feeHome: 35, feeDesk: 30 },
-  { code: 'TET', fr: 'Tétouan', ar: 'تطوان', feeHome: 40, feeDesk: 35 },
-  { code: 'JAD', fr: 'El Jadida', ar: 'الجديدة', feeHome: 40, feeDesk: 35 },
-  { code: 'NAD', fr: 'Nador', ar: 'الناظور', feeHome: 45, feeDesk: 40 },
-  { code: 'SAF', fr: 'Safi', ar: 'آسفي', feeHome: 45, feeDesk: 40 },
-  { code: 'BEN', fr: 'Béni Mellal', ar: 'بني ملال', feeHome: 45, feeDesk: 40 },
-  { code: 'KHO', fr: 'Khouribga', ar: 'خريبكة', feeHome: 40, feeDesk: 35 },
-  { code: 'ESS', fr: 'Essaouira', ar: 'الصويرة', feeHome: 45, feeDesk: 40 },
-  { code: 'TAZ', fr: 'Taza', ar: 'تازة', feeHome: 45, feeDesk: 40 },
-  { code: 'LAR', fr: 'Larache', ar: 'العرائش', feeHome: 40, feeDesk: 35 },
-  { code: 'BER', fr: 'Berrechid', ar: 'برشيد', feeHome: 35, feeDesk: 30 },
-  { code: 'EUN', fr: 'Laâyoune', ar: 'العيون', feeHome: 55, feeDesk: 45 },
-  { code: 'VIL', fr: 'Dakhla', ar: 'الداخلة', feeHome: 60, feeDesk: 50 },
-  { code: 'AUT', fr: 'Autre ville (Maroc)', ar: 'مدينة مغربية أخرى', feeHome: 45, feeDesk: 40 },
+  { code: 'CAS', fr: 'Casablanca', ar: 'الدار البيضاء', feeHome: 19 },
+  { code: 'RAB', fr: 'Rabat', ar: 'الرباط', feeHome: 40 },
+  { code: 'SAL', fr: 'Salé', ar: 'سلا', feeHome: 40 },
+  { code: 'MOH', fr: 'Mohammédia', ar: 'المحمدية', feeHome: 40 },
+  { code: 'RAK', fr: 'Marrakech', ar: 'مراكش', feeHome: 40 },
+  { code: 'TNG', fr: 'Tanger', ar: 'طنجة', feeHome: 40 },
+  { code: 'FEZ', fr: 'Fès', ar: 'فاس', feeHome: 40 },
+  { code: 'AGA', fr: 'Agadir', ar: 'أكادير', feeHome: 40 },
+  { code: 'MEK', fr: 'Meknès', ar: 'مكناس', feeHome: 40 },
+  { code: 'OUJ', fr: 'Oujda', ar: 'وجدة', feeHome: 40 },
+  { code: 'KEN', fr: 'Kénitra', ar: 'القنيطرة', feeHome: 40 },
+  { code: 'TET', fr: 'Tétouan', ar: 'تطوان', feeHome: 40 },
+  { code: 'JAD', fr: 'El Jadida', ar: 'الجديدة', feeHome: 40 },
+  { code: 'NAD', fr: 'Nador', ar: 'الناظور', feeHome: 40 },
+  { code: 'SAF', fr: 'Safi', ar: 'آسفي', feeHome: 40 },
+  { code: 'BEN', fr: 'Béni Mellal', ar: 'بني ملال', feeHome: 40 },
+  { code: 'KHO', fr: 'Khouribga', ar: 'خريبكة', feeHome: 40 },
+  { code: 'ESS', fr: 'Essaouira', ar: 'الصويرة', feeHome: 40 },
+  { code: 'TAZ', fr: 'Taza', ar: 'تازة', feeHome: 40 },
+  { code: 'LAR', fr: 'Larache', ar: 'العرائش', feeHome: 40 },
+  { code: 'BER', fr: 'Berrechid', ar: 'برشيد', feeHome: 40 },
+  { code: 'EUN', fr: 'Laâyoune', ar: 'العيون', feeHome: 40 },
+  { code: 'VIL', fr: 'Dakhla', ar: 'الداخلة', feeHome: 40 },
+  { code: 'AUT', fr: 'Autre ville (Maroc)', ar: 'مدينة مغربية أخرى', feeHome: 40 },
 ];
 
 export const WILAYAS_58 = MOROCCO_CITIES;

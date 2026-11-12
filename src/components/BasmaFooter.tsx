@@ -80,7 +80,7 @@ export const BasmaFooter: React.FC<BasmaFooterProps> = ({ lang }) => {
         <div className="pt-2 flex flex-wrap items-center justify-center gap-6 text-xs text-[#141414]/70">
           <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fff9fa] border border-[#141414]/10">
             <Truck size={14} className="text-[#141414]" />
-            <span>Livraison Amana partout au Maroc</span>
+            <span>Livraison partout au Maroc</span>
           </div>
           <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fff9fa] border border-[#141414]/10">
             <ShieldCheck size={14} className="text-[#141414]" />
