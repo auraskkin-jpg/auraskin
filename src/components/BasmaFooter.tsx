@@ -70,8 +70,8 @@ export const BasmaFooter: React.FC<BasmaFooterProps> = ({ lang }) => {
         {/* Tagline */}
         <p className="text-xs sm:text-sm text-[#141414]/80 max-w-md font-light leading-relaxed">
           {lang === 'ar'
-            ? 'منتجات عناية بالبشرة كورية 100% أصلية، بأفضل الأسعار بالدرهم وتوصيل سريع لكافة المدن المغربية.'
-            : 'Des soins coréens d’exception 100 % authentiques, au meilleur prix en Dirhams (MAD).'}
+            ? 'منتجات عناية بالبشرة كورية 100% أصلية، بأفضل الأسعار وتوصيل سريع لكافة المدن المغربية.'
+            : 'Des soins coréens d’exception 100 % authentiques, au meilleur prix.'}
           <br />
           <strong className="font-brand text-sm font-semibold text-[#141414] mt-1 block">AURA SKIN</strong>
         </p>
