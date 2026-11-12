@@ -66,7 +66,7 @@ export const FAQ_LIST = [
   {
     q: 'Comment se passe le paiement ?',
     qAr: 'كيف يتم الدفع؟',
-    a: 'Le paiement s’effectue en espèces à la livraison (Cash on Delivery) en Dirhams Marocains (DH / MAD) dès réception de votre colis. Vous pouvez vérifier votre colis avant de régler le livreur.',
+    a: 'Le paiement s’effectue en espèces à la livraison dès réception de votre colis. Vous pouvez vérifier votre colis avant de régler le livreur.',
     aAr: 'الدفع يكون نقداً عند الاستلام بالدرهم المغربي عند وصول طلبيتك. يمكنك التحقق من الطرد مع الموزع قبل الدفع.'
   },
   {

@@ -148,7 +148,7 @@ export const BasmaProductDetailModal: React.FC<BasmaProductDetailModalProps> = (
                         Emplacement Prix (-- DH)
                       </span>
                       <span className="text-[11px] text-[#141414]/50 block">
-                        Cliquez pour ajouter votre tarif en dirhams marocains
+                        Cliquez pour ajouter votre tarif
                       </span>
                     </div>
                     {onEdit && (

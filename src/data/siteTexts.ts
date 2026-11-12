@@ -148,8 +148,8 @@ export const SITE_TEXTS: SiteTextDef[] = [
     group: 'FAQ',
     label: 'Réponse 2',
     multiline: true,
-    fr: 'Le paiement s’effectue en espèces à la livraison (Cash on Delivery) en Dirhams Marocains (DH / MAD) dès réception de votre colis. Vous pouvez vérifier votre colis avant de régler le livreur.',
-    ar: 'الدفع يكون نقداً عند الاستلام بالدرهم المغربي عند وصول طلبيتك. يمكنك التحقق من الطرد مع الموزع قبل الدفع.',
+    fr: 'Le paiement s’effectue en espèces à la livraison dès réception de votre colis. Vous pouvez vérifier votre colis avant de régler le livreur.',
+    ar: 'الدفع يكون نقداً عند الاستلام عند وصول طلبيتك. يمكنك التحقق من الطرد مع الموزع قبل الدفع.',
   },
   {
     key: 'faq.3.q',
@@ -224,7 +224,7 @@ export const SITE_TEXTS: SiteTextDef[] = [
     key: 'footer.badge2',
     group: 'Pied de page',
     label: 'Badge 2',
-    fr: 'Paiement en espèces à la livraison (MAD)',
+    fr: 'Paiement en espèces à la livraison',
     ar: 'الدفع نقداً عند الاستلام',
   },
   {

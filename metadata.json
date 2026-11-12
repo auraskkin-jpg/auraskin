@@ -1,6 +1,6 @@
 {
   "name": "AURA SKIN",
-  "description": "Aura Skin : Soins et cosmétiques coréens 100% authentiques au Maroc. K-Beauty, livraison gratuite à partir de 1000 DH partout au Maroc et paiement à la livraison en MAD.",
+  "description": "Aura Skin : Soins et cosmétiques coréens 100% authentiques au Maroc. K-Beauty, livraison gratuite à partir de 1000 DH partout au Maroc et paiement à la livraison.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

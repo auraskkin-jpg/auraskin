@@ -27,7 +27,7 @@ export const LEGAL_PAGES: LegalPageContent[] = [
         items: [
           { label: 'Produits', text: 'Tous nos produits sont 100 % originaux.' },
           { label: 'Commandes', text: 'Toute commande est soumise à la disponibilité des produits.' },
-          { label: 'Prix', text: 'Les prix sont indiqués en dirhams marocains (MAD).' },
+          { label: 'Prix', text: 'Les prix sont indiqués en dirhams (DH).' },
           { label: 'Paiement', text: 'Le paiement s’effectue à la livraison (COD).' },
           { label: 'Livraison', text: 'Nous livrons partout au Maroc. Les frais de livraison sont communiqués avant confirmation de la commande.' },
           { label: 'Contact', text: 'Pour toute question, vous pouvez nous contacter via nos réseaux sociaux ou WhatsApp.' },
