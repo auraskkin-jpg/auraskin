@@ -154,7 +154,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
                   </span>
                 </div>
                 <div className="pt-2 text-[11px] text-emerald-800 bg-emerald-50 p-2.5 rounded-lg border border-emerald-200">
-                  💵 Paiement en dirhams marocains (MAD) en espèces à la livraison. Tu inspectes ton colis avant de régler.
+                  💵 Paiement en espèces à la livraison. Tu inspectes ton colis avant de régler.
                 </div>
               </div>
 
@@ -418,7 +418,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
             </button>
 
             <span className="text-[10px] text-center block text-[#141414]/60">
-              💵 Vous réglez en espèces en Dirhams (MAD) au livreur après ouverture et vérification du colis.
+              💵 Vous réglez en espèces au livreur après ouverture et vérification du colis.
             </span>
           </div>
         )}

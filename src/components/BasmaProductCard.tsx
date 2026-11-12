@@ -26,6 +26,7 @@ export const BasmaProductCard: React.FC<BasmaProductCardProps> = ({
 }) => {
   const displayPrice = product.sale > 0 ? product.sale : product.price;
   const originalPrice = product.sale > 0 ? product.price : 0;
+  const isSoldOut = product.tag === 'soldout';
 
   return (
     <div className="bg-white rounded-2xl p-3 sm:p-4 border border-[#141414]/10 hover:border-[#ffdbe7] hover:shadow-[0_8px_30px_rgb(255,219,231,0.4)] transition-all duration-300 flex flex-col justify-between group relative">
@@ -77,25 +78,32 @@ export const BasmaProductCard: React.FC<BasmaProductCardProps> = ({
           )
         )}
 
+        {/* Sold out Badge */}
+        {isSoldOut && (
+          <div className="absolute top-2 left-2 bg-[#6b6b6b] text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
+            Épuisé
+          </div>
+        )}
+
         {/* Discount Badge */}
-        {product.off > 0 && (
+        {!isSoldOut && product.off > 0 && (
           <div className="absolute top-2 left-2 bg-[#141414] text-[#ffdbe7] text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-full shadow-xs">
             -{product.off}%
           </div>
         )}
 
         {/* Bestseller Badge */}
-        {product.tag === 'best' && product.off === 0 && (
+        {!isSoldOut && product.tag === 'best' && product.off === 0 && (
           <div className="absolute top-2 left-2 bg-[#ffdbe7] text-[#141414] text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
             Top
           </div>
         )}
-        {product.tag === 'new' && product.off === 0 && (
+        {!isSoldOut && product.tag === 'new' && product.off === 0 && (
           <div className="absolute top-2 left-2 bg-[#141414] text-[#ffdbe7] text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
             Nouveau
           </div>
         )}
-        {product.tag === 'promo' && product.off === 0 && (
+        {!isSoldOut && product.tag === 'promo' && product.off === 0 && (
           <div className="absolute top-2 left-2 bg-[#e0558b] text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
             Promo
           </div>
@@ -166,18 +174,20 @@ export const BasmaProductCard: React.FC<BasmaProductCardProps> = ({
           <div className="flex items-center gap-2">
             <button
               onClick={() => {
-                if (displayPrice > 0) onAddToCart(product);
+                if (displayPrice > 0 && !isSoldOut) onAddToCart(product);
               }}
-              disabled={displayPrice <= 0}
+              disabled={displayPrice <= 0 || isSoldOut}
               className={`flex-1 py-1.5 px-3 rounded-full text-xs font-semibold tracking-wide transition-all flex items-center justify-center gap-1.5 border shadow-xs disabled:cursor-not-allowed disabled:opacity-60 ${
-                displayPrice <= 0
+                displayPrice <= 0 || isSoldOut
                   ? 'bg-[#f5f2f3] text-[#141414]/50 border-[#141414]/10'
                   : isAdded
                   ? 'bg-emerald-700 text-white border-emerald-700'
                   : 'bg-[#fff9fa] hover:bg-[#141414] text-[#141414] hover:text-[#ffdbe7] border-[#141414]/20 hover:border-[#141414]'
               }`}
             >
-              {displayPrice <= 0 ? (
+              {isSoldOut ? (
+                <span>{lang === 'ar' ? 'نفد المخزون' : 'Épuisé'}</span>
+              ) : displayPrice <= 0 ? (
                 <span>Indisponible</span>
               ) : isAdded ? (
                 <>

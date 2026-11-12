@@ -28,9 +28,10 @@ export const BasmaProductDetailModal: React.FC<BasmaProductDetailModalProps> = (
 
   const displayPrice = product.sale > 0 ? product.sale : product.price;
   const originalPrice = product.sale > 0 ? product.price : 0;
+  const isSoldOut = product.tag === 'soldout';
 
   const handleAdd = () => {
-    if (displayPrice <= 0) return;
+    if (displayPrice <= 0 || isSoldOut) return;
     onAddToCart(product, quantity);
     setIsAdded(true);
     setTimeout(() => setIsAdded(false), 2000);
@@ -167,7 +168,11 @@ export const BasmaProductDetailModal: React.FC<BasmaProductDetailModalProps> = (
                 ) : (
                   <span className="text-sm text-[#141414]/55">Prix indisponible pour le moment.</span>
                 )}
-                {displayPrice > 0 ? (
+                {isSoldOut ? (
+                  <span className="text-[11px] text-[#6b6b6b] font-semibold block mt-1">
+                    ✕ Épuisé · Bientôt de retour
+                  </span>
+                ) : displayPrice > 0 ? (
                   <span className="text-[11px] text-emerald-800 font-medium block mt-1">
                     ✓ En stock · Paiement à la livraison partout au Maroc
                   </span>
@@ -180,7 +185,7 @@ export const BasmaProductDetailModal: React.FC<BasmaProductDetailModalProps> = (
 
               {/* Quantity and Actions */}
               <div className="flex items-center gap-3">
-                {displayPrice > 0 && (
+                {displayPrice > 0 && !isSoldOut && (
                   <div className="flex items-center border border-[#141414]/20 rounded-full px-3 py-1 bg-white">
                     <button
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -200,16 +205,18 @@ export const BasmaProductDetailModal: React.FC<BasmaProductDetailModalProps> = (
 
                 <button
                   onClick={handleAdd}
-                  disabled={displayPrice <= 0}
+                  disabled={displayPrice <= 0 || isSoldOut}
                   className={`flex-1 py-2.5 px-4 rounded-full text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md disabled:cursor-not-allowed disabled:opacity-60 ${
-                    displayPrice <= 0
+                    displayPrice <= 0 || isSoldOut
                       ? 'bg-[#f5f2f3] text-[#141414]/50'
                       : isAdded
                       ? 'bg-emerald-700 text-white'
                       : 'bg-[#141414] hover:bg-[#2a2a2a] text-[#ffdbe7] hover:scale-102'
                   }`}
                 >
-                  {displayPrice <= 0 ? (
+                  {isSoldOut ? (
+                    <span>Épuisé</span>
+                  ) : displayPrice <= 0 ? (
                     <span>Indisponible</span>
                   ) : isAdded ? (
                     <>

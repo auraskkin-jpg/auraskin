@@ -399,6 +399,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                   <option value="new">Nouveauté</option>
                   <option value="promo">Promotion</option>
                   <option value="best">Meilleure vente</option>
+                  <option value="soldout">Épuisé</option>
                 </select>
               </div>
             </div>
