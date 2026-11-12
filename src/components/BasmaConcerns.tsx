@@ -1,5 +1,6 @@
 import React from 'react';
 import { CONCERNS } from '../data/basmaglowConstants';
+import { useT } from '../utils/siteTexts';
 
 interface BasmaConcernsProps {
   onSelectConcern: (concernId: string) => void;
@@ -7,14 +8,15 @@ interface BasmaConcernsProps {
 }
 
 export const BasmaConcerns: React.FC<BasmaConcernsProps> = ({ onSelectConcern, lang }) => {
+  const t = useT();
   return (
     <section className="py-8 sm:py-12 max-w-6xl mx-auto px-4 bg-white rounded-3xl my-6 border border-[#141414]/10 shadow-xs">
       <div className="text-center mb-8">
         <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414]/70 font-bold block">
-          {lang === 'ar' ? 'عناية مستهدفة' : 'SOINS CIBLÉS'}
+          {t('concerns.eyebrow', lang)}
         </span>
         <h2 className="font-brand text-2xl sm:text-3xl text-[#141414] font-normal mt-0.5">
-          {lang === 'ar' ? 'حسب مشاكل البشرة' : 'Par problème de peau'}
+          {t('concerns.title', lang)}
         </h2>
       </div>
 

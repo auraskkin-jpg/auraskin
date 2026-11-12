@@ -1,5 +1,6 @@
 import React from 'react';
 import { BGReview } from '../data/basmaglowConstants';
+import { useT } from '../utils/siteTexts';
 import { Star, CheckCircle, Quote } from 'lucide-react';
 
 interface BasmaReviewsProps {
@@ -8,20 +9,19 @@ interface BasmaReviewsProps {
 }
 
 export const BasmaReviews: React.FC<BasmaReviewsProps> = ({ reviews, lang }) => {
+  const t = useT();
   return (
     <section className="py-10 sm:py-16 max-w-6xl mx-auto px-4">
       {/* Title */}
       <div className="text-center mb-10">
         <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414]/70 font-bold block">
-          {lang === 'ar' ? 'ثقة زبوناتنا بالمغرب' : 'ELLES NOUS FONT CONFIANCE AU MAROC'}
+          {t('reviews.eyebrow', lang)}
         </span>
         <h2 className="font-brand text-2xl sm:text-3xl text-[#141414] font-normal mt-0.5">
-          {lang === 'ar' ? 'آراء وتجارب عميلاتنا' : 'Avis de nos clientes marocaines'}
+          {t('reviews.title', lang)}
         </h2>
         <p className="text-xs sm:text-sm text-[#141414]/70 mt-1">
-          {lang === 'ar'
-            ? 'طلبيات حقيقية، تجارب مؤكدة، ورضا دائم في جميع المدن المغربية.'
-            : 'Des commandes réelles, des routines adoptées et des clientes satisfaites au Maroc.'}
+          {t('reviews.subtitle', lang)}
         </p>
       </div>
 

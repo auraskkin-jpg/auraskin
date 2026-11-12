@@ -151,3 +151,17 @@ export function updateAdminAccount(
     body: JSON.stringify(input),
   });
 }
+
+export type SiteTextsMap = Record<string, string>;
+
+export function getSiteTexts(): Promise<SiteTextsMap> {
+  return request('/api/site-texts');
+}
+
+export function updateSiteTexts(texts: SiteTextsMap, token: string): Promise<void> {
+  return request('/api/admin/site-texts', {
+    method: 'PUT',
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ texts }),
+  });
+}

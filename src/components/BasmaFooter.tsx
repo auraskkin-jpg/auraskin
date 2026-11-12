@@ -1,11 +1,13 @@
 import React from 'react';
 import { MessageCircle, Instagram, Facebook, Music2, ShieldCheck, Truck } from 'lucide-react';
+import { useT } from '../utils/siteTexts';
 
 interface BasmaFooterProps {
   lang: 'fr' | 'ar';
 }
 
 export const BasmaFooter: React.FC<BasmaFooterProps> = ({ lang }) => {
+  const t = useT();
   return (
     <footer className="bg-white border-t border-[#141414]/10 pt-12 pb-8 mt-12 text-[#141414]">
       <div className="max-w-4xl mx-auto px-4 flex flex-col items-center text-center space-y-6">
@@ -22,7 +24,7 @@ export const BasmaFooter: React.FC<BasmaFooterProps> = ({ lang }) => {
         {/* Contact Links */}
         <div className="space-y-2">
           <span className="text-xs uppercase font-bold tracking-[0.14em] text-[#141414]/70">
-            {lang === 'ar' ? 'تواصلوا معنا' : 'Contacte-nous'}
+            {t('footer.contact', lang)}
           </span>
           <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 pt-1">
             <a
@@ -69,9 +71,7 @@ export const BasmaFooter: React.FC<BasmaFooterProps> = ({ lang }) => {
 
         {/* Tagline */}
         <p className="text-xs sm:text-sm text-[#141414]/80 max-w-md font-light leading-relaxed">
-          {lang === 'ar'
-            ? 'منتجات عناية بالبشرة كورية 100% أصلية، بأفضل الأسعار وتوصيل سريع لكافة المدن المغربية.'
-            : 'Des soins coréens d’exception 100 % authentiques, au meilleur prix.'}
+          {t('footer.tagline', lang)}
           <br />
           <strong className="font-brand text-sm font-semibold text-[#141414] mt-1 block">AURA SKIN</strong>
         </p>
@@ -80,11 +80,11 @@ export const BasmaFooter: React.FC<BasmaFooterProps> = ({ lang }) => {
         <div className="pt-2 flex flex-wrap items-center justify-center gap-6 text-xs text-[#141414]/70">
           <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fff9fa] border border-[#141414]/10">
             <Truck size={14} className="text-[#141414]" />
-            <span>Livraison partout au Maroc</span>
+            <span>{t('footer.badge1', lang)}</span>
           </div>
           <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fff9fa] border border-[#141414]/10">
             <ShieldCheck size={14} className="text-[#141414]" />
-            <span>Paiement en espèces à la livraison (MAD)</span>
+            <span>{t('footer.badge2', lang)}</span>
           </div>
         </div>
 
@@ -99,7 +99,7 @@ export const BasmaFooter: React.FC<BasmaFooterProps> = ({ lang }) => {
 
         {/* Copyright */}
         <div className="text-[11px] text-[#141414]/50">
-          AURA SKIN © 2026 • Royaume du Maroc
+          {t('footer.copyright', lang)}
         </div>
 
       </div>

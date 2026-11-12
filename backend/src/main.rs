@@ -244,6 +244,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
         .route("/api/analytics/page-view", post(record_page_view))
         .route("/api/products", get(list_products))
         .route("/api/reviews", get(list_reviews))
+        .route("/api/site-texts", get(list_site_texts))
         .route("/api/auth/register", post(register))
         .route("/api/auth/login", post(login))
         .route("/api/auth/me", get(current_user))
@@ -260,6 +261,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
             put(update_review).delete(delete_review),
         )
         .route("/api/admin/account", put(update_admin_account))
+        .route("/api/admin/site-texts", put(update_site_texts))
         .route("/api/admin/analytics", get(get_analytics))
         .route("/api/admin/orders", get(list_orders))
         .layer(cors)
@@ -510,6 +512,65 @@ fn password_matches(password: &str, hash: &str) -> bool {
 
 async fn health() -> Json<Value> {
     Json(json!({ "status": "ok" }))
+}
+
+async fn list_site_texts(State(state): State<AppState>) -> Result<Json<Value>, ApiError> {
+    let rows = sqlx::query_as::<_, (String, String)>(
+        "SELECT key, value FROM app_settings WHERE key LIKE 'text:%' ORDER BY key",
+    )
+    .fetch_all(&state.pool)
+    .await
+    .map_err(|_| ApiError::internal())?;
+
+    let mut texts = serde_json::Map::new();
+    for (key, value) in rows {
+        if let Some(name) = key.strip_prefix("text:") {
+            texts.insert(name.to_string(), Value::String(value));
+        }
+    }
+    Ok(Json(Value::Object(texts)))
+}
+
+async fn update_site_texts(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    Json(input): Json<Value>,
+) -> Result<Json<Value>, ApiError> {
+    require_admin(&headers, &state).await?;
+    let texts = input
+        .get("texts")
+        .and_then(Value::as_object)
+        .ok_or_else(|| ApiError::bad_request("Format des textes invalide."))?;
+
+    let mut transaction = state.pool.begin().await.map_err(|_| ApiError::internal())?;
+    for (key, value) in texts {
+        let value = value
+            .as_str()
+            .ok_or_else(|| ApiError::bad_request("Texte invalide."))?;
+        if key.is_empty() || key.len() > 120 || value.len() > 5000 {
+            return Err(ApiError::bad_request("Texte trop long ou clé invalide."));
+        }
+        let database_key = format!("text:{key}");
+        if value.trim().is_empty() {
+            sqlx::query("DELETE FROM app_settings WHERE key = ?")
+                .bind(&database_key)
+                .execute(&mut *transaction)
+                .await
+                .map_err(|_| ApiError::internal())?;
+        } else {
+            sqlx::query(
+                "INSERT INTO app_settings (key, value) VALUES (?, ?)
+                 ON CONFLICT(key) DO UPDATE SET value = excluded.value",
+            )
+            .bind(&database_key)
+            .bind(value)
+            .execute(&mut *transaction)
+            .await
+            .map_err(|_| ApiError::internal())?;
+        }
+    }
+    transaction.commit().await.map_err(|_| ApiError::internal())?;
+    Ok(Json(json!({ "status": "ok" })))
 }
 
 async fn list_products(State(state): State<AppState>) -> Result<Json<Vec<Value>>, ApiError> {

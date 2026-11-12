@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Camera, Trash2 } from 'lucide-react';
+import { useT } from '../utils/siteTexts';
 
 interface BasmaHeroProps {
   onShopClick: () => void;
   canCustomize: boolean;
+  lang: 'fr' | 'ar';
 }
 
-export const BasmaHero: React.FC<BasmaHeroProps> = ({ onShopClick, canCustomize }) => {
+export const BasmaHero: React.FC<BasmaHeroProps> = ({ onShopClick, canCustomize, lang }) => {
+  const t = useT();
   const [bannerImg, setBannerImg] = useState<string>('');
   const [showUploader, setShowUploader] = useState(false);
 
@@ -105,22 +108,22 @@ export const BasmaHero: React.FC<BasmaHeroProps> = ({ onShopClick, canCustomize 
           {/* Centered Editorial Content */}
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 text-white">
             <span className="inline-block px-3.5 py-1 rounded-full bg-[#ffdbe7]/95 text-[#141414] text-[11px] font-semibold tracking-widest uppercase mb-2 shadow-xs backdrop-blur-xs">
-              AURA SKIN
+              {t('hero.badge', lang)}
             </span>
 
             <h1 className="font-brand text-3xl sm:text-5xl lg:text-6xl font-normal tracking-wide drop-shadow-md">
-              <span className="italic font-normal">Your glow,</span> our passion.
+              {t('hero.title', lang)}
             </h1>
 
             <p className="text-xs sm:text-base font-light italic mt-1.5 sm:mt-2 text-[#ffdbe7] max-w-md drop-shadow">
-              L'excellence des soins coréens authentiques livrés partout au Maroc
+              {t('hero.subtitle', lang)}
             </p>
 
             <button
               onClick={onShopClick}
               className="mt-4 sm:mt-6 px-6 sm:px-8 py-2.5 sm:py-3 bg-[#141414] hover:bg-[#2a2a2a] text-[#ffdbe7] text-xs sm:text-sm font-semibold tracking-widest rounded-full border border-[#ffdbe7]/30 shadow-lg hover:scale-105 transition-all uppercase"
             >
-              DÉCOUVRIR LE CATALOGUE →
+              {t('hero.cta', lang)}
             </button>
           </div>
         </div>

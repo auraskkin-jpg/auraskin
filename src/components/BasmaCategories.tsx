@@ -1,5 +1,6 @@
 import React from 'react';
 import { CATEGORIES } from '../data/basmaglowConstants';
+import { useT } from '../utils/siteTexts';
 
 interface BasmaCategoriesProps {
   selectedCategory: string;
@@ -12,15 +13,16 @@ export const BasmaCategories: React.FC<BasmaCategoriesProps> = ({
   onSelectCategory,
   lang,
 }) => {
+  const t = useT();
   return (
     <section className="py-6 sm:py-10 max-w-6xl mx-auto px-4">
       {/* Section Title */}
       <div className="text-center mb-6">
         <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414]/70 font-bold block">
-          {lang === 'ar' ? 'استكشف' : 'EXPLORER'}
+          {t('categories.eyebrow', lang)}
         </span>
         <h2 className="font-brand text-2xl sm:text-3xl text-[#141414] font-normal mt-0.5">
-          {lang === 'ar' ? 'تصنيفاتنا' : 'Nos catégories de soins'}
+          {t('categories.title', lang)}
         </h2>
       </div>
 

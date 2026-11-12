@@ -1,5 +1,6 @@
 import React from 'react';
 import { Search, Heart, Menu, UserRound } from 'lucide-react';
+import { useT } from '../utils/siteTexts';
 
 interface BasmaHeaderProps {
   onOpenMenu: () => void;
@@ -16,16 +17,6 @@ interface BasmaHeaderProps {
   setIsSearchOpen: (open: boolean) => void;
 }
 
-const ANNOUNCEMENTS_FR = [
-  'Livraison gratuite à partir de 1000 DH',
-  'Produits 100% originaux'
-];
-
-const ANNOUNCEMENTS_AR = [
-  'توصيل مجاني ابتداءً من 1000 درهم',
-  'منتجات أصلية 100%'
-];
-
 export const BasmaHeader: React.FC<BasmaHeaderProps> = ({
   onOpenMenu,
   onOpenCart,
@@ -39,6 +30,7 @@ export const BasmaHeader: React.FC<BasmaHeaderProps> = ({
   isSearchOpen,
   setIsSearchOpen,
 }) => {
+  const t = useT();
   const [activePhraseIndex, setActivePhraseIndex] = React.useState(0);
 
   React.useEffect(() => {
@@ -48,7 +40,7 @@ export const BasmaHeader: React.FC<BasmaHeaderProps> = ({
     return () => clearInterval(timer);
   }, []);
 
-  const phrases = lang === 'ar' ? ANNOUNCEMENTS_AR : ANNOUNCEMENTS_FR;
+  const phrases = [t('header.announce1', lang), t('header.announce2', lang)];
 
   return (
     <header className="sticky top-0 z-40 w-full bg-[#fff9fa] border-b border-[#141414]/10 shadow-[0_2px_10px_rgba(20,20,20,0.03)]">

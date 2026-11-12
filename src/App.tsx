@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import productsData from './data/basmaglowProducts.json';
 import { BGProduct, BGReview, REVIEWS } from './data/basmaglowConstants';
 import { BGCartItem } from './utils/routineCalculations';
-import { createOrder, deleteProduct as deleteProductFromApi, getProducts, getReviews, login, saveProduct as saveProductToApi, CheckoutRequest } from './utils/api';
+import { createOrder, deleteProduct as deleteProductFromApi, getProducts, getReviews, getSiteTexts, login, saveProduct as saveProductToApi, CheckoutRequest } from './utils/api';
 import { trackCurrentPageView } from './utils/analytics';
+import { SiteTextsProvider } from './utils/siteTexts';
+import { siteTextDefaults } from './data/siteTexts';
 import { BasmaHeader } from './components/BasmaHeader';
 import { BasmaHero } from './components/BasmaHero';
 import { BasmaCategories } from './components/BasmaCategories';
@@ -38,6 +40,7 @@ export default function App() {
     return productsData as BGProduct[];
   });
   const [reviews, setReviews] = useState<BGReview[]>(REVIEWS);
+  const [siteTexts, setSiteTexts] = useState<Record<string, string>>(siteTextDefaults());
 
   // Save to localStorage whenever products change
   const updateProducts = (newProducts: BGProduct[]) => {
@@ -108,6 +111,14 @@ export default function App() {
       .catch((error: unknown) => {
         console.error('Rust API reviews request failed:', error);
         showToast('API Rust indisponible : affichage des avis locaux.');
+      });
+  }, []);
+
+  useEffect(() => {
+    getSiteTexts()
+      .then((texts) => setSiteTexts({ ...siteTextDefaults(), ...texts }))
+      .catch((error: unknown) => {
+        console.error('Rust API site texts request failed:', error);
       });
   }, []);
 
@@ -345,6 +356,7 @@ export default function App() {
   };
 
   return (
+    <SiteTextsProvider texts={siteTexts}>
     <div className={`min-h-screen flex flex-col bg-[#fff9fa] text-[#141414] ${lang === 'ar' ? 'font-ar' : ''}`}>
       
       {/* Aura Skin Header */}
@@ -366,7 +378,7 @@ export default function App() {
       {/* Main Content */}
       <main className="flex-1">
         {/* Hero Section */}
-        <BasmaHero onShopClick={handleShopScroll} canCustomize={Boolean(adminToken)} />
+        <BasmaHero onShopClick={handleShopScroll} canCustomize={Boolean(adminToken)} lang={lang} />
 
         {/* Circular Categories */}
         <BasmaCategories
@@ -537,5 +549,6 @@ export default function App() {
       )}
 
     </div>
+    </SiteTextsProvider>
   );
 }

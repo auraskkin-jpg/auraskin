@@ -6,19 +6,22 @@ import {
   getCurrentUser,
   getProducts,
   getReviews,
+  getSiteTexts,
   login,
   saveProduct,
   saveReview,
   updateAdminAccount,
+  updateSiteTexts,
 } from '../utils/api';
 import { BGProduct, BGReview } from '../data/basmaglowConstants';
+import { SITE_TEXT_GROUPS, SITE_TEXTS, siteTextDefaults } from '../data/siteTexts';
 import { AdminAnalytics } from './AdminAnalytics';
 import { ProductEditModal } from './ProductEditModal';
-import { ArrowLeft, BarChart3, LogOut, MessageSquare, Package, Settings, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, BarChart3, LogOut, MessageSquare, Package, Settings, ShieldCheck, Type } from 'lucide-react';
 
 const TOKEN_KEY = 'auraskin_admin_token';
 
-type AdminTab = 'products' | 'analytics' | 'reviews' | 'account';
+type AdminTab = 'products' | 'analytics' | 'reviews' | 'texts' | 'account';
 
 const emptyReview: BGReview = {
   id: 0,
@@ -56,13 +59,18 @@ export default function AdminDashboard() {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+  const [siteTexts, setSiteTexts] = useState<Record<string, string>>(siteTextDefaults());
+  const [isSavingTexts, setIsSavingTexts] = useState(false);
+
   const loadAdminData = useCallback(async (sessionToken: string) => {
-    const [loadedProducts, loadedReviews] = await Promise.all([
+    const [loadedProducts, loadedReviews, loadedTexts] = await Promise.all([
       getProducts(),
       getReviews(),
+      getSiteTexts().catch(() => ({})),
     ]);
     setProducts(loadedProducts);
     setReviews(loadedReviews);
+    setSiteTexts({ ...siteTextDefaults(), ...loadedTexts });
   }, []);
 
   useEffect(() => {
@@ -239,10 +247,27 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleSaveSiteTexts = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (!token) return;
+    setIsSavingTexts(true);
+    setError('');
+    setNotice('');
+    try {
+      await updateSiteTexts(siteTexts, token);
+      setNotice('Textes du site mis à jour.');
+    } catch (saveError) {
+      setError(saveError instanceof Error ? saveError.message : 'Impossible d’enregistrer les textes.');
+    } finally {
+      setIsSavingTexts(false);
+    }
+  };
+
   const tabs: Array<{ id: AdminTab; label: string; icon: React.ElementType }> = [
     { id: 'products', label: `Produits (${products.length})`, icon: Package },
     { id: 'analytics', label: 'Statistiques', icon: BarChart3 },
     { id: 'reviews', label: `Avis (${reviews.length})`, icon: MessageSquare },
+    { id: 'texts', label: 'Textes', icon: Type },
     { id: 'account', label: 'Accès admin', icon: Settings },
   ];
 
@@ -439,6 +464,102 @@ export default function AdminDashboard() {
               ))}
               {reviews.length === 0 && <p className="py-8 text-center text-xs text-[#141414]/60">Aucun avis.</p>}
             </div>
+          </section>
+        )}
+
+        {activeTab === 'texts' && (
+          <section className="rounded-2xl border border-[#141414]/10 bg-white p-4 shadow-sm sm:p-6">
+            <div className="mb-5">
+              <h2 className="font-brand text-2xl font-semibold">Textes du site</h2>
+              <p className="text-xs text-[#141414]/60">
+                Modifiez les textes affichés sur le site (bandeau, bannière, sections, FAQ, pied de page). Laissez vide pour revenir au texte par défaut.
+              </p>
+            </div>
+            <form onSubmit={handleSaveSiteTexts} className="space-y-6">
+              {SITE_TEXT_GROUPS.map((group) => (
+                <div key={group} className="rounded-xl border border-[#141414]/10 p-4">
+                  <h3 className="mb-3 text-sm font-bold text-[#141414]">{group}</h3>
+                  <div className="space-y-4">
+                    {SITE_TEXTS.filter((item) => item.group === group).map((item) => (
+                      <div key={item.key} className="grid gap-3 sm:grid-cols-2">
+                        <div className="sm:col-span-2 text-[11px] font-semibold uppercase tracking-wider text-[#141414]/60">
+                          {item.label}
+                        </div>
+                        <label className="block text-xs font-semibold">
+                          Français
+                          {item.multiline ? (
+                            <textarea
+                              rows={3}
+                              value={siteTexts[`${item.key}.fr`] ?? ''}
+                              onChange={(e) =>
+                                setSiteTexts((prev) => ({ ...prev, [`${item.key}.fr`]: e.target.value }))
+                              }
+                              className="mt-1 w-full rounded-lg border border-[#141414]/15 bg-[#fff9fa] px-3 py-2 font-normal"
+                              placeholder={item.fr}
+                            />
+                          ) : (
+                            <input
+                              type="text"
+                              value={siteTexts[`${item.key}.fr`] ?? ''}
+                              onChange={(e) =>
+                                setSiteTexts((prev) => ({ ...prev, [`${item.key}.fr`]: e.target.value }))
+                              }
+                              className="mt-1 w-full rounded-lg border border-[#141414]/15 bg-[#fff9fa] px-3 py-2 font-normal"
+                              placeholder={item.fr}
+                            />
+                          )}
+                        </label>
+                        <label className="block text-xs font-semibold">
+                          Arabe
+                          {item.multiline ? (
+                            <textarea
+                              rows={3}
+                              dir="rtl"
+                              value={siteTexts[`${item.key}.ar`] ?? ''}
+                              onChange={(e) =>
+                                setSiteTexts((prev) => ({ ...prev, [`${item.key}.ar`]: e.target.value }))
+                              }
+                              className="mt-1 w-full rounded-lg border border-[#141414]/15 bg-[#fff9fa] px-3 py-2 font-normal"
+                              placeholder={item.ar || ''}
+                            />
+                          ) : (
+                            <input
+                              type="text"
+                              dir="rtl"
+                              value={siteTexts[`${item.key}.ar`] ?? ''}
+                              onChange={(e) =>
+                                setSiteTexts((prev) => ({ ...prev, [`${item.key}.ar`]: e.target.value }))
+                              }
+                              className="mt-1 w-full rounded-lg border border-[#141414]/15 bg-[#fff9fa] px-3 py-2 font-normal"
+                              placeholder={item.ar || ''}
+                            />
+                          )}
+                        </label>
+                        <div className="sm:col-span-2 text-[10px] text-[#141414]/50">
+                          Défaut : {item.fr}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+              <div className="flex items-center justify-end gap-3">
+                <button
+                  type="button"
+                  onClick={() => setSiteTexts(siteTextDefaults())}
+                  className="rounded-full border border-[#141414]/15 px-4 py-2 text-xs font-semibold hover:bg-[#fff9fa]"
+                >
+                  Réinitialiser aux valeurs par défaut
+                </button>
+                <button
+                  type="submit"
+                  disabled={isSavingTexts}
+                  className="rounded-full bg-[#141414] px-5 py-2.5 text-xs font-bold text-[#ffdbe7] disabled:opacity-60"
+                >
+                  {isSavingTexts ? 'Enregistrement...' : 'Enregistrer les textes'}
+                </button>
+              </div>
+            </form>
           </section>
         )}
 
