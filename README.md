@@ -28,6 +28,8 @@ Pour le déploiement Docker : Docker Engine avec Docker Compose.
 
 Le site tourne sur `http://localhost:3000` et Vite transmet `/api` à l'API Rust sur `http://127.0.0.1:8080`. La variable `DATABASE_PATH` permet de choisir le fichier SQLite.
 Le tableau de bord administrateur est disponible sur `http://localhost:3000/ikrame`. Le premier accès utilise `ADMIN_EMAIL` et `ADMIN_PASSWORD` configurés dans `.env`; l'e-mail et le mot de passe peuvent ensuite être modifiés dans l'onglet « Accès admin ».
+
+Le compte administrateur n'est créé qu'au premier démarrage de l'API. Si la base SQLite existe déjà, modifier `ADMIN_EMAIL` ou `ADMIN_PASSWORD` ne change pas le compte existant. Pour réinitialiser un accès admin perdu, définir temporairement `ADMIN_RESET_PASSWORD` (10 caractères minimum) puis redémarrer l'API : l'e-mail admin est aligné sur `ADMIN_EMAIL` et le mot de passe devient `ADMIN_RESET_PASSWORD`. Retirer ensuite cette variable. Cette procédure est aussi utilisable sur une plateforme comme Railway, à condition que le volume de la base soit conservé.
 Les clients peuvent créer un compte sur `/signup` ou se connecter sur `/login`. Les pages légales publiques sont `/conditions-utilisation`, `/politique-confidentialite` et `/politique-expedition`.
 
 ## API

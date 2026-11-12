@@ -201,6 +201,9 @@ async fn main() -> Result<(), Box<dyn Error>> {
     }
     let admin_email = required_env("ADMIN_EMAIL")?.trim().to_lowercase();
     let admin_password = required_env("ADMIN_PASSWORD")?;
+    let admin_reset_password = env::var("ADMIN_RESET_PASSWORD")
+        .ok()
+        .filter(|value| !value.trim().is_empty());
     let database_path = env::var("DATABASE_PATH").unwrap_or_else(|_| "aura_skin.db".into());
     let cors_origin =
         env::var("API_CORS_ORIGIN").unwrap_or_else(|_| "http://localhost:3000".into());
@@ -219,7 +222,13 @@ async fn main() -> Result<(), Box<dyn Error>> {
     initialize_database(&pool).await?;
     seed_products(&pool).await?;
     seed_reviews(&pool).await?;
-    seed_admin(&pool, &admin_email, &admin_password).await?;
+    seed_admin(
+        &pool,
+        &admin_email,
+        &admin_password,
+        admin_reset_password.as_deref(),
+    )
+    .await?;
 
     let state = AppState {
         pool,
@@ -406,13 +415,68 @@ async fn seed_reviews(pool: &SqlitePool) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-async fn seed_admin(pool: &SqlitePool, email: &str, password: &str) -> Result<(), Box<dyn Error>> {
-    let exists: Option<String> = sqlx::query_scalar(
-        "SELECT id FROM users WHERE role = 'admin' LIMIT 1",
+async fn seed_admin(
+    pool: &SqlitePool,
+    email: &str,
+    password: &str,
+    reset_password: Option<&str>,
+) -> Result<(), Box<dyn Error>> {
+    let admin: Option<(String, String)> = sqlx::query_as(
+        "SELECT id, password_hash FROM users WHERE role = 'admin' LIMIT 1",
     )
+    .fetch_optional(pool)
+    .await?;
+
+    if let Some(reset_password) = reset_password {
+        validate_password(reset_password)
+            .map_err(|message| format!("ADMIN_RESET_PASSWORD: {message}"))?;
+        let applied_reset_hash: Option<String> = sqlx::query_scalar(
+            "SELECT value FROM app_settings WHERE key = 'admin_reset_password_hash'",
+        )
         .fetch_optional(pool)
         .await?;
-    if exists.is_none() {
+
+        if admin.is_some()
+            && applied_reset_hash
+                .as_deref()
+                .is_some_and(|hash| password_matches(reset_password, hash))
+        {
+            return Ok(());
+        }
+
+        let hash = hash_password(reset_password)?;
+        if let Some((admin_id, _)) = admin {
+            sqlx::query(
+                "UPDATE users
+                 SET email = ?, password_hash = ?, token_version = token_version + 1
+                 WHERE id = ?",
+            )
+            .bind(email)
+            .bind(&hash)
+            .bind(admin_id)
+            .execute(pool)
+            .await?;
+        } else {
+            sqlx::query(
+                "INSERT INTO users (id, name, email, password_hash, role)
+                 VALUES (?, 'Aura Skin Admin', ?, ?, 'admin')",
+            )
+            .bind(Uuid::new_v4().to_string())
+            .bind(email)
+            .bind(&hash)
+            .execute(pool)
+            .await?;
+        }
+
+        sqlx::query(
+            "INSERT OR REPLACE INTO app_settings (key, value)
+             VALUES ('admin_reset_password_hash', ?)",
+        )
+        .bind(hash)
+        .execute(pool)
+        .await?;
+        eprintln!("ADMIN_RESET_PASSWORD appliqué : identifiants administrateur mis à jour.");
+    } else if admin.is_none() {
         validate_password(password).map_err(|message| format!("ADMIN_PASSWORD: {message}"))?;
         let hash = hash_password(password)?;
         sqlx::query(
@@ -426,6 +490,14 @@ async fn seed_admin(pool: &SqlitePool, email: &str, password: &str) -> Result<()
         .await?;
     }
     Ok(())
+}
+
+fn password_matches(password: &str, hash: &str) -> bool {
+    PasswordHash::new(hash).is_ok_and(|parsed| {
+        Argon2::default()
+            .verify_password(password.as_bytes(), &parsed)
+            .is_ok()
+    })
 }
 
 async fn health() -> Json<Value> {
