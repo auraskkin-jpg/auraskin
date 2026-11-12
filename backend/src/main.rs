@@ -205,6 +205,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
         .ok()
         .filter(|value| !value.trim().is_empty());
     let database_path = env::var("DATABASE_PATH").unwrap_or_else(|_| "aura_skin.db".into());
+    eprintln!("Base de données SQLite : {database_path}");
     let cors_origin =
         env::var("API_CORS_ORIGIN").unwrap_or_else(|_| "http://localhost:3000".into());
     let cors_origin: HeaderValue = cors_origin.parse()?;
@@ -427,6 +428,12 @@ async fn seed_admin(
     .fetch_optional(pool)
     .await?;
 
+    eprintln!(
+        "Compte admin existant : {} | ADMIN_RESET_PASSWORD : {}",
+        if admin.is_some() { "oui" } else { "non" },
+        if reset_password.is_some() { "défini" } else { "non défini" }
+    );
+
     if let Some(reset_password) = reset_password {
         validate_password(reset_password)
             .map_err(|message| format!("ADMIN_RESET_PASSWORD: {message}"))?;
@@ -488,6 +495,7 @@ async fn seed_admin(
         .bind(hash)
         .execute(pool)
         .await?;
+        eprintln!("Compte administrateur créé pour {email}.");
     }
     Ok(())
 }
@@ -616,14 +624,18 @@ async fn login(
     .bind(&email)
     .fetch_optional(&state.pool)
     .await
-    .map_err(|_| ApiError::internal())?
-    .ok_or_else(ApiError::unauthorized)?;
+    .map_err(|_| ApiError::internal())?;
+    let Some(row) = row else {
+        eprintln!("Échec de connexion : e-mail inconnu.");
+        return Err(ApiError::unauthorized());
+    };
     let (id, name, email, password_hash, role, token_version) = row;
     let parsed_hash = PasswordHash::new(&password_hash).map_err(|_| ApiError::internal())?;
     if Argon2::default()
         .verify_password(input.password.as_bytes(), &parsed_hash)
         .is_err()
     {
+        eprintln!("Échec de connexion : mot de passe incorrect.");
         return Err(ApiError::unauthorized());
     }
     auth_response(
