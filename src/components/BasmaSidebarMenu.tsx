@@ -1,5 +1,6 @@
 import React from 'react';
 import { X, Sparkles, Flame, Tag, Grid, Heart, MessageCircle, Globe, UserRound } from 'lucide-react';
+import { useSiteTexts } from '../utils/siteTexts';
 
 interface BasmaSidebarMenuProps {
   isOpen: boolean;
@@ -18,6 +19,8 @@ export const BasmaSidebarMenu: React.FC<BasmaSidebarMenuProps> = ({
   lang,
   onToggleLang,
 }) => {
+  const { texts } = useSiteTexts();
+  const logoSrc = texts['image.logo.header'] || '/assets/aura_skin_logo_transparent.png';
   if (!isOpen) return null;
 
   const links = [
@@ -37,7 +40,7 @@ export const BasmaSidebarMenu: React.FC<BasmaSidebarMenuProps> = ({
           {/* Header */}
           <div className="p-4 border-b border-[#141414]/10 bg-white flex items-center justify-between">
             <img
-              src="/assets/aura_skin_logo_transparent.png"
+              src={logoSrc}
               alt="AURA SKIN"
               className="h-9 w-auto object-contain"
             />

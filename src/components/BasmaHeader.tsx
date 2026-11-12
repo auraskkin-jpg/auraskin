@@ -1,6 +1,6 @@
 import React from 'react';
 import { Search, Heart, Menu, UserRound } from 'lucide-react';
-import { useT } from '../utils/siteTexts';
+import { useSiteTexts, useT } from '../utils/siteTexts';
 
 interface BasmaHeaderProps {
   onOpenMenu: () => void;
@@ -31,6 +31,8 @@ export const BasmaHeader: React.FC<BasmaHeaderProps> = ({
   setIsSearchOpen,
 }) => {
   const t = useT();
+  const { texts } = useSiteTexts();
+  const logoSrc = texts['image.logo.header'] || '/assets/aura_skin_logo_transparent.png';
   const [activePhraseIndex, setActivePhraseIndex] = React.useState(0);
 
   React.useEffect(() => {
@@ -87,7 +89,7 @@ export const BasmaHeader: React.FC<BasmaHeaderProps> = ({
         <div className="flex-1 flex justify-center">
           <a href="#" className="cursor-pointer block group">
             <img
-              src="/assets/aura_skin_logo_transparent.png"
+              src={logoSrc}
               alt="AURA SKIN"
               className="h-12 sm:h-16 w-auto object-contain transition-transform group-hover:scale-105"
             />

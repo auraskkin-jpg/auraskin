@@ -547,8 +547,10 @@ async fn update_site_texts(
         let value = value
             .as_str()
             .ok_or_else(|| ApiError::bad_request("Texte invalide."))?;
-        if key.is_empty() || key.len() > 120 || value.len() > 5000 {
-            return Err(ApiError::bad_request("Texte trop long ou clé invalide."));
+        if key.is_empty() || key.len() > 120 || value.len() > 3_000_000 {
+            return Err(ApiError::bad_request(
+                "Texte trop long ou clé invalide.",
+            ));
         }
         let database_key = format!("text:{key}");
         if value.trim().is_empty() {

@@ -476,6 +476,55 @@ export default function AdminDashboard() {
               </p>
             </div>
             <form onSubmit={handleSaveSiteTexts} className="space-y-6">
+              <div className="rounded-xl border border-[#141414]/10 p-4">
+                <h3 className="mb-3 text-sm font-bold text-[#141414]">Logos & images</h3>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {([
+                    { key: 'image.logo.header', label: 'Logo en-tête (header)', fallback: '/assets/aura_skin_logo_transparent.png' },
+                    { key: 'image.logo.footer', label: 'Logo pied de page (footer)', fallback: '/assets/aura_skin_logo_transparent.png' },
+                  ] as const).map((item) => (
+                    <div key={item.key} className="space-y-2">
+                      <label className="block text-xs font-semibold">{item.label}</label>
+                      <div className="flex items-center gap-3">
+                        <div className="h-16 w-28 rounded-lg border border-[#141414]/10 bg-[#fff9fa] flex items-center justify-center overflow-hidden">
+                          <img
+                            src={siteTexts[item.key] || item.fallback}
+                            alt={item.label}
+                            className="max-h-14 max-w-24 object-contain"
+                          />
+                        </div>
+                        <div className="flex-1 space-y-1.5">
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                              const file = e.target.files?.[0];
+                              if (!file) return;
+                              const reader = new FileReader();
+                              reader.onload = () => {
+                                if (typeof reader.result === 'string') {
+                                  setSiteTexts((prev) => ({ ...prev, [item.key]: reader.result as string }));
+                                }
+                              };
+                              reader.readAsDataURL(file);
+                              e.target.value = '';
+                            }}
+                            className="block w-full text-[11px]"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setSiteTexts((prev) => ({ ...prev, [item.key]: '' }))}
+                            className="text-[11px] font-semibold text-rose-700 hover:underline"
+                          >
+                            Réinitialiser (logo par défaut)
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <p className="mt-3 text-[10px] text-[#141414]/55">Formats conseillés : PNG transparent. Cliquez sur « Enregistrer les textes » pour appliquer.</p>
+              </div>
               {SITE_TEXT_GROUPS.map((group) => (
                 <div key={group} className="rounded-xl border border-[#141414]/10 p-4">
                   <h3 className="mb-3 text-sm font-bold text-[#141414]">{group}</h3>

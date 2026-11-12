@@ -1,6 +1,6 @@
 import React from 'react';
 import { MessageCircle, Instagram, Facebook, Music2, ShieldCheck, Truck } from 'lucide-react';
-import { useT } from '../utils/siteTexts';
+import { useSiteTexts, useT } from '../utils/siteTexts';
 
 interface BasmaFooterProps {
   lang: 'fr' | 'ar';
@@ -8,6 +8,8 @@ interface BasmaFooterProps {
 
 export const BasmaFooter: React.FC<BasmaFooterProps> = ({ lang }) => {
   const t = useT();
+  const { texts } = useSiteTexts();
+  const logoSrc = texts['image.logo.footer'] || '/assets/aura_skin_logo_transparent.png';
   return (
     <footer className="bg-white border-t border-[#141414]/10 pt-12 pb-8 mt-12 text-[#141414]">
       <div className="max-w-4xl mx-auto px-4 flex flex-col items-center text-center space-y-6">
@@ -15,7 +17,7 @@ export const BasmaFooter: React.FC<BasmaFooterProps> = ({ lang }) => {
         {/* Footer Transparent Logo */}
         <div className="w-auto">
           <img
-            src="/assets/aura_skin_logo_transparent.png"
+            src={logoSrc}
             alt="AURA SKIN"
             className="h-16 sm:h-20 w-auto object-contain mx-auto"
           />
