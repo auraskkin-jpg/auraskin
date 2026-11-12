@@ -410,7 +410,9 @@ export default function App() {
         {/* Skin Concerns Section */}
         <BasmaConcerns
           onSelectConcern={(concernId) => {
-            const linked = products.filter((p) => p.linkedConcern === concernId);
+            const linked = products.filter(
+              (p) => p.linkedConcerns?.includes(concernId) || p.linkedConcern === concernId
+            );
             if (linked.length === 1) {
               setSelectedProduct(linked[0]);
             } else if (linked.length > 1) {

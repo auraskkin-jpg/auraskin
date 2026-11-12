@@ -12,6 +12,7 @@ export interface BGProduct {
   tag: string;
   promo?: boolean;
   linkedConcern?: string;
+  linkedConcerns?: string[];
   img: string;
   desc: string;
   skin: string;

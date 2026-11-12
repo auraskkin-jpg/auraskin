@@ -26,7 +26,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
   const [vol, setVol] = useState('50 ml');
   const [cat, setCat] = useState('serums');
   const [tag, setTag] = useState('');
-  const [linkedConcern, setLinkedConcern] = useState('');
+  const [linkedConcerns, setLinkedConcerns] = useState<string[]>([]);
   const [desc, setDesc] = useState('');
   const [skin, setSkin] = useState('Tous types de peaux');
   const [usage, setUsage] = useState('Matin et/ou soir');
@@ -46,7 +46,12 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
       setVol(product.vol || '50 ml');
       setCat(product.cat || 'serums');
       setTag(product.tag || '');
-      setLinkedConcern(product.linkedConcern || '');
+      const concerns = Array.isArray(product.linkedConcerns)
+        ? product.linkedConcerns
+        : product.linkedConcern
+        ? [product.linkedConcern]
+        : [];
+      setLinkedConcerns(concerns);
       setDesc(product.desc || '');
       setSkin(product.skin || 'Tous types de peaux');
       setUsage(product.usage || 'Matin et/ou soir');
@@ -61,7 +66,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
       setVol('50 ml');
       setCat('serums');
       setTag('new');
-      setLinkedConcern('');
+      setLinkedConcerns([]);
       setDesc('');
       setSkin('Tous types de peaux');
       setUsage('Matin et soir');
@@ -126,7 +131,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
       cat,
       tag,
       promo: (finalSale > 0 && finalSale < finalPrice) || tag === 'promo',
-      ...(linkedConcern ? { linkedConcern } : {}),
+      ...(linkedConcerns.length > 0 ? { linkedConcerns } : {}),
       img: img.trim(),
       desc: desc.trim(),
       skin: skin.trim() || 'Tous types de peaux',
@@ -409,22 +414,36 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
 
               <div className="sm:col-span-2">
                 <label className="block text-[11px] font-semibold text-[#141414] mb-1">
-                  Produit lié à un problème de peau (clic sur la section “Par problème de peau”)
+                  Produit lié à un ou plusieurs problèmes de peau (clic sur la section “Par problème de peau”)
                 </label>
-                <select
-                  value={linkedConcern}
-                  onChange={(e) => setLinkedConcern(e.target.value)}
-                  className="w-full px-3 py-2 bg-[#fff9fa] border border-[#141414]/15 rounded-xl text-xs outline-none focus:border-[#141414] cursor-pointer"
-                >
-                  <option value="">Aucun (comportement normal)</option>
-                  {CONCERNS.map((concern) => (
-                    <option key={concern.id} value={concern.id}>
-                      {concern.name} — {concern.desc}
-                    </option>
-                  ))}
-                </select>
-                <p className="mt-1 text-[10px] text-[#141414]/55">
-                  Quand un visiteur clique sur ce problème (ex. Acné, Taches brunes), la fiche de ce produit s’ouvrira.
+                <div className="flex flex-wrap gap-2">
+                  {CONCERNS.map((concern) => {
+                    const selected = linkedConcerns.includes(concern.id);
+                    return (
+                      <button
+                        key={concern.id}
+                        type="button"
+                        onClick={() =>
+                          setLinkedConcerns((prev) =>
+                            prev.includes(concern.id)
+                              ? prev.filter((id) => id !== concern.id)
+                              : [...prev, concern.id]
+                          )
+                        }
+                        className={`px-3 py-1.5 rounded-full border text-xs font-semibold transition-all ${
+                          selected
+                            ? 'bg-[#141414] text-[#ffdbe7] border-[#141414]'
+                            : 'bg-[#fff9fa] text-[#141414]/80 border-[#141414]/15 hover:border-[#141414]/40'
+                        }`}
+                        aria-pressed={selected}
+                      >
+                        {concern.icon} {concern.name}
+                      </button>
+                    );
+                  })}
+                </div>
+                <p className="mt-1.5 text-[10px] text-[#141414]/55">
+                  Tu peux sélectionner plusieurs problèmes (ex. Acné + Taches brunes). Quand un visiteur clique sur l’un de ces problèmes, ce produit sera affiché.
                 </p>
               </div>
             </div>

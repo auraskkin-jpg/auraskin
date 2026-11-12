@@ -37,7 +37,7 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
     const concernId = selectedCategory.startsWith('concern:') ? selectedCategory.slice('concern:'.length) : null;
     const concern = concernId ? CONCERNS.find((c) => c.id === concernId) : null;
     const filtered = products.filter((p) => {
-      if (concernId) return p.linkedConcern === concernId;
+      if (concernId) return p.linkedConcerns?.includes(concernId) || p.linkedConcern === concernId;
       if (selectedCategory !== 'all' && p.cat !== selectedCategory) return false;
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase();
