@@ -410,11 +410,16 @@ export default function App() {
         {/* Skin Concerns Section */}
         <BasmaConcerns
           onSelectConcern={(concernId) => {
-            const linked = products.find((p) => p.linkedConcern === concernId);
-            if (linked) {
-              setSelectedProduct(linked);
+            const linked = products.filter((p) => p.linkedConcern === concernId);
+            if (linked.length === 1) {
+              setSelectedProduct(linked[0]);
+            } else if (linked.length > 1) {
+              setSelectedCategory(`concern:${concernId}`);
+              setSearchQuery('');
+              handleShopScroll();
             } else {
               setSearchQuery(concernId);
+              setSelectedCategory('all');
               handleShopScroll();
             }
           }}
