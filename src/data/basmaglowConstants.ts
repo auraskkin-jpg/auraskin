@@ -11,6 +11,7 @@ export interface BGProduct {
   cat: string;
   tag: string;
   promo?: boolean;
+  linkedConcern?: string;
   img: string;
   desc: string;
   skin: string;

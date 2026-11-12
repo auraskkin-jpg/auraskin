@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BGProduct, CATEGORIES } from '../data/basmaglowConstants';
+import { BGProduct, CATEGORIES, CONCERNS } from '../data/basmaglowConstants';
 import { X, Upload, Trash2, Check, Sparkles, Image as ImageIcon } from 'lucide-react';
 
 interface ProductEditModalProps {
@@ -26,6 +26,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
   const [vol, setVol] = useState('50 ml');
   const [cat, setCat] = useState('serums');
   const [tag, setTag] = useState('');
+  const [linkedConcern, setLinkedConcern] = useState('');
   const [desc, setDesc] = useState('');
   const [skin, setSkin] = useState('Tous types de peaux');
   const [usage, setUsage] = useState('Matin et/ou soir');
@@ -45,6 +46,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
       setVol(product.vol || '50 ml');
       setCat(product.cat || 'serums');
       setTag(product.tag || '');
+      setLinkedConcern(product.linkedConcern || '');
       setDesc(product.desc || '');
       setSkin(product.skin || 'Tous types de peaux');
       setUsage(product.usage || 'Matin et/ou soir');
@@ -59,6 +61,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
       setVol('50 ml');
       setCat('serums');
       setTag('new');
+      setLinkedConcern('');
       setDesc('');
       setSkin('Tous types de peaux');
       setUsage('Matin et soir');
@@ -123,6 +126,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
       cat,
       tag,
       promo: (finalSale > 0 && finalSale < finalPrice) || tag === 'promo',
+      ...(linkedConcern ? { linkedConcern } : {}),
       img: img.trim(),
       desc: desc.trim(),
       skin: skin.trim() || 'Tous types de peaux',
@@ -401,6 +405,27 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                   <option value="best">Meilleure vente</option>
                   <option value="soldout">Épuisé</option>
                 </select>
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="block text-[11px] font-semibold text-[#141414] mb-1">
+                  Produit lié à un problème de peau (clic sur la section “Par problème de peau”)
+                </label>
+                <select
+                  value={linkedConcern}
+                  onChange={(e) => setLinkedConcern(e.target.value)}
+                  className="w-full px-3 py-2 bg-[#fff9fa] border border-[#141414]/15 rounded-xl text-xs outline-none focus:border-[#141414] cursor-pointer"
+                >
+                  <option value="">Aucun (comportement normal)</option>
+                  {CONCERNS.map((concern) => (
+                    <option key={concern.id} value={concern.id}>
+                      {concern.name} — {concern.desc}
+                    </option>
+                  ))}
+                </select>
+                <p className="mt-1 text-[10px] text-[#141414]/55">
+                  Quand un visiteur clique sur ce problème (ex. Acné, Taches brunes), la fiche de ce produit s’ouvrira.
+                </p>
               </div>
             </div>
           </div>
