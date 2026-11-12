@@ -28,7 +28,6 @@ COPY --from=build /workspace/backend/target/release/aura-skin-api /usr/local/bin
 ENV API_ADDRESS=0.0.0.0:8080
 ENV DATABASE_PATH=/data/aura_skin.db
 
-VOLUME ["/data"]
 EXPOSE 8080
 USER aura
 
