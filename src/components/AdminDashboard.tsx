@@ -13,7 +13,7 @@ import {
   updateAdminAccount,
   updateSiteTexts,
 } from '../utils/api';
-import { BGProduct, BGReview } from '../data/basmaglowConstants';
+import { BGProduct, BGReview, CATEGORIES, CONCERNS } from '../data/basmaglowConstants';
 import { SITE_TEXT_GROUPS, SITE_TEXTS, siteTextDefaults } from '../data/siteTexts';
 import { AdminAnalytics } from './AdminAnalytics';
 import { ProductEditModal } from './ProductEditModal';
@@ -524,6 +524,92 @@ export default function AdminDashboard() {
                   ))}
                 </div>
                 <p className="mt-3 text-[10px] text-[#141414]/55">Formats conseillés : PNG transparent. Cliquez sur « Enregistrer les textes » pour appliquer.</p>
+              </div>
+
+              <div className="rounded-xl border border-[#141414]/10 p-4">
+                <h3 className="mb-1 text-sm font-bold text-[#141414]">Icônes — Nos catégories de soins</h3>
+                <p className="mb-3 text-[10px] text-[#141414]/55">Remplace l’icône (emoji) par une image pour chaque catégorie. Laisse vide pour garder l’emoji.</p>
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {CATEGORIES.map((cat) => {
+                    const key = `image.category.${cat.id}`;
+                    const current = siteTexts[key];
+                    return (
+                      <div key={cat.id} className="flex items-center gap-3 rounded-lg border border-[#141414]/10 p-2.5">
+                        <div className="h-12 w-12 rounded-full bg-[#fff9fa] border border-[#141414]/10 flex items-center justify-center overflow-hidden shrink-0 text-xl">
+                          {current ? <img src={current} alt="" className="w-full h-full object-cover" /> : <span>{cat.icon}</span>}
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <div className="text-xs font-semibold truncate">{cat.name}</div>
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                              const file = e.target.files?.[0];
+                              if (!file) return;
+                              const reader = new FileReader();
+                              reader.onload = () => {
+                                if (typeof reader.result === 'string') {
+                                  setSiteTexts((prev) => ({ ...prev, [key]: reader.result as string }));
+                                }
+                              };
+                              reader.readAsDataURL(file);
+                              e.target.value = '';
+                            }}
+                            className="mt-1 block w-full text-[10px]"
+                          />
+                          {current && (
+                            <button type="button" onClick={() => setSiteTexts((prev) => ({ ...prev, [key]: '' }))} className="mt-0.5 text-[10px] font-semibold text-rose-700 hover:underline">
+                              Retirer l’image
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="rounded-xl border border-[#141414]/10 p-4">
+                <h3 className="mb-1 text-sm font-bold text-[#141414]">Icônes — Par problème de peau</h3>
+                <p className="mb-3 text-[10px] text-[#141414]/55">Remplace l’icône (emoji) par une image pour chaque problème. Laisse vide pour garder l’emoji.</p>
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                  {CONCERNS.map((concern) => {
+                    const key = `image.concern.${concern.id}`;
+                    const current = siteTexts[key];
+                    return (
+                      <div key={concern.id} className="flex items-center gap-3 rounded-lg border border-[#141414]/10 p-2.5">
+                        <div className="h-12 w-12 rounded-full bg-white border border-[#141414]/10 flex items-center justify-center overflow-hidden shrink-0 text-xl">
+                          {current ? <img src={current} alt="" className="w-full h-full object-cover" /> : <span>{concern.icon}</span>}
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <div className="text-xs font-semibold truncate">{concern.name}</div>
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                              const file = e.target.files?.[0];
+                              if (!file) return;
+                              const reader = new FileReader();
+                              reader.onload = () => {
+                                if (typeof reader.result === 'string') {
+                                  setSiteTexts((prev) => ({ ...prev, [key]: reader.result as string }));
+                                }
+                              };
+                              reader.readAsDataURL(file);
+                              e.target.value = '';
+                            }}
+                            className="mt-1 block w-full text-[10px]"
+                          />
+                          {current && (
+                            <button type="button" onClick={() => setSiteTexts((prev) => ({ ...prev, [key]: '' }))} className="mt-0.5 text-[10px] font-semibold text-rose-700 hover:underline">
+                              Retirer l’image
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
               {SITE_TEXT_GROUPS.map((group) => (
                 <div key={group} className="rounded-xl border border-[#141414]/10 p-4">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { CATEGORIES } from '../data/basmaglowConstants';
-import { useT } from '../utils/siteTexts';
+import { useSiteTexts, useT } from '../utils/siteTexts';
 
 interface BasmaCategoriesProps {
   selectedCategory: string;
@@ -14,6 +14,7 @@ export const BasmaCategories: React.FC<BasmaCategoriesProps> = ({
   lang,
 }) => {
   const t = useT();
+  const { texts } = useSiteTexts();
   return (
     <section className="py-6 sm:py-10 max-w-6xl mx-auto px-4">
       {/* Section Title */}
@@ -30,6 +31,7 @@ export const BasmaCategories: React.FC<BasmaCategoriesProps> = ({
       <div className="flex items-start gap-4 sm:gap-6 overflow-x-auto pb-3 pt-1 no-scrollbar justify-start sm:justify-center">
         {CATEGORIES.map((cat) => {
           const isSelected = selectedCategory === cat.id;
+          const customIcon = texts[`image.category.${cat.id}`];
           return (
             <button
               key={cat.id}
@@ -44,7 +46,11 @@ export const BasmaCategories: React.FC<BasmaCategoriesProps> = ({
                     : 'border border-[#141414]/10 hover:border-[#ffdbe7] group-hover:scale-105'
                 }`}
               >
-                <span>{cat.icon}</span>
+                {customIcon ? (
+                  <img src={customIcon} alt="" className="w-full h-full object-cover" />
+                ) : (
+                  <span>{cat.icon}</span>
+                )}
               </div>
 
               {/* Label */}

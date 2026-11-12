@@ -1,6 +1,6 @@
 import React from 'react';
 import { CONCERNS } from '../data/basmaglowConstants';
-import { useT } from '../utils/siteTexts';
+import { useSiteTexts, useT } from '../utils/siteTexts';
 
 interface BasmaConcernsProps {
   onSelectConcern: (concernId: string) => void;
@@ -9,6 +9,7 @@ interface BasmaConcernsProps {
 
 export const BasmaConcerns: React.FC<BasmaConcernsProps> = ({ onSelectConcern, lang }) => {
   const t = useT();
+  const { texts } = useSiteTexts();
   return (
     <section className="py-8 sm:py-12 max-w-6xl mx-auto px-4 bg-white rounded-3xl my-6 border border-[#141414]/10 shadow-xs">
       <div className="text-center mb-8">
@@ -21,15 +22,21 @@ export const BasmaConcerns: React.FC<BasmaConcernsProps> = ({ onSelectConcern, l
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 justify-center">
-        {CONCERNS.map((concern) => (
+        {CONCERNS.map((concern) => {
+          const customIcon = texts[`image.concern.${concern.id}`];
+          return (
           <button
             key={concern.id}
             onClick={() => onSelectConcern(concern.id)}
             className="flex flex-col items-center p-3 rounded-2xl bg-[#fff9fa] border border-[#141414]/10 hover:border-[#ffdbe7] hover:bg-[#ffdbe7]/20 group cursor-pointer focus:outline-none transition-all duration-300 hover:scale-102"
           >
             {/* Circular Concern Icon */}
-            <div className="w-14 h-14 rounded-full bg-white shadow-xs flex items-center justify-center text-2xl mb-2 group-hover:scale-110 transition-transform">
-              <span>{concern.icon}</span>
+            <div className="w-14 h-14 rounded-full bg-white shadow-xs flex items-center justify-center text-2xl mb-2 group-hover:scale-110 transition-transform overflow-hidden">
+              {customIcon ? (
+                <img src={customIcon} alt="" className="w-full h-full object-cover" />
+              ) : (
+                <span>{concern.icon}</span>
+              )}
             </div>
             {/* Concern Title */}
             <span className="text-xs font-semibold text-[#141414] group-hover:text-[#e0558b] text-center transition-colors">
@@ -39,7 +46,8 @@ export const BasmaConcerns: React.FC<BasmaConcernsProps> = ({ onSelectConcern, l
               {concern.desc}
             </span>
           </button>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
