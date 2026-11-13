@@ -91,12 +91,12 @@ export const BasmaSidebarMenu: React.FC<BasmaSidebarMenuProps> = ({
             </button>
 
             <a
-              href="/login"
+              href="/compte"
               onClick={onClose}
               className="w-full text-left px-3 py-2.5 rounded-2xl hover:bg-[#ffdbe7]/40 text-xs font-semibold text-[#141414] flex items-center gap-2.5 transition-colors"
             >
               <UserRound size={16} className="text-[#141414]" />
-              <span>Connexion / Mon compte</span>
+              <span>Mon compte</span>
             </a>
 
           </div>

@@ -99,10 +99,10 @@ export const BasmaHeader: React.FC<BasmaHeaderProps> = ({
         {/* Right Actions: Account, Favorites & Shopping Cart */}
         <div className="flex items-center gap-1.5 sm:gap-2">
           <a
-            href="/login"
+            href="/compte"
             className="p-2 text-[#141414] hover:text-[#e0558b] transition-colors"
             aria-label="Connexion ou compte"
-            title="Connexion ou compte"
+            title="Mon compte"
           >
             <UserRound size={20} />
           </a>

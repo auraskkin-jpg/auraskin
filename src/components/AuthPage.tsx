@@ -63,6 +63,7 @@ export default function AuthPage() {
       setUser(response.user);
       setPassword('');
       setConfirmPassword('');
+      window.location.assign('/compte');
     } catch (authError) {
       setError(authError instanceof Error ? authError.message : 'Authentification impossible.');
     } finally {
@@ -121,8 +122,14 @@ export default function AuthPage() {
                 <span className="mt-1 block text-[#141414]/60">{user.email}</span>
               </div>
               <a
-                href="/"
+                href="/compte"
                 className="block w-full rounded-full bg-[#141414] px-4 py-3 text-center text-xs font-bold text-[#ffdbe7]"
+              >
+                Voir mon compte & mes achats
+              </a>
+              <a
+                href="/"
+                className="block w-full rounded-full border border-[#141414]/15 px-4 py-3 text-center text-xs font-semibold"
               >
                 Continuer mes achats
               </a>

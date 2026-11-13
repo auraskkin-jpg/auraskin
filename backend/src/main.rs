@@ -102,6 +102,15 @@ struct UpdateAdminAccountRequest {
 
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
+struct UpdateAccountRequest {
+    current_password: String,
+    name: String,
+    email: String,
+    new_password: Option<String>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
 struct TrackPageViewRequest {
     visitor_id: String,
     page_path: String,
@@ -248,6 +257,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
         .route("/api/auth/register", post(register))
         .route("/api/auth/login", post(login))
         .route("/api/auth/me", get(current_user))
+        .route("/api/account", put(update_account))
         .route("/api/orders", post(create_order))
         .route("/api/orders/me", get(my_orders))
         .route("/api/admin/products", post(create_product))
@@ -1166,6 +1176,75 @@ async fn update_admin_account(
             name,
             email,
             role: "admin".into(),
+            token_version: token_version + 1,
+        },
+    )
+    .map(Json)
+}
+
+async fn update_account(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    Json(input): Json<UpdateAccountRequest>,
+) -> Result<Json<AuthResponse>, ApiError> {
+    let claims = required_claims(&headers, &state).await?;
+    let (id, role, password_hash, token_version) =
+        sqlx::query_as::<_, (String, String, String, i64)>(
+            "SELECT id, role, password_hash, token_version FROM users WHERE id = ?",
+        )
+        .bind(&claims.sub)
+        .fetch_optional(&state.pool)
+        .await
+        .map_err(|_| ApiError::internal())?
+        .ok_or_else(ApiError::unauthorized)?;
+
+    let parsed_hash = PasswordHash::new(&password_hash).map_err(|_| ApiError::internal())?;
+    if Argon2::default()
+        .verify_password(input.current_password.as_bytes(), &parsed_hash)
+        .is_err()
+    {
+        return Err(ApiError::unauthorized());
+    }
+
+    let name = input.name.trim();
+    if name.is_empty() || name.len() > 120 {
+        return Err(ApiError::bad_request("Nom invalide."));
+    }
+    let email = input.email.trim().to_lowercase();
+    if !valid_email(&email) {
+        return Err(ApiError::bad_request("Adresse e-mail invalide."));
+    }
+    let new_password = input.new_password.unwrap_or_default();
+    let password_hash = if new_password.is_empty() {
+        password_hash
+    } else {
+        validate_password(&new_password).map_err(ApiError::bad_request)?;
+        hash_password(&new_password).map_err(|_| ApiError::internal())?
+    };
+    sqlx::query(
+        "UPDATE users SET name = ?, email = ?, password_hash = ?, token_version = token_version + 1 WHERE id = ?",
+    )
+    .bind(name)
+    .bind(&email)
+    .bind(password_hash)
+    .bind(&id)
+    .execute(&state.pool)
+    .await
+    .map_err(|error| {
+        if matches!(error, sqlx::Error::Database(ref database_error) if database_error.is_unique_violation()) {
+            ApiError(StatusCode::CONFLICT, "Cette adresse e-mail est déjà utilisée.".into())
+        } else {
+            ApiError::internal()
+        }
+    })?;
+
+    auth_response(
+        &state,
+        UserResponse {
+            id,
+            name: name.to_owned(),
+            email,
+            role,
             token_version: token_version + 1,
         },
     )

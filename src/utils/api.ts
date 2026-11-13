@@ -84,9 +84,10 @@ export function getCurrentUser(token: string): Promise<AuthResponse['user']> {
   });
 }
 
-export function createOrder(order: CheckoutRequest): Promise<CreatedOrder> {
+export function createOrder(order: CheckoutRequest, token?: string): Promise<CreatedOrder> {
   return request('/api/orders', {
     method: 'POST',
+    headers: token ? { Authorization: `Bearer ${token}` } : undefined,
     body: JSON.stringify(order),
   });
 }
@@ -146,6 +147,58 @@ export function updateAdminAccount(
   token: string
 ): Promise<AuthResponse> {
   return request('/api/admin/account', {
+    method: 'PUT',
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify(input),
+  });
+}
+
+export interface CustomerAccountUpdateRequest {
+  currentPassword: string;
+  name: string;
+  email: string;
+  newPassword?: string;
+}
+
+export interface OrderItem {
+  productId: number;
+  brand: string;
+  name: string;
+  vol: string;
+  price: number;
+  quantity: number;
+  img: string;
+}
+
+export interface CustomerOrder {
+  id: string;
+  customerId?: string | null;
+  customerName: string;
+  phone: string;
+  address: string;
+  cityCode: string;
+  deliveryType: string;
+  paymentMethod: string;
+  items: OrderItem[];
+  subtotal: number;
+  discount: number;
+  deliveryFee: number;
+  total: number;
+  status: string;
+  createdAt: string;
+}
+
+export function getMyOrders(token: string): Promise<CustomerOrder[]> {
+  return request('/api/orders/me', {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+}
+
+export function updateCustomerAccount(
+  input: CustomerAccountUpdateRequest,
+  token: string
+): Promise<AuthResponse> {
+  return request('/api/account', {
     method: 'PUT',
     headers: { Authorization: `Bearer ${token}` },
     body: JSON.stringify(input),

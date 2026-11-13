@@ -316,7 +316,8 @@ export default function App() {
   };
 
   const handleConfirmOrder = (order: CheckoutRequest) => {
-    return createOrder(order);
+    const token = sessionStorage.getItem('auraskin_customer_token') || undefined;
+    return createOrder(order, token);
   };
 
   // Favorites Actions
