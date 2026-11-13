@@ -37,7 +37,7 @@ impl ApiError {
     fn unauthorized() -> Self {
         Self(
             StatusCode::UNAUTHORIZED,
-            "Authentification requise ou invalide.".into(),
+            "E-mail ou mot de passe invalide.".into(),
         )
     }
 
