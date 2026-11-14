@@ -200,6 +200,14 @@ export function getAdminOrders(token: string): Promise<CustomerOrder[]> {
   });
 }
 
+export function updateOrderStatus(id: string, status: string, token: string): Promise<CustomerOrder> {
+  return request(`/api/admin/orders/${id}/status`, {
+    method: 'PUT',
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ status }),
+  });
+}
+
 export function updateCustomerAccount(
   input: CustomerAccountUpdateRequest,
   token: string

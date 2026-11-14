@@ -6,6 +6,7 @@ import {
   deleteReview,
   getAdminOrders,
   getCurrentUser,
+  updateOrderStatus,
   getProducts,
   getReviews,
   getSiteTexts,
@@ -429,9 +430,32 @@ export default function AdminDashboard() {
                             <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${order.customerId ? 'bg-emerald-100 text-emerald-800' : 'bg-[#141414]/5 text-[#141414]/70'}`}>
                               {order.customerId ? 'Compte client' : 'Invité'}
                             </span>
-                            <span className="rounded-full bg-[#ffdbe7]/60 px-2 py-0.5 text-[10px] font-semibold">
-                              {statusLabel(order.status)}
-                            </span>
+                            <select
+                              value={order.status}
+                              onChange={async (e) => {
+                                if (!token) return;
+                                const next = e.target.value;
+                                const prev = order.status;
+                                setOrders((cur) => cur.map((o) => (o.id === order.id ? { ...o, status: next } : o)));
+                                setError('');
+                                try {
+                                  const updated = await updateOrderStatus(order.id, next, token);
+                                  setOrders((cur) => cur.map((o) => (o.id === order.id ? { ...o, ...updated } : o)));
+                                  setNotice(`Statut de ${order.id} mis à jour : ${statusLabel(next)}.`);
+                                } catch (err) {
+                                  setOrders((cur) => cur.map((o) => (o.id === order.id ? { ...o, status: prev } : o)));
+                                  setError(err instanceof Error ? err.message : 'Impossible de mettre à jour le statut.');
+                                }
+                              }}
+                              className="rounded-full border border-[#141414]/15 bg-[#fff9fa] px-2.5 py-1 text-[10px] font-semibold outline-none focus:border-[#141414]"
+                              aria-label={`Statut de la commande ${order.id}`}
+                            >
+                              <option value="pending">En attente</option>
+                              <option value="confirmed">Confirmée</option>
+                              <option value="shipped">Expédiée</option>
+                              <option value="delivered">Livrée</option>
+                              <option value="cancelled">Annulée</option>
+                            </select>
                           </div>
                           <div className="mt-1 text-[11px] text-[#141414]/60">{created}</div>
                           <div className="mt-2 text-xs">

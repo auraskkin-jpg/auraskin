@@ -116,6 +116,12 @@ struct TrackPageViewRequest {
     page_path: String,
 }
 
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct UpdateOrderStatusRequest {
+    status: String,
+}
+
 #[derive(Serialize)]
 #[serde(rename_all = "camelCase")]
 struct AnalyticsResponse {
@@ -274,6 +280,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
         .route("/api/admin/site-texts", put(update_site_texts))
         .route("/api/admin/analytics", get(get_analytics))
         .route("/api/admin/orders", get(list_orders))
+        .route("/api/admin/orders/{id}/status", put(update_order_status))
         .layer(cors)
         .layer(DefaultBodyLimit::max(12 * 1024 * 1024))
         .with_state(state);
@@ -886,6 +893,38 @@ async fn list_orders(
             .await
             .map_err(|_| ApiError::internal())?;
     parse_json_rows(rows).map(Json)
+}
+
+async fn update_order_status(
+    State(state): State<AppState>,
+    headers: HeaderMap,
+    AxumPath(id): AxumPath<String>,
+    Json(input): Json<UpdateOrderStatusRequest>,
+) -> Result<Json<Value>, ApiError> {
+    require_admin(&headers, &state).await?;
+    let allowed = ["pending", "confirmed", "shipped", "delivered", "cancelled"];
+    if !allowed.contains(&input.status.as_str()) {
+        return Err(ApiError::bad_request("Statut de commande invalide."));
+    }
+
+    let payload: Option<String> = sqlx::query_scalar("SELECT payload FROM orders WHERE id = ?")
+        .bind(&id)
+        .fetch_optional(&state.pool)
+        .await
+        .map_err(|_| ApiError::internal())?;
+    let payload = payload.ok_or_else(|| ApiError(StatusCode::NOT_FOUND, "Commande introuvable.".into()))?;
+
+    let mut order: Value = serde_json::from_str(&payload).map_err(|_| ApiError::internal())?;
+    order["status"] = Value::String(input.status);
+
+    sqlx::query("UPDATE orders SET payload = ? WHERE id = ?")
+        .bind(serde_json::to_string(&order).map_err(|_| ApiError::internal())?)
+        .bind(&id)
+        .execute(&state.pool)
+        .await
+        .map_err(|_| ApiError::internal())?;
+
+    Ok(Json(order))
 }
 
 async fn get_analytics(
