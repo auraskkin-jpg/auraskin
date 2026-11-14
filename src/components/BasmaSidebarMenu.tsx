@@ -1,6 +1,6 @@
 import React from 'react';
 import { X, Sparkles, Flame, Tag, Grid, Heart, MessageCircle, Globe, UserRound } from 'lucide-react';
-import { useSiteTexts } from '../utils/siteTexts';
+import { useSiteTexts, useT } from '../utils/siteTexts';
 
 interface BasmaSidebarMenuProps {
   isOpen: boolean;
@@ -19,15 +19,16 @@ export const BasmaSidebarMenu: React.FC<BasmaSidebarMenuProps> = ({
   lang,
   onToggleLang,
 }) => {
+  const t = useT();
   const { texts } = useSiteTexts();
   const logoSrc = texts['image.logo.header'] || '/assets/aura_skin_logo_transparent.png';
   if (!isOpen) return null;
 
   const links = [
-    { id: 'new', label: 'Nouveautés', badge: 'NEW', icon: Sparkles },
-    { id: 'promo', label: 'Promotions', badge: '−%', icon: Tag },
-    { id: 'best', label: 'Meilleures ventes', badge: '', icon: Flame },
-    { id: 'all', label: 'Tous nos produits', badge: '', icon: Grid },
+    { id: 'new', label: t('menu.new', lang), badge: 'NEW', icon: Sparkles },
+    { id: 'promo', label: t('menu.promo', lang), badge: '−%', icon: Tag },
+    { id: 'best', label: t('menu.best', lang), badge: '', icon: Flame },
+    { id: 'all', label: t('menu.all', lang), badge: '', icon: Grid },
   ];
 
   return (
@@ -52,7 +53,7 @@ export const BasmaSidebarMenu: React.FC<BasmaSidebarMenuProps> = ({
           {/* Links */}
           <div className="p-4 space-y-1">
             <span className="text-[10px] uppercase font-bold text-[#141414]/60 tracking-wider block mb-2 px-3">
-              Catalogue K-Beauty Maroc
+              {t('menu.sectionCatalog', lang)}
             </span>
 
             {links.map((link) => {
@@ -87,7 +88,7 @@ export const BasmaSidebarMenu: React.FC<BasmaSidebarMenuProps> = ({
               className="w-full text-left px-3 py-2.5 rounded-2xl hover:bg-[#ffdbe7]/40 text-xs font-semibold text-[#141414] flex items-center gap-2.5 transition-colors"
             >
               <Heart size={16} className="text-[#141414]" />
-              <span>Mes favoris ♡</span>
+              <span>{t('menu.favorites', lang)}</span>
             </button>
 
             <a
@@ -96,14 +97,14 @@ export const BasmaSidebarMenu: React.FC<BasmaSidebarMenuProps> = ({
               className="w-full text-left px-3 py-2.5 rounded-2xl hover:bg-[#ffdbe7]/40 text-xs font-semibold text-[#141414] flex items-center gap-2.5 transition-colors"
             >
               <UserRound size={16} className="text-[#141414]" />
-              <span>Mon compte</span>
+              <span>{t('menu.account', lang)}</span>
             </a>
 
           </div>
 
           <div className="p-4 border-t border-[#141414]/10 space-y-1">
             <span className="text-[10px] uppercase font-bold text-[#141414]/60 tracking-wider block mb-2 px-3">
-              Service Client Maroc
+              {t('menu.sectionService', lang)}
             </span>
 
             <a
@@ -113,7 +114,7 @@ export const BasmaSidebarMenu: React.FC<BasmaSidebarMenuProps> = ({
               className="w-full text-left px-3 py-2.5 rounded-2xl hover:bg-[#ffdbe7]/40 text-xs font-semibold text-[#141414] flex items-center gap-2.5 transition-colors"
             >
               <MessageCircle size={16} className="text-emerald-600" />
-              <span>WhatsApp (Conseils) 💬</span>
+              <span>{t('menu.whatsapp', lang)}</span>
             </a>
 
             <button
@@ -121,14 +122,14 @@ export const BasmaSidebarMenu: React.FC<BasmaSidebarMenuProps> = ({
               className="w-full text-left px-3 py-2.5 rounded-2xl hover:bg-[#ffdbe7]/40 text-xs font-semibold text-[#141414] flex items-center gap-2.5 transition-colors"
             >
               <Globe size={16} className="text-[#141414]" />
-              <span>{lang === 'fr' ? 'Passer en العربية' : 'Passer en Français'}</span>
+              <span>{t('menu.switchLang', lang)}</span>
             </button>
           </div>
         </div>
 
         {/* Footer info */}
         <div className="p-4 border-t border-[#141414]/10 bg-white text-[11px] text-[#141414]/60 text-center">
-          <span>AURA SKIN © 2026 • Maroc</span>
+          <span>{t('menu.copyright', lang)}</span>
         </div>
       </div>
     </div>

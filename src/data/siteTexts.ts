@@ -197,6 +197,85 @@ export const SITE_TEXTS: SiteTextDef[] = [
     ar: 'التوصيل مجاني لجميع مدن المغرب ابتداءً من 1000 درهم مشتريات. أقل من ذلك، سعر التوصيل هو 19 درهم بالدار البيضاء و 40 درهم لباقي المدن المغربية.',
   },
 
+  // Menu (navigation latérale)
+  {
+    key: 'menu.sectionCatalog',
+    group: 'Menu (navigation)',
+    label: 'Titre section catalogue',
+    fr: 'Catalogue K-Beauty Maroc',
+    ar: 'كتالوج K-Beauty المغرب',
+  },
+  {
+    key: 'menu.new',
+    group: 'Menu (navigation)',
+    label: 'Lien — Nouveautés',
+    fr: 'Nouveautés',
+    ar: 'جديدنا',
+  },
+  {
+    key: 'menu.promo',
+    group: 'Menu (navigation)',
+    label: 'Lien — Promotions',
+    fr: 'Promotions',
+    ar: 'العروض',
+  },
+  {
+    key: 'menu.best',
+    group: 'Menu (navigation)',
+    label: 'Lien — Meilleures ventes',
+    fr: 'Meilleures ventes',
+    ar: 'الأكثر مبيعاً',
+  },
+  {
+    key: 'menu.all',
+    group: 'Menu (navigation)',
+    label: 'Lien — Tous nos produits',
+    fr: 'Tous nos produits',
+    ar: 'جميع المنتجات',
+  },
+  {
+    key: 'menu.favorites',
+    group: 'Menu (navigation)',
+    label: 'Lien — Mes favoris',
+    fr: 'Mes favoris ♡',
+    ar: 'مفضلتي ♡',
+  },
+  {
+    key: 'menu.account',
+    group: 'Menu (navigation)',
+    label: 'Lien — Mon compte',
+    fr: 'Mon compte',
+    ar: 'حسابي',
+  },
+  {
+    key: 'menu.sectionService',
+    group: 'Menu (navigation)',
+    label: 'Titre section service client',
+    fr: 'Service Client Maroc',
+    ar: 'خدمة العملاء المغرب',
+  },
+  {
+    key: 'menu.whatsapp',
+    group: 'Menu (navigation)',
+    label: 'Lien — WhatsApp',
+    fr: 'WhatsApp (Conseils) 💬',
+    ar: 'واتساب (نصائح) 💬',
+  },
+  {
+    key: 'menu.switchLang',
+    group: 'Menu (navigation)',
+    label: 'Lien — Changer de langue',
+    fr: 'Passer en العربية',
+    ar: 'Passer en Français',
+  },
+  {
+    key: 'menu.copyright',
+    group: 'Menu (navigation)',
+    label: 'Pied du menu (copyright)',
+    fr: 'AURA SKIN © 2026 • Maroc',
+    ar: 'AURA SKIN © 2026 • المغرب',
+  },
+
   // Pied de page
   {
     key: 'footer.contact',
