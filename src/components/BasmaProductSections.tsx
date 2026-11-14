@@ -6,8 +6,10 @@ import { PlusCircle } from 'lucide-react';
 interface BasmaProductSectionsProps {
   products: BGProduct[];
   selectedCategory: string;
+  selectedTag?: string;
   searchQuery: string;
   viewFullCatalog?: boolean;
+  onSelectTag?: (tag: string) => void;
   onSelectProduct: (product: BGProduct) => void;
   onAddToCart: (product: BGProduct) => void;
   onToggleFav: (productId: number) => void;
@@ -21,8 +23,10 @@ interface BasmaProductSectionsProps {
 export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
   products,
   selectedCategory,
+  selectedTag = 'all',
   searchQuery,
   viewFullCatalog,
+  onSelectTag,
   onSelectProduct,
   onAddToCart,
   onToggleFav,
@@ -32,13 +36,27 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
   addedProductIds,
   lang,
 }) => {
+  const tagOptions = [
+    { id: 'all', label: lang === 'ar' ? 'الجميع' : 'Tous', badge: '' },
+    { id: 'new', label: lang === 'ar' ? 'جديد' : 'Nouveautés', badge: 'NEW' },
+    { id: 'promo', label: lang === 'ar' ? 'عروض' : 'Promotions', badge: '−%' },
+    { id: 'best', label: lang === 'ar' ? 'الأكثر مبيعاً' : 'Meilleures ventes', badge: '' },
+    { id: 'packs', label: lang === 'ar' ? 'باقات' : 'Packs & routines', badge: '' },
+  ] as const;
+
+  // Apply tag filter
+  const tagFiltered = products.filter((p) => {
+    if (selectedTag !== 'all' && p.tag !== selectedTag) return false;
+    return true;
+  });
+
   // Full catalog view: show every published product in a single grid
   if (viewFullCatalog) {
     return (
       <section id="catalog" className="py-8 max-w-6xl mx-auto px-4 scroll-mt-32">
         <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <span className="text-[11px] uppercase tracking-wider text-[#141414]/70 font-bold">
+            <span className="text-[11px] uppercase tracking-wider text-[#141414]/70 font-bold block">
               {lang === 'ar' ? 'جميع المنتجات' : 'TOUS NOS PRODUITS'}
             </span>
             <h2 className="font-brand text-2xl sm:text-3xl text-[#141414]">
@@ -47,12 +65,36 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
           </div>
           <div className="flex items-center gap-2">
             <span className="text-xs text-[#141414]/60 font-medium">
-              {products.length} {lang === 'ar' ? 'منتج' : 'produit(s)'}
+              {tagFiltered.length} {lang === 'ar' ? 'منتج' : 'produit(s)'}
             </span>
           </div>
         </div>
+
+        {/* Tag filter chips */}
+        <div className="flex flex-wrap gap-2 mb-6">
+          {tagOptions.map((tag) => {
+            const isSelected = selectedTag === tag.id;
+            return (
+              <button
+                key={tag.id}
+                onClick={() => onSelectTag?.(tag.id)}
+                className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[10px] font-semibold transition-colors ${
+                  isSelected
+                    ? 'bg-[#141414] border-[#141414] text-[#ffdbe7]'
+                    : 'border-[#141414]/15 bg-white text-[#141414]/80 hover:border-[#141414]/40'
+                }`}
+              >
+                {tag.badge && (
+                  <span className="bg-[#141414] text-[#ffdbe7] text-[9px] font-bold px-1 py-0.5 rounded-full">{tag.badge}</span>
+                )}
+                {tag.label}
+              </button>
+            );
+          })}
+        </div>
+
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
-          {products.map((p) => (
+          {tagFiltered.map((p) => (
             <BasmaProductCard
               key={p.id}
               product={p}
@@ -66,7 +108,7 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
             />
           ))}
         </div>
-        {products.length === 0 && (
+        {tagFiltered.length === 0 && (
           <div className="text-center py-16 bg-white rounded-2xl border border-dashed border-[#141414]/15 p-6 space-y-3">
             <p className="text-sm text-[#141414]/70">
               {lang === 'ar' ? 'لا توجد منتجات.' : 'Aucun produit disponible.'}
@@ -83,7 +125,7 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
   if (isFiltered) {
     const concernId = selectedCategory.startsWith('concern:') ? selectedCategory.slice('concern:'.length) : null;
     const concern = concernId ? CONCERNS.find((c) => c.id === concernId) : null;
-    const filtered = products.filter((p) => {
+    const filtered = tagFiltered.filter((p) => {
       if (concernId) return p.linkedConcerns?.includes(concernId) || p.linkedConcern === concernId;
       if (selectedCategory !== 'all' && p.cat !== selectedCategory) return false;
       if (searchQuery.trim()) {
@@ -174,7 +216,7 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
   const bestProducts = products.filter((p) => p.tag === 'best').slice(0, 8);
   const taggedNewProducts = products.filter((p) => p.tag === 'new');
   const newProducts = (taggedNewProducts.length > 0 ? taggedNewProducts : products.slice(12, 20)).slice(0, 8);
-  const kitsProducts = products.filter((p) => p.name.toLowerCase().includes('kit') || p.name.toLowerCase().includes('set') || p.name.toLowerCase().includes('coffret') || p.id % 5 === 0).slice(0, 8);
+  const kitsProducts = products.filter((p) => p.tag === 'packs' || p.name.toLowerCase().includes('kit') || p.name.toLowerCase().includes('set') || p.name.toLowerCase().includes('coffret') || p.id % 5 === 0).slice(0, 8);
 
   if (
     promoProducts.length === 0 &&

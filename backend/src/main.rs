@@ -1310,7 +1310,7 @@ fn validate_product(product: &Value) -> Result<(), ApiError> {
         }
     }
     let tag = product["tag"].as_str().unwrap_or("");
-    if !["", "new", "promo", "best", "soldout"].contains(&tag) {
+    if !["", "new", "promo", "best", "soldout", "packs"].contains(&tag) {
         return Err(ApiError::bad_request("Tag de produit invalide."));
     }
     Ok(())

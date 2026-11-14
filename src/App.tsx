@@ -79,6 +79,7 @@ export default function App() {
 
   // Filters & Search
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedTag, setSelectedTag] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [viewFullCatalog, setViewFullCatalog] = useState(false);
@@ -396,6 +397,7 @@ export default function App() {
           selectedCategory={selectedCategory}
           onSelectCategory={(catId) => {
             setSelectedCategory(catId);
+            setSelectedTag('all');
             setSearchQuery('');
             setViewFullCatalog(false);
             scrollToSection('catalog');
@@ -407,8 +409,10 @@ export default function App() {
         <BasmaProductSections
           products={publishedProducts}
           selectedCategory={selectedCategory}
+          selectedTag={selectedTag}
           searchQuery={searchQuery}
           viewFullCatalog={viewFullCatalog}
+          onSelectTag={(tag) => setSelectedTag(tag)}
           onSelectProduct={(p) => setSelectedProduct(p)}
           onAddToCart={handleAddToCart}
           onToggleFav={handleToggleFav}
@@ -492,23 +496,41 @@ export default function App() {
           }
           if (filterType === 'new') {
             setSelectedCategory('all');
+            setSelectedTag('new');
             setViewFullCatalog(false);
-            scrollToSection('section-new');
+            scrollToSection('catalog');
+            return;
+          }
+          if (filterType === 'promo') {
+            setSelectedCategory('all');
+            setSelectedTag('promo');
+            setViewFullCatalog(false);
+            scrollToSection('section-promo');
+            return;
+          }
+          if (filterType === 'best') {
+            setSelectedCategory('all');
+            setSelectedTag('best');
+            setViewFullCatalog(false);
+            scrollToSection('section-best');
             return;
           }
           if (filterType === 'kits') {
             setSelectedCategory('all');
+            setSelectedTag('packs');
             setViewFullCatalog(false);
             scrollToSection('section-kits');
             return;
           }
           if (filterType === 'all') {
             setSelectedCategory('all');
+            setSelectedTag('all');
             setViewFullCatalog(true);
             scrollToSection('catalog');
             return;
           }
           setSelectedCategory('all');
+          setSelectedTag('all');
           setViewFullCatalog(false);
           scrollToSection('catalog');
         }}
