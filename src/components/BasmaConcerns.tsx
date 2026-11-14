@@ -5,21 +5,24 @@ import { useSiteTexts, useT } from '../utils/siteTexts';
 interface BasmaConcernsProps {
   onSelectConcern: (concernId: string) => void;
   lang: 'fr' | 'ar';
+  hideHeader?: boolean;
 }
 
-export const BasmaConcerns: React.FC<BasmaConcernsProps> = ({ onSelectConcern, lang }) => {
+export const BasmaConcerns: React.FC<BasmaConcernsProps> = ({ onSelectConcern, lang, hideHeader }) => {
   const t = useT();
   const { texts } = useSiteTexts();
   return (
     <section className="py-8 sm:py-12 max-w-6xl mx-auto px-4 bg-white rounded-3xl my-6 border border-[#141414]/10 shadow-xs">
-      <div className="text-center mb-8">
-        <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414]/70 font-bold block">
-          {t('concerns.eyebrow', lang)}
-        </span>
-        <h2 className="font-brand text-2xl sm:text-3xl text-[#141414] font-normal mt-0.5">
-          {t('concerns.title', lang)}
-        </h2>
-      </div>
+      {!hideHeader && (
+        <div className="text-center mb-8">
+          <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414]/70 font-bold block">
+            {t('concerns.eyebrow', lang)}
+          </span>
+          <h2 className="font-brand text-2xl sm:text-3xl text-[#141414] font-normal mt-0.5">
+            {t('concerns.title', lang)}
+          </h2>
+        </div>
+      )}
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 justify-center">
         {CONCERNS.map((concern) => {

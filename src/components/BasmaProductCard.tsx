@@ -26,7 +26,7 @@ export const BasmaProductCard: React.FC<BasmaProductCardProps> = ({
 }) => {
   const displayPrice = product.sale > 0 ? product.sale : product.price;
   const originalPrice = product.sale > 0 ? product.price : 0;
-  const isSoldOut = product.tag === 'soldout';
+  const isSoldOut = product.tag === 'soldout' || product.tags?.includes('soldout');
 
   return (
     <div className="bg-white rounded-2xl p-3 sm:p-4 border border-[#141414]/10 hover:border-[#ffdbe7] hover:shadow-[0_8px_30px_rgb(255,219,231,0.4)] transition-all duration-300 flex flex-col justify-between group relative">

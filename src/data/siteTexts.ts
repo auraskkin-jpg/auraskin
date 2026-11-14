@@ -241,6 +241,13 @@ export const SITE_TEXTS: SiteTextDef[] = [
     ar: 'باقات العناية',
   },
   {
+    key: 'menu.concerns',
+    group: 'Menu (navigation)',
+    label: 'Lien — Par problème de peau',
+    fr: 'Par problème de peau',
+    ar: 'حسب مشكلة البشرة',
+  },
+  {
     key: 'menu.favorites',
     group: 'Menu (navigation)',
     label: 'Lien — Mes favoris',

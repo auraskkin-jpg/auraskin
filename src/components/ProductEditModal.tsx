@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BGProduct, CATEGORIES, CONCERNS } from '../data/basmaglowConstants';
 import { X, Upload, Trash2, Check, Sparkles, Image as ImageIcon } from 'lucide-react';
 
@@ -46,6 +46,15 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [notice, setNotice] = useState('');
+  // Keep a stable id for a product being created so saving twice updates the
+  // same product instead of creating duplicates.
+  const draftIdRef = useRef<number>(Date.now());
+
+  useEffect(() => {
+    if (isNewProduct) {
+      draftIdRef.current = Date.now();
+    }
+  }, [isNewProduct, isOpen]);
 
   useEffect(() => {
     if (product) {
@@ -137,7 +146,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
     if (finalPrice <= 0) missing.push('prix supérieur à 0 DH');
 
     const updatedProduct: BGProduct = {
-      id: isNewProduct ? Date.now() : product?.id || Date.now(),
+      id: isNewProduct ? draftIdRef.current : product?.id || Date.now(),
       name: name.trim(),
       brand: brand.trim() || 'Aura Skin',
       price: finalPrice,
@@ -162,10 +171,14 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
       await onSave(updatedProduct);
       if (missing.length > 0) {
         setNotice(
-          `Produit enregistré mais non publié : ajoutez ${missing.join(' et ')} pour qu’il apparaisse dans la boutique.`
+          `Produit enregistré, mais il reste invisible sur le site : ajoutez ${missing.join(
+            ', '
+          )} puis enregistrez à nouveau.`
         );
+      } else {
+        setNotice('');
+        onClose();
       }
-      onClose();
     } catch (saveError) {
       setError(saveError instanceof Error ? saveError.message : 'Impossible d’enregistrer le produit.');
     } finally {
@@ -216,7 +229,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
         </div>
 
         {notice && (
-          <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-xs mb-4">
+          <div className="mx-4 sm:mx-6 mt-4 p-3 bg-amber-50 border border-amber-200 rounded-xl text-amber-900 text-xs">
             {notice}
           </div>
         )}

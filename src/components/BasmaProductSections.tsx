@@ -1,212 +1,141 @@
 import React from 'react';
-import { BGProduct, CONCERNS } from '../data/basmaglowConstants';
+import { BGProduct } from '../data/basmaglowConstants';
 import { BasmaProductCard } from './BasmaProductCard';
-import { PlusCircle } from 'lucide-react';
+import { PlusCircle, ArrowRight } from 'lucide-react';
 
 interface BasmaProductSectionsProps {
   products: BGProduct[];
-  selectedCategory: string;
-  selectedTag?: string;
-  searchQuery: string;
-  viewFullCatalog?: boolean;
-  onSelectTag?: (tag: string) => void;
   onSelectProduct: (product: BGProduct) => void;
   onAddToCart: (product: BGProduct) => void;
   onToggleFav: (productId: number) => void;
   onEditProduct?: (product: BGProduct) => void;
   onAddNewProduct?: () => void;
+  onSeeAll: (tag: string) => void;
   favProductIds: Set<number>;
   addedProductIds: Set<number>;
   lang: 'fr' | 'ar';
 }
 
+interface SectionConfig {
+  id: string;
+  tag: string;
+  eyebrow: string;
+  eyebrowAr: string;
+  title: string;
+  titleAr: string;
+  products: BGProduct[];
+}
+
 export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
   products,
-  selectedCategory,
-  selectedTag = 'all',
-  searchQuery,
-  viewFullCatalog,
-  onSelectTag,
   onSelectProduct,
   onAddToCart,
   onToggleFav,
   onEditProduct,
   onAddNewProduct,
+  onSeeAll,
   favProductIds,
   addedProductIds,
   lang,
 }) => {
-  const tagOptions = [
-    { id: 'all', label: lang === 'ar' ? 'الجميع' : 'Tous', badge: '' },
-    { id: 'new', label: lang === 'ar' ? 'جديد' : 'Nouveautés', badge: 'NEW' },
-    { id: 'promo', label: lang === 'ar' ? 'عروض' : 'Promotions', badge: '−%' },
-    { id: 'best', label: lang === 'ar' ? 'الأكثر مبيعاً' : 'Meilleures ventes', badge: '' },
-    { id: 'packs', label: lang === 'ar' ? 'باقات' : 'Packs & routines', badge: '' },
-  ] as const;
+  const hasTag = (p: BGProduct, tag: string) => p.tags?.includes(tag) || p.tag === tag;
 
-  // Apply tag filter (supports multiple tags per product)
-  const tagFiltered = products.filter((p) => {
-    if (selectedTag !== 'all') {
-      const hasTag = p.tags?.includes(selectedTag) || p.tag === selectedTag;
-      if (!hasTag) return false;
-    }
-    return true;
-  });
+  const promoProducts = products
+    .filter((p) => p.off > 0 || p.promo || hasTag(p, 'promo'))
+    .slice(0, 8);
+  const bestProducts = products.filter((p) => hasTag(p, 'best')).slice(0, 8);
+  const taggedNewProducts = products.filter((p) => hasTag(p, 'new'));
+  const newProducts = (
+    taggedNewProducts.length > 0
+      ? taggedNewProducts
+      : [...products].sort((a, b) => b.id - a.id)
+  ).slice(0, 8);
+  const kitsProducts = products.filter((p) => hasTag(p, 'packs')).slice(0, 8);
 
-  // Full catalog view: show every published product in a single grid
-  if (viewFullCatalog) {
-    return (
-      <section id="catalog" className="py-8 max-w-6xl mx-auto px-4 scroll-mt-32">
-        <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div>
-            <span className="text-[11px] uppercase tracking-wider text-[#141414]/70 font-bold block">
-              {lang === 'ar' ? 'جميع المنتجات' : 'TOUS NOS PRODUITS'}
-            </span>
-            <h2 className="font-brand text-2xl sm:text-3xl text-[#141414]">
-              {lang === 'ar' ? 'جميع المنتجات' : 'Tous nos produits'}
-            </h2>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-[#141414]/60 font-medium">
-              {tagFiltered.length} {lang === 'ar' ? 'منتج' : 'produit(s)'}
-            </span>
-          </div>
+  const sections: SectionConfig[] = [
+    {
+      id: 'section-promo',
+      tag: 'promo',
+      eyebrow: 'SÉLECTION DU MOMENT',
+      eyebrowAr: 'المختارات الحالية',
+      title: 'Offres exclusives',
+      titleAr: 'عروض خاصة وتخفيضات',
+      products: promoProducts,
+    },
+    {
+      id: 'section-best',
+      tag: 'best',
+      eyebrow: 'LES FAVORIS AU MAROC',
+      eyebrowAr: 'الأكثر طلباً بالمغرب',
+      title: 'Meilleures ventes',
+      titleAr: 'أفضل المبيعات',
+      products: bestProducts,
+    },
+    {
+      id: 'section-new',
+      tag: 'new',
+      eyebrow: 'FRAÎCHEMENT ARRIVÉS',
+      eyebrowAr: 'وصل حديثاً',
+      title: 'Nouveautés K-Beauty',
+      titleAr: 'جديد المتجر',
+      products: newProducts,
+    },
+    {
+      id: 'section-kits',
+      tag: 'packs',
+      eyebrow: 'KITS & ROUTINES',
+      eyebrowAr: 'باقات روتين',
+      title: 'Nos packs skincare',
+      titleAr: 'مجموعات العناية المتكاملة',
+      products: kitsProducts,
+    },
+  ];
+
+  const visibleSections = sections.filter((section) => section.products.length > 0);
+
+  if (visibleSections.length === 0 && !onAddNewProduct) return null;
+
+  return (
+    <div id="catalog" className="space-y-12 sm:space-y-16 py-4 max-w-6xl mx-auto px-4">
+      {visibleSections.length === 0 && onAddNewProduct && (
+        <div className="text-center py-14 bg-white rounded-2xl border border-dashed border-[#141414]/15 p-6 space-y-3">
+          <p className="text-sm text-[#141414]/70">
+            {lang === 'ar'
+              ? 'لا توجد منتجات منشورة بعد.'
+              : 'Aucun produit publié pour le moment.'}
+          </p>
+          <button
+            onClick={onAddNewProduct}
+            className="px-4 py-2 bg-[#141414] text-[#ffdbe7] rounded-full text-xs font-semibold inline-flex items-center gap-1.5 shadow-sm"
+          >
+            <PlusCircle size={14} />
+            <span>Ajouter un produit</span>
+          </button>
         </div>
+      )}
 
-        {/* Active tag badge */}
-        {selectedTag !== 'all' && (
-          <div className="mb-4 flex items-center gap-2">
-            <span className="px-3 py-1 rounded-full bg-[#141414]/10 border border-[#141414]/20 text-[10px] font-semibold text-[#141414]">
-              Filtre actif : {tagOptions.find((t) => t.id === selectedTag)?.label}
-            </span>
+      {visibleSections.map((section) => (
+        <section key={section.id} id={section.id}>
+          <div className="flex items-end justify-between gap-3 mb-6">
+            <div className="text-center sm:text-left flex-1">
+              <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414]/70 font-bold block">
+                {lang === 'ar' ? section.eyebrowAr : section.eyebrow}
+              </span>
+              <h2 className="font-brand text-2xl sm:text-3xl text-[#141414] font-normal mt-0.5">
+                {lang === 'ar' ? section.titleAr : section.title}
+              </h2>
+            </div>
             <button
-              onClick={() => onSelectTag?.('all')}
-              className="text-[10px] font-semibold text-rose-700 hover:underline"
+              onClick={() => onSeeAll(section.tag)}
+              className="shrink-0 inline-flex items-center gap-1 text-[11px] font-semibold text-[#141414]/70 hover:text-[#141414]"
             >
-              Réinitialiser le filtre
+              <span>{lang === 'ar' ? 'عرض الكل' : 'Voir tout'}</span>
+              <ArrowRight size={13} />
             </button>
           </div>
-        )}
 
-        {/* Tag filter chips */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {tagOptions.map((tag) => {
-            const isSelected = selectedTag === tag.id;
-            return (
-              <button
-                key={tag.id}
-                onClick={() => onSelectTag?.(tag.id)}
-                className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[10px] font-semibold transition-colors ${
-                  isSelected
-                    ? 'bg-[#141414] border-[#141414] text-[#ffdbe7]'
-                    : 'border-[#141414]/15 bg-white text-[#141414]/80 hover:border-[#141414]/40'
-                }`}
-              >
-                {tag.badge && (
-                  <span className="bg-[#141414] text-[#ffdbe7] text-[9px] font-bold px-1 py-0.5 rounded-full">{tag.badge}</span>
-                )}
-                {tag.label}
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
-          {tagFiltered.map((p) => (
-            <BasmaProductCard
-              key={p.id}
-              product={p}
-              onSelect={onSelectProduct}
-              onAddToCart={onAddToCart}
-              onToggleFav={onToggleFav}
-              onEdit={onEditProduct}
-              isFav={favProductIds.has(p.id)}
-              isAdded={addedProductIds.has(p.id)}
-              lang={lang}
-            />
-          ))}
-        </div>
-        {tagFiltered.length === 0 && (
-          <div className="text-center py-16 bg-white rounded-2xl border border-dashed border-[#141414]/15 p-6 space-y-3">
-            <p className="text-sm text-[#141414]/70">
-              {selectedTag !== 'all'
-                ? lang === 'ar'
-                  ? 'لا توجد منتجات بهذا الوسم. أضف المنتج عبر لوحة التحكم.'
-                  : `Aucun produit avec le tag "${tagOptions.find((t) => t.id === selectedTag)?.label}".`
-                : lang === 'ar'
-                ? 'لا توجد منتجات.'
-                : 'Aucun produit disponible.'}
-            </p>
-            {selectedTag !== 'all' && (
-              <p className="text-[10px] text-[#141414]/50">
-                {lang === 'ar'
-                  ? 'اذهب إلى لوحة التحكم وحدد وسم "حزمة / روتين" للمنتج.'
-                  : 'Allez dans l\'admin et cochez le tag « Pack / Routine » sur le produit.'}
-              </p>
-            )}
-          </div>
-        )}
-      </section>
-    );
-  }
-
-  // If user searched or selected a specific category, show the filtered grid
-  const isFiltered = selectedCategory !== 'all' || searchQuery.trim().length > 0;
-
-  if (isFiltered) {
-    const concernId = selectedCategory.startsWith('concern:') ? selectedCategory.slice('concern:'.length) : null;
-    const concern = concernId ? CONCERNS.find((c) => c.id === concernId) : null;
-    const filtered = tagFiltered.filter((p) => {
-      if (concernId) return p.linkedConcerns?.includes(concernId) || p.linkedConcern === concernId;
-      if (selectedCategory !== 'all' && p.cat !== selectedCategory) return false;
-      if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase();
-        return (
-          p.name.toLowerCase().includes(q) ||
-          p.brand.toLowerCase().includes(q) ||
-          p.desc.toLowerCase().includes(q)
-        );
-      }
-      return true;
-    });
-
-    return (
-      <section id="catalog" className="py-8 max-w-6xl mx-auto px-4 scroll-mt-32">
-        <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div>
-            <span className="text-[11px] uppercase tracking-wider text-[#141414]/70 font-bold">
-              {lang === 'ar' ? 'النتائج' : 'CATALOGUE AURA SKIN'}
-            </span>
-            <h2 className="font-brand text-2xl sm:text-3xl text-[#141414]">
-              {concern
-                ? (lang === 'ar' ? concern.nameAr : concern.name)
-                : selectedCategory !== 'all'
-                ? selectedCategory.toUpperCase()
-                : lang === 'ar'
-                ? `نتائج البحث عن "${searchQuery}"`
-                : `Résultats pour "${searchQuery}"`}
-            </h2>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-[#141414]/60 font-medium">
-              {filtered.length} {lang === 'ar' ? 'منتج' : 'produit(s)'}
-            </span>
-            {onAddNewProduct && (
-              <button
-                onClick={onAddNewProduct}
-                className="px-3.5 py-1.5 rounded-full bg-[#141414] hover:bg-[#2a2a2a] text-[#ffdbe7] text-xs font-semibold flex items-center gap-1.5 transition-all shadow-xs"
-              >
-                <PlusCircle size={14} />
-                <span>+ Ajouter un soin</span>
-              </button>
-            )}
-          </div>
-        </div>
-
-        {filtered.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
-            {filtered.map((p) => (
+            {section.products.map((p) => (
               <BasmaProductCard
                 key={p.id}
                 product={p}
@@ -220,161 +149,8 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
               />
             ))}
           </div>
-        ) : (
-          <div className="text-center py-16 bg-white rounded-2xl border border-dashed border-[#141414]/15 p-6 space-y-3">
-            <p className="text-sm text-[#141414]/70">
-              {lang === 'ar'
-                ? 'لم يتم العثور على أي منتج. جربي كلمة أخرى.'
-                : 'Aucun produit trouvé dans cette catégorie.'}
-            </p>
-            {onAddNewProduct && (
-              <button
-                onClick={onAddNewProduct}
-                className="px-4 py-2 bg-[#141414] text-[#ffdbe7] rounded-full text-xs font-semibold inline-flex items-center gap-1.5 shadow-sm"
-              >
-                <PlusCircle size={14} />
-                <span>Ajouter le premier produit ici</span>
-              </button>
-            )}
-          </div>
-        )}
-      </section>
-    );
-  }
-
-  // Otherwise, render the classic homepage sections with prices in MAD
-  const hasTag = (p: BGProduct, tag: string) => p.tags?.includes(tag) || p.tag === tag;
-
-  const promoProducts = products.filter((p) => p.off > 0 || p.promo || hasTag(p, 'promo')).slice(0, 8);
-  const bestProducts = products.filter((p) => hasTag(p, 'best')).slice(0, 8);
-  const taggedNewProducts = products.filter((p) => hasTag(p, 'new'));
-  const newProducts = (taggedNewProducts.length > 0 ? taggedNewProducts : products.slice(0, 8)).slice(0, 8);
-  const kitsProducts = products.filter((p) => hasTag(p, 'packs') || p.name.toLowerCase().includes('kit') || p.name.toLowerCase().includes('set') || p.name.toLowerCase().includes('coffret')).slice(0, 8);
-
-  if (
-    promoProducts.length === 0 &&
-    bestProducts.length === 0 &&
-    newProducts.length === 0 &&
-    kitsProducts.length === 0
-  ) {
-    return null;
-  }
-
-  return (
-    <div id="catalog" className="space-y-12 sm:space-y-16 py-4 max-w-6xl mx-auto px-4 scroll-mt-32">
-      
-      {/* 1. Sélection du moment */}
-      {promoProducts.length > 0 && <section id="section-promo" className="scroll-mt-32">
-        <div className="text-center mb-6">
-          <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414]/70 font-bold block">
-            {lang === 'ar' ? 'المختارات الحالية' : 'SÉLECTION DU MOMENT'}
-          </span>
-          <h2 className="font-brand text-2xl sm:text-3xl text-[#141414] font-normal mt-0.5">
-            {lang === 'ar' ? 'عروض خاصة وتخفيضات' : 'Offres exclusives'}
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
-          {promoProducts.map((p) => (
-            <BasmaProductCard
-              key={p.id}
-              product={p}
-              onSelect={onSelectProduct}
-              onAddToCart={onAddToCart}
-              onToggleFav={onToggleFav}
-              onEdit={onEditProduct}
-              isFav={favProductIds.has(p.id)}
-              isAdded={addedProductIds.has(p.id)}
-              lang={lang}
-            />
-          ))}
-        </div>
-      </section>}
-
-      {/* 2. Les Favoris / Meilleures Ventes */}
-      {bestProducts.length > 0 && <section id="section-best" className="scroll-mt-32">
-        <div className="text-center mb-6">
-          <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414]/70 font-bold block">
-            {lang === 'ar' ? 'الأكثر طلباً بالمغرب' : 'LES FAVORIS AU MAROC'}
-          </span>
-          <h2 className="font-brand text-2xl sm:text-3xl text-[#141414] font-normal mt-0.5">
-            {lang === 'ar' ? 'أفضل المبيعات' : 'Meilleures ventes'}
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
-          {bestProducts.map((p) => (
-            <BasmaProductCard
-              key={p.id}
-              product={p}
-              onSelect={onSelectProduct}
-              onAddToCart={onAddToCart}
-              onToggleFav={onToggleFav}
-              onEdit={onEditProduct}
-              isFav={favProductIds.has(p.id)}
-              isAdded={addedProductIds.has(p.id)}
-              lang={lang}
-            />
-          ))}
-        </div>
-      </section>}
-
-      {/* 3. Fraîchement Arrivés / Nouveautés */}
-      {newProducts.length > 0 && <section id="section-new" className="scroll-mt-32">
-        <div className="text-center mb-6">
-          <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414]/70 font-bold block">
-            {lang === 'ar' ? 'وصل حديثاً' : 'FRAÎCHEMENT ARRIVÉS'}
-          </span>
-          <h2 className="font-brand text-2xl sm:text-3xl text-[#141414] font-normal mt-0.5">
-            {lang === 'ar' ? 'جديد المتجر' : 'Nouveautés K-Beauty'}
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
-          {newProducts.map((p) => (
-            <BasmaProductCard
-              key={p.id}
-              product={p}
-              onSelect={onSelectProduct}
-              onAddToCart={onAddToCart}
-              onToggleFav={onToggleFav}
-              onEdit={onEditProduct}
-              isFav={favProductIds.has(p.id)}
-              isAdded={addedProductIds.has(p.id)}
-              lang={lang}
-            />
-          ))}
-        </div>
-      </section>}
-
-      {/* 4. Kits de Soin / Nos Packs Skincare */}
-      {kitsProducts.length > 0 && <section id="section-kits" className="scroll-mt-32">
-        <div className="text-center mb-6">
-          <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414]/70 font-bold block">
-            {lang === 'ar' ? 'باقات روتين' : 'KITS & ROUTINES'}
-          </span>
-          <h2 className="font-brand text-2xl sm:text-3xl text-[#141414] font-normal mt-0.5">
-            {lang === 'ar' ? 'مجموعات العناية المتكاملة' : 'Nos packs skincare'}
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
-          {kitsProducts.map((p) => (
-            <BasmaProductCard
-              key={p.id}
-              product={p}
-              onSelect={onSelectProduct}
-              onAddToCart={onAddToCart}
-              onToggleFav={onToggleFav}
-              onEdit={onEditProduct}
-              isFav={favProductIds.has(p.id)}
-              isAdded={addedProductIds.has(p.id)}
-              lang={lang}
-            />
-          ))}
-        </div>
-      </section>}
-
+        </section>
+      ))}
     </div>
   );
 };

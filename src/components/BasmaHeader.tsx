@@ -87,7 +87,7 @@ export const BasmaHeader: React.FC<BasmaHeaderProps> = ({
 
         {/* Center: Transparent Official AURA SKIN Logo */}
         <div className="flex-1 flex justify-center">
-          <a href="#" className="cursor-pointer block group">
+          <a href="/" className="cursor-pointer block group" aria-label="Accueil AURA SKIN">
             <img
               src={logoSrc}
               alt="AURA SKIN"

@@ -23,6 +23,21 @@ export const BasmaFooter: React.FC<BasmaFooterProps> = ({ lang }) => {
           />
         </div>
 
+        {/* Shop Navigation */}
+        <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs font-semibold text-[#141414]/75">
+          <a href="/boutique" className="hover:text-[#141414]">{lang === 'ar' ? 'جميع المنتجات' : 'Tous nos produits'}</a>
+          <span className="text-[#141414]/20">•</span>
+          <a href="/nouveautes" className="hover:text-[#141414]">{lang === 'ar' ? 'جديدنا' : 'Nouveautés'}</a>
+          <span className="text-[#141414]/20">•</span>
+          <a href="/promotions" className="hover:text-[#141414]">{lang === 'ar' ? 'العروض' : 'Promotions'}</a>
+          <span className="text-[#141414]/20">•</span>
+          <a href="/meilleures-ventes" className="hover:text-[#141414]">{lang === 'ar' ? 'الأكثر مبيعاً' : 'Meilleures ventes'}</a>
+          <span className="text-[#141414]/20">•</span>
+          <a href="/packs" className="hover:text-[#141414]">{lang === 'ar' ? 'باقات العناية' : 'Nos packs skincare'}</a>
+          <span className="text-[#141414]/20">•</span>
+          <a href="/problemes-de-peau" className="hover:text-[#141414]">{lang === 'ar' ? 'حسب مشكلة البشرة' : 'Problèmes de peau'}</a>
+        </nav>
+
         {/* Contact Links */}
         <div className="space-y-2">
           <span className="text-xs uppercase font-bold tracking-[0.14em] text-[#141414]/70">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Sparkles, Flame, Tag, Grid, Heart, MessageCircle, Globe, UserRound } from 'lucide-react';
+import { X, Sparkles, Flame, Tag, Grid, Heart, MessageCircle, Globe, UserRound, Leaf } from 'lucide-react';
 import { useSiteTexts, useT } from '../utils/siteTexts';
 
 interface BasmaSidebarMenuProps {
@@ -29,6 +29,7 @@ export const BasmaSidebarMenu: React.FC<BasmaSidebarMenuProps> = ({
     { id: 'promo', label: t('menu.promo', lang), badge: '−%', icon: Tag },
     { id: 'best', label: t('menu.best', lang), badge: '', icon: Flame },
     { id: 'kits', label: t('menu.kits', lang), badge: '', icon: Grid },
+    { id: 'concerns', label: t('menu.concerns', lang), badge: '', icon: Leaf },
     { id: 'all', label: t('menu.all', lang), badge: '', icon: Grid },
   ];
 
