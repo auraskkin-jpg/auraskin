@@ -243,11 +243,13 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
   }
 
   // Otherwise, render the classic homepage sections with prices in MAD
-  const promoProducts = products.filter((p) => p.off > 0 || p.promo || p.tag === 'promo').slice(0, 8);
-  const bestProducts = products.filter((p) => p.tag === 'best').slice(0, 8);
-  const taggedNewProducts = products.filter((p) => p.tag === 'new');
-  const newProducts = (taggedNewProducts.length > 0 ? taggedNewProducts : products.slice(12, 20)).slice(0, 8);
-  const kitsProducts = products.filter((p) => p.tag === 'packs' || p.name.toLowerCase().includes('kit') || p.name.toLowerCase().includes('set') || p.name.toLowerCase().includes('coffret') || p.id % 5 === 0).slice(0, 8);
+  const hasTag = (p: BGProduct, tag: string) => p.tags?.includes(tag) || p.tag === tag;
+
+  const promoProducts = products.filter((p) => p.off > 0 || p.promo || hasTag(p, 'promo')).slice(0, 8);
+  const bestProducts = products.filter((p) => hasTag(p, 'best')).slice(0, 8);
+  const taggedNewProducts = products.filter((p) => hasTag(p, 'new'));
+  const newProducts = (taggedNewProducts.length > 0 ? taggedNewProducts : products.slice(0, 8)).slice(0, 8);
+  const kitsProducts = products.filter((p) => hasTag(p, 'packs') || p.name.toLowerCase().includes('kit') || p.name.toLowerCase().includes('set') || p.name.toLowerCase().includes('coffret')).slice(0, 8);
 
   if (
     promoProducts.length === 0 &&

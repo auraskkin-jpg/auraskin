@@ -23,6 +23,14 @@ import { Check, ArrowUp } from 'lucide-react';
 
 const STORAGE_KEY = 'auraskin_products_v4';
 
+// Normalize every product so it always has a tags array (backward compat)
+function normalizeProducts(raw: BGProduct[]): BGProduct[] {
+  return raw.map((p) => ({
+    ...p,
+    tags: Array.isArray(p.tags) ? p.tags : (p.tag ? [p.tag] : []),
+  }));
+}
+
 export default function App() {
   // Load products from localStorage or default template list
   const [products, setProducts] = useState<BGProduct[]>(() => {
@@ -31,22 +39,22 @@ export default function App() {
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
+          return normalizeProducts(parsed);
         }
       }
     } catch {
       // Fallback
     }
-    return productsData as BGProduct[];
+    return normalizeProducts(productsData as BGProduct[]);
   });
   const [reviews, setReviews] = useState<BGReview[]>(REVIEWS);
   const [siteTexts, setSiteTexts] = useState<Record<string, string>>(siteTextDefaults());
 
   // Save to localStorage whenever products change
   const updateProducts = (newProducts: BGProduct[]) => {
-    setProducts(newProducts);
+    setProducts(normalizeProducts(newProducts));
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(newProducts));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(normalizeProducts(newProducts)));
     } catch (e) {
       console.warn('LocalStorage save error (likely image size):', e);
     }
@@ -502,25 +510,6 @@ export default function App() {
           setSearchQuery('');
           if (filterType === 'promo') {
             setSelectedCategory('all');
-            setViewFullCatalog(false);
-            scrollToSection('section-promo');
-            return;
-          }
-          if (filterType === 'best') {
-            setSelectedCategory('all');
-            setViewFullCatalog(false);
-            scrollToSection('section-best');
-            return;
-          }
-          if (filterType === 'new') {
-            setSelectedCategory('all');
-            setSelectedTag('new');
-            setViewFullCatalog(true);
-            scrollToSection('catalog');
-            return;
-          }
-          if (filterType === 'promo') {
-            setSelectedCategory('all');
             setSelectedTag('promo');
             setViewFullCatalog(true);
             scrollToSection('catalog');
@@ -529,6 +518,13 @@ export default function App() {
           if (filterType === 'best') {
             setSelectedCategory('all');
             setSelectedTag('best');
+            setViewFullCatalog(true);
+            scrollToSection('catalog');
+            return;
+          }
+          if (filterType === 'new') {
+            setSelectedCategory('all');
+            setSelectedTag('new');
             setViewFullCatalog(true);
             scrollToSection('catalog');
             return;
@@ -549,7 +545,7 @@ export default function App() {
           }
           setSelectedCategory('all');
           setSelectedTag('all');
-          setViewFullCatalog(false);
+          setViewFullCatalog(true);
           scrollToSection('catalog');
         }}
         onOpenFavs={() => setIsFavsOpen(true)}
