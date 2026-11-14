@@ -348,8 +348,17 @@ export default function App() {
   });
   const favoriteProducts = publishedProducts.filter((p) => favProductIds.has(p.id));
 
-  const handleShopScroll = () => {
-    window.scrollTo({ top: 480, behavior: 'smooth' });
+  const scrollToSection = (sectionId = 'catalog') => {
+    const scroll = () => {
+      const el = document.getElementById(sectionId) || document.getElementById('catalog');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        window.scrollTo({ top: 480, behavior: 'smooth' });
+      }
+    };
+    // allow state/layout updates (e.g. clearing filters) before scrolling
+    requestAnimationFrame(() => requestAnimationFrame(scroll));
   };
 
   const scrollToTop = () => {
@@ -379,15 +388,18 @@ export default function App() {
       {/* Main Content */}
       <main className="flex-1">
         {/* Hero Section */}
-        <BasmaHero onShopClick={handleShopScroll} canCustomize={Boolean(adminToken)} lang={lang} />
+        <BasmaHero onShopClick={() => scrollToSection('catalog')} canCustomize={Boolean(adminToken)} lang={lang} />
 
         {/* Circular Categories */}
         <BasmaCategories
           selectedCategory={selectedCategory}
           onSelectCategory={(catId) => {
             setSelectedCategory(catId);
+            setSearchQuery('');
             if (catId !== 'all') {
-              handleShopScroll();
+              scrollToSection('catalog');
+            } else {
+              scrollToSection('catalog');
             }
           }}
           lang={lang}
@@ -419,11 +431,11 @@ export default function App() {
             } else if (linked.length > 1) {
               setSelectedCategory(`concern:${concernId}`);
               setSearchQuery('');
-              handleShopScroll();
+              scrollToSection('catalog');
             } else {
               setSearchQuery(concernId);
               setSelectedCategory('all');
-              handleShopScroll();
+              scrollToSection('catalog');
             }
           }}
           lang={lang}
@@ -466,9 +478,29 @@ export default function App() {
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
         onSelectNav={(filterType) => {
-          if (filterType === 'new') setSelectedCategory('all');
-          if (filterType === 'all') setSelectedCategory('all');
-          handleShopScroll();
+          setSearchQuery('');
+          if (filterType === 'promo') {
+            setSelectedCategory('all');
+            scrollToSection('section-promo');
+            return;
+          }
+          if (filterType === 'best') {
+            setSelectedCategory('all');
+            scrollToSection('section-best');
+            return;
+          }
+          if (filterType === 'new') {
+            setSelectedCategory('all');
+            scrollToSection('section-new');
+            return;
+          }
+          if (filterType === 'all') {
+            setSelectedCategory('all');
+            scrollToSection('catalog');
+            return;
+          }
+          setSelectedCategory('all');
+          scrollToSection('catalog');
         }}
         onOpenFavs={() => setIsFavsOpen(true)}
         lang={lang}

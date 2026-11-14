@@ -51,7 +51,7 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
     });
 
     return (
-      <section className="py-8 max-w-6xl mx-auto px-4">
+      <section id="catalog" className="py-8 max-w-6xl mx-auto px-4 scroll-mt-32">
         <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <span className="text-[11px] uppercase tracking-wider text-[#141414]/70 font-bold">
@@ -139,10 +139,10 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
   }
 
   return (
-    <div className="space-y-12 sm:space-y-16 py-4 max-w-6xl mx-auto px-4">
+    <div id="catalog" className="space-y-12 sm:space-y-16 py-4 max-w-6xl mx-auto px-4 scroll-mt-32">
       
       {/* 1. Sélection du moment */}
-      {promoProducts.length > 0 && <section>
+      {promoProducts.length > 0 && <section id="section-promo" className="scroll-mt-32">
         <div className="text-center mb-6">
           <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414]/70 font-bold block">
             {lang === 'ar' ? 'المختارات الحالية' : 'SÉLECTION DU MOMENT'}
@@ -170,7 +170,7 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
       </section>}
 
       {/* 2. Les Favoris / Meilleures Ventes */}
-      {bestProducts.length > 0 && <section>
+      {bestProducts.length > 0 && <section id="section-best" className="scroll-mt-32">
         <div className="text-center mb-6">
           <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414]/70 font-bold block">
             {lang === 'ar' ? 'الأكثر طلباً بالمغرب' : 'LES FAVORIS AU MAROC'}
@@ -198,7 +198,7 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
       </section>}
 
       {/* 3. Fraîchement Arrivés / Nouveautés */}
-      {newProducts.length > 0 && <section>
+      {newProducts.length > 0 && <section id="section-new" className="scroll-mt-32">
         <div className="text-center mb-6">
           <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414]/70 font-bold block">
             {lang === 'ar' ? 'وصل حديثاً' : 'FRAÎCHEMENT ARRIVÉS'}
@@ -226,7 +226,7 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
       </section>}
 
       {/* 4. Kits de Soin / Nos Packs Skincare */}
-      {kitsProducts.length > 0 && <section>
+      {kitsProducts.length > 0 && <section id="section-kits" className="scroll-mt-32">
         <div className="text-center mb-6">
           <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414]/70 font-bold block">
             {lang === 'ar' ? 'باقات روتين' : 'KITS & ROUTINES'}
