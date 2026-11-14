@@ -113,9 +113,9 @@ export const BasmaSidebarMenu: React.FC<BasmaSidebarMenuProps> = ({
               href="https://wa.me/212727707993"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full text-left px-3 py-2.5 rounded-2xl hover:bg-[#ffdbe7]/40 text-xs font-semibold text-[#141414] flex items-center gap-2.5 transition-colors"
+              className="w-full text-left px-3 py-2.5 rounded-2xl hover:bg-[#25D366]/10 text-xs font-semibold text-[#25D366] flex items-center gap-2.5 transition-colors"
             >
-              <MessageCircle size={16} className="text-emerald-600" />
+              <MessageCircle size={16} className="text-[#25D366]" />
               <span>{t('menu.whatsapp', lang)}</span>
             </a>
 

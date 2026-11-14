@@ -48,7 +48,7 @@ export const BasmaFooter: React.FC<BasmaFooterProps> = ({ lang }) => {
               href="https://wa.me/212727707993"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#141414] text-[#ffdbe7] text-xs font-semibold hover:bg-[#2a2a2a] transition-colors shadow-xs"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#25D366] text-white text-xs font-semibold hover:bg-[#1ebe5d] transition-colors shadow-xs"
             >
               <MessageCircle size={15} />
               <span>WhatsApp</span>
