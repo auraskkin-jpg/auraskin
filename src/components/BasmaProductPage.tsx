@@ -104,7 +104,7 @@ export const BasmaProductPage: React.FC<BasmaProductPageProps> = ({
 
       {relatedProducts.length > 0 && (
         <section className="space-y-4">
-          <h2 className="font-brand text-xl sm:text-2xl text-[#141414]">
+          <h2 className="font-brand text-xl sm:text-2xl text-[#141414] text-center">
             {lang === 'ar' ? 'قد يعجبك أيضاً' : 'Vous aimerez aussi'}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">

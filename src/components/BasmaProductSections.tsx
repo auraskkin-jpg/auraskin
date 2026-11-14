@@ -116,8 +116,8 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
 
       {visibleSections.map((section) => (
         <section key={section.id} id={section.id}>
-          <div className="flex items-end justify-between gap-3 mb-6">
-            <div className="text-center sm:text-left flex-1">
+          <div className="mb-6 text-center">
+            <div>
               <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414]/70 font-bold block">
                 {lang === 'ar' ? section.eyebrowAr : section.eyebrow}
               </span>
@@ -127,7 +127,7 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
             </div>
             <button
               onClick={() => onSeeAll(section.tag)}
-              className="shrink-0 inline-flex items-center gap-1 text-[11px] font-semibold text-[#141414]/70 hover:text-[#141414]"
+              className="mt-2 inline-flex items-center gap-1 text-[11px] font-semibold text-[#141414]/70 hover:text-[#141414]"
             >
               <span>{lang === 'ar' ? 'عرض الكل' : 'Voir tout'}</span>
               <ArrowRight size={13} />

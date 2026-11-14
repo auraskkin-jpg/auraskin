@@ -59,7 +59,7 @@ export const BasmaCatalogPage: React.FC<BasmaCatalogPageProps> = ({
 
   return (
     <section className="py-8 sm:py-12 max-w-6xl mx-auto px-4">
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+      <div className="mb-6 flex flex-col items-center text-center gap-3">
         <div>
           {subtitle && (
             <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414]/70 font-bold block">
@@ -68,7 +68,7 @@ export const BasmaCatalogPage: React.FC<BasmaCatalogPageProps> = ({
           )}
           <h1 className="font-brand text-2xl sm:text-3xl text-[#141414] font-normal mt-0.5">{title}</h1>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-center gap-2">
           <span className="text-xs text-[#141414]/60 font-medium">
             {filtered.length} {lang === 'ar' ? 'منتج' : 'produit(s)'}
           </span>

@@ -53,7 +53,7 @@ export const BasmaConcernsPage: React.FC<BasmaConcernsPageProps> = ({
 
       {concernId && (
         <section className="space-y-4">
-          <div className="flex items-baseline justify-between gap-3">
+          <div className="flex flex-col items-center text-center gap-1">
             <h2 className="font-brand text-xl sm:text-2xl text-[#141414]">
               {lang === 'ar' ? concern?.nameAr : concern?.name}
             </h2>
