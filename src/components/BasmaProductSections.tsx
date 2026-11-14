@@ -7,6 +7,7 @@ interface BasmaProductSectionsProps {
   products: BGProduct[];
   selectedCategory: string;
   searchQuery: string;
+  viewFullCatalog?: boolean;
   onSelectProduct: (product: BGProduct) => void;
   onAddToCart: (product: BGProduct) => void;
   onToggleFav: (productId: number) => void;
@@ -21,6 +22,7 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
   products,
   selectedCategory,
   searchQuery,
+  viewFullCatalog,
   onSelectProduct,
   onAddToCart,
   onToggleFav,
@@ -30,6 +32,51 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
   addedProductIds,
   lang,
 }) => {
+  // Full catalog view: show every published product in a single grid
+  if (viewFullCatalog) {
+    return (
+      <section id="catalog" className="py-8 max-w-6xl mx-auto px-4 scroll-mt-32">
+        <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <span className="text-[11px] uppercase tracking-wider text-[#141414]/70 font-bold">
+              {lang === 'ar' ? 'جميع المنتجات' : 'TOUS NOS PRODUITS'}
+            </span>
+            <h2 className="font-brand text-2xl sm:text-3xl text-[#141414]">
+              {lang === 'ar' ? 'جميع المنتجات' : 'Tous nos produits'}
+            </h2>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-[#141414]/60 font-medium">
+              {products.length} {lang === 'ar' ? 'منتج' : 'produit(s)'}
+            </span>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
+          {products.map((p) => (
+            <BasmaProductCard
+              key={p.id}
+              product={p}
+              onSelect={onSelectProduct}
+              onAddToCart={onAddToCart}
+              onToggleFav={onToggleFav}
+              onEdit={onEditProduct}
+              isFav={favProductIds.has(p.id)}
+              isAdded={addedProductIds.has(p.id)}
+              lang={lang}
+            />
+          ))}
+        </div>
+        {products.length === 0 && (
+          <div className="text-center py-16 bg-white rounded-2xl border border-dashed border-[#141414]/15 p-6 space-y-3">
+            <p className="text-sm text-[#141414]/70">
+              {lang === 'ar' ? 'لا توجد منتجات.' : 'Aucun produit disponible.'}
+            </p>
+          </div>
+        )}
+      </section>
+    );
+  }
+
   // If user searched or selected a specific category, show the filtered grid
   const isFiltered = selectedCategory !== 'all' || searchQuery.trim().length > 0;
 

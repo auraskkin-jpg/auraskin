@@ -81,6 +81,7 @@ export default function App() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [viewFullCatalog, setViewFullCatalog] = useState(false);
 
   // Language & Direction
   const [lang, setLang] = useState<'fr' | 'ar'>('fr');
@@ -396,11 +397,8 @@ export default function App() {
           onSelectCategory={(catId) => {
             setSelectedCategory(catId);
             setSearchQuery('');
-            if (catId !== 'all') {
-              scrollToSection('catalog');
-            } else {
-              scrollToSection('catalog');
-            }
+            setViewFullCatalog(false);
+            scrollToSection('catalog');
           }}
           lang={lang}
         />
@@ -410,6 +408,7 @@ export default function App() {
           products={publishedProducts}
           selectedCategory={selectedCategory}
           searchQuery={searchQuery}
+          viewFullCatalog={viewFullCatalog}
           onSelectProduct={(p) => setSelectedProduct(p)}
           onAddToCart={handleAddToCart}
           onToggleFav={handleToggleFav}
@@ -481,25 +480,30 @@ export default function App() {
           setSearchQuery('');
           if (filterType === 'promo') {
             setSelectedCategory('all');
+            setViewFullCatalog(false);
             scrollToSection('section-promo');
             return;
           }
           if (filterType === 'best') {
             setSelectedCategory('all');
+            setViewFullCatalog(false);
             scrollToSection('section-best');
             return;
           }
           if (filterType === 'new') {
             setSelectedCategory('all');
+            setViewFullCatalog(false);
             scrollToSection('section-new');
             return;
           }
           if (filterType === 'all') {
             setSelectedCategory('all');
+            setViewFullCatalog(true);
             scrollToSection('catalog');
             return;
           }
           setSelectedCategory('all');
+          setViewFullCatalog(false);
           scrollToSection('catalog');
         }}
         onOpenFavs={() => setIsFavsOpen(true)}
