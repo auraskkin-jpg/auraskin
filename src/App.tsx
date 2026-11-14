@@ -497,29 +497,29 @@ export default function App() {
           if (filterType === 'new') {
             setSelectedCategory('all');
             setSelectedTag('new');
-            setViewFullCatalog(false);
+            setViewFullCatalog(true);
             scrollToSection('catalog');
             return;
           }
           if (filterType === 'promo') {
             setSelectedCategory('all');
             setSelectedTag('promo');
-            setViewFullCatalog(false);
-            scrollToSection('section-promo');
+            setViewFullCatalog(true);
+            scrollToSection('catalog');
             return;
           }
           if (filterType === 'best') {
             setSelectedCategory('all');
             setSelectedTag('best');
-            setViewFullCatalog(false);
-            scrollToSection('section-best');
+            setViewFullCatalog(true);
+            scrollToSection('catalog');
             return;
           }
           if (filterType === 'kits') {
             setSelectedCategory('all');
             setSelectedTag('packs');
-            setViewFullCatalog(false);
-            scrollToSection('section-kits');
+            setViewFullCatalog(true);
+            scrollToSection('catalog');
             return;
           }
           if (filterType === 'all') {
