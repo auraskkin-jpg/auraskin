@@ -192,6 +192,15 @@ export default function App() {
     }
   };
 
+  const reloadProducts = async () => {
+    try {
+      const fresh = await getProducts();
+      updateProducts(fresh);
+    } catch (e) {
+      console.warn('Impossible de recharger les produits depuis l’API:', e);
+    }
+  };
+
   const handleSaveProduct = async (updated: BGProduct) => {
     if (!adminToken) throw new Error('Veuillez vous reconnecter en tant qu’administrateur.');
     let savedProduct: BGProduct;
@@ -207,11 +216,12 @@ export default function App() {
       throw error;
     }
 
+    // Resynchroniser avec l’API pour garantir que le nouveau produit apparaît
+    await reloadProducts();
+
     if (isCreatingNewProduct) {
-      updateProducts([savedProduct, ...products]);
       showToast(`Produit "${savedProduct.name}" ajouté avec succès !`);
     } else {
-      updateProducts(products.map((p) => (p.id === savedProduct.id ? savedProduct : p)));
       // Also update selectedProduct if open
       if (selectedProduct && selectedProduct.id === savedProduct.id) {
         setSelectedProduct(savedProduct);
