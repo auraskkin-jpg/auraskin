@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BGProduct, CATEGORIES, CONCERNS } from '../data/basmaglowConstants';
-import { X, Upload, Trash2, Check, Sparkles, Image as ImageIcon } from 'lucide-react';
+import { X, Upload, Trash2, Check, Sparkles, Image as ImageIcon, Package } from 'lucide-react';
 
 interface ProductEditModalProps {
   isOpen: boolean;
@@ -27,6 +27,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
   const [cat, setCat] = useState('serums');
   const [tag, setTag] = useState('');
   const [linkedConcerns, setLinkedConcerns] = useState<string[]>([]);
+  const [isPack, setIsPack] = useState(false);
   const [desc, setDesc] = useState('');
   const [skin, setSkin] = useState('Tous types de peaux');
   const [usage, setUsage] = useState('Matin et/ou soir');
@@ -46,6 +47,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
       setVol(product.vol || '50 ml');
       setCat(product.cat || 'serums');
       setTag(product.tag || '');
+      setIsPack(product.tag === 'packs');
       const concerns = Array.isArray(product.linkedConcerns)
         ? product.linkedConcerns
         : product.linkedConcern
@@ -66,6 +68,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
       setVol('50 ml');
       setCat('serums');
       setTag('new');
+      setIsPack(false);
       setLinkedConcerns([]);
       setDesc('');
       setSkin('Tous types de peaux');
@@ -129,8 +132,8 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
       off: offPercentage,
       vol: vol.trim() || '50 ml',
       cat,
-      tag,
-      promo: (finalSale > 0 && finalSale < finalPrice) || tag === 'promo',
+      tag: isPack ? 'packs' : tag,
+      promo: (finalSale > 0 && finalSale < finalPrice) || tag === 'promo' || (isPack && tag === 'packs'),
       ...(linkedConcerns.length > 0 ? { linkedConcerns } : {}),
       img: img.trim(),
       desc: desc.trim(),
@@ -411,6 +414,11 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                   <option value="soldout">Épuisé</option>
                   <option value="packs">Pack / Routine</option>
                 </select>
+                {isPack && tag !== 'packs' && (
+                  <p className="mt-1 text-[10px] text-emerald-700 font-medium">
+                    « Nos packs skincare » activé — le tag est forcé sur « Pack / Routine ».
+                  </p>
+                )}
               </div>
 
               <div className="sm:col-span-2">
@@ -446,6 +454,25 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                 <p className="mt-1.5 text-[10px] text-[#141414]/55">
                   Tu peux sélectionner plusieurs problèmes (ex. Acné + Taches brunes). Quand un visiteur clique sur l’un de ces problèmes, ce produit sera affiché.
                 </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsPack((prev) => {
+                      const next = !prev;
+                      if (next) setTag('packs');
+                      else if (tag === 'packs') setTag('');
+                      return next;
+                    });
+                  }}
+                  className={`flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${
+                    isPack
+                      ? 'bg-[#141414] border-[#141414] text-[#ffdbe7]'
+                      : 'border-[#141414]/15 bg-[#fff9fa] text-[#141414]/80 hover:border-[#141414]/40'
+                  }`}
+                >
+                  <Package size={14} className="shrink-0" />
+                  <span>Nos packs skincare</span>
+                </button>
               </div>
             </div>
           </div>
