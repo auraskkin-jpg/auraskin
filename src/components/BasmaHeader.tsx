@@ -47,7 +47,7 @@ export const BasmaHeader: React.FC<BasmaHeaderProps> = ({
   return (
     <header className="sticky top-0 z-40 w-full bg-[#fff9fa] border-b border-[#141414]/10 shadow-[0_2px_10px_rgba(20,20,20,0.03)]">
       {/* Top Announcement Bar - only 2 phrases displayed one by one */}
-      <div className="bg-[#141414] text-[#ffdbe7] py-2 px-4 text-xs font-medium tracking-wider h-8 sm:h-9 flex items-center justify-center overflow-hidden">
+      <div className="bg-[#C98BAA] text-[#ffdbe7] py-2 px-4 text-xs font-medium tracking-wider h-8 sm:h-9 flex items-center justify-center overflow-hidden">
         <div
           key={`${lang}-${activePhraseIndex}`}
           className="animate-phrase-in text-center font-medium select-none"
