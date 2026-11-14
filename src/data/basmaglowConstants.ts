@@ -10,6 +10,7 @@ export interface BGProduct {
   off: number;
   cat: string;
   tag: string;
+  tags?: string[];
   promo?: boolean;
   linkedConcern?: string;
   linkedConcerns?: string[];

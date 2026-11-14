@@ -44,9 +44,12 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
     { id: 'packs', label: lang === 'ar' ? 'باقات' : 'Packs & routines', badge: '' },
   ] as const;
 
-  // Apply tag filter
+  // Apply tag filter (supports multiple tags per product)
   const tagFiltered = products.filter((p) => {
-    if (selectedTag !== 'all' && p.tag !== selectedTag) return false;
+    if (selectedTag !== 'all') {
+      const hasTag = p.tags?.includes(selectedTag) || p.tag === selectedTag;
+      if (!hasTag) return false;
+    }
     return true;
   });
 

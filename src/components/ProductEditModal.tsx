@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { BGProduct, CATEGORIES, CONCERNS } from '../data/basmaglowConstants';
-import { X, Upload, Trash2, Check, Sparkles, Image as ImageIcon, Package } from 'lucide-react';
+import { X, Upload, Trash2, Check, Sparkles, Image as ImageIcon } from 'lucide-react';
+
+const TAG_OPTIONS = [
+  { id: '', label: 'Aucun' },
+  { id: 'new', label: 'Nouveauté' },
+  { id: 'promo', label: 'Promotion' },
+  { id: 'best', label: 'Meilleure vente' },
+  { id: 'soldout', label: 'Épuisé' },
+  { id: 'packs', label: 'Pack / Routine' },
+] as const;
 
 interface ProductEditModalProps {
   isOpen: boolean;
@@ -25,9 +34,8 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
   const [sale, setSale] = useState<number>(0);
   const [vol, setVol] = useState('50 ml');
   const [cat, setCat] = useState('serums');
-  const [tag, setTag] = useState('');
+  const [tags, setTags] = useState<string[]>([]);
   const [linkedConcerns, setLinkedConcerns] = useState<string[]>([]);
-  const [isPack, setIsPack] = useState(false);
   const [desc, setDesc] = useState('');
   const [skin, setSkin] = useState('Tous types de peaux');
   const [usage, setUsage] = useState('Matin et/ou soir');
@@ -46,8 +54,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
       setSale(product.sale || 0);
       setVol(product.vol || '50 ml');
       setCat(product.cat || 'serums');
-      setTag(product.tag || '');
-      setIsPack(product.tag === 'packs');
+      setTags(product.tags ? [...product.tags] : (product.tag ? [product.tag] : []));
       const concerns = Array.isArray(product.linkedConcerns)
         ? product.linkedConcerns
         : product.linkedConcern
@@ -67,8 +74,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
       setSale(0);
       setVol('50 ml');
       setCat('serums');
-      setTag('new');
-      setIsPack(false);
+      setTags(['new']);
       setLinkedConcerns([]);
       setDesc('');
       setSkin('Tous types de peaux');
@@ -132,8 +138,9 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
       off: offPercentage,
       vol: vol.trim() || '50 ml',
       cat,
-      tag: isPack ? 'packs' : tag,
-      promo: (finalSale > 0 && finalSale < finalPrice) || tag === 'promo' || (isPack && tag === 'packs'),
+      tag: tags[0] || '',
+      tags,
+      promo: (finalSale > 0 && finalSale < finalPrice) || tags.includes('promo'),
       ...(linkedConcerns.length > 0 ? { linkedConcerns } : {}),
       img: img.trim(),
       desc: desc.trim(),
@@ -398,27 +405,39 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                 </select>
               </div>
 
-              <div>
+              <div className="sm:col-span-2">
                 <label className="block text-[11px] font-semibold text-[#141414] mb-1">
-                  Tag boutique
+                  Tags boutique (choix multiple)
                 </label>
-                <select
-                  value={tag}
-                  onChange={(e) => setTag(e.target.value)}
-                  className="w-full px-3 py-2 bg-[#fff9fa] border border-[#141414]/15 rounded-xl text-xs outline-none focus:border-[#141414] cursor-pointer"
-                >
-                  <option value="">Aucun</option>
-                  <option value="new">Nouveauté</option>
-                  <option value="promo">Promotion</option>
-                  <option value="best">Meilleure vente</option>
-                  <option value="soldout">Épuisé</option>
-                  <option value="packs">Pack / Routine</option>
-                </select>
-                {isPack && tag !== 'packs' && (
-                  <p className="mt-1 text-[10px] text-emerald-700 font-medium">
-                    « Nos packs skincare » activé — le tag est forcé sur « Pack / Routine ».
-                  </p>
-                )}
+                <p className="text-[10px] text-[#141414]/55 mb-3">
+                  Sélectionnez un ou plusieurs tags (ex. Nouveauté + Pack / Routine).
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {TAG_OPTIONS.map((t) => {
+                    const selected = tags.includes(t.id);
+                    return (
+                      <button
+                        key={t.id}
+                        type="button"
+                        onClick={() =>
+                          setTags((prev) =>
+                            prev.includes(t.id)
+                              ? prev.filter((id) => id !== t.id)
+                              : [...prev, t.id]
+                          )
+                        }
+                        className={`px-3 py-1.5 rounded-full border text-xs font-semibold transition-all ${
+                          selected
+                            ? 'bg-[#141414] text-[#ffdbe7] border-[#141414]'
+                            : 'bg-[#fff9fa] text-[#141414]/80 border-[#141414]/15 hover:border-[#141414]/40'
+                        }`}
+                        aria-pressed={selected}
+                      >
+                        {t.label}
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
 
               <div className="sm:col-span-2">
@@ -454,25 +473,6 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                 <p className="mt-1.5 text-[10px] text-[#141414]/55">
                   Tu peux sélectionner plusieurs problèmes (ex. Acné + Taches brunes). Quand un visiteur clique sur l’un de ces problèmes, ce produit sera affiché.
                 </p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsPack((prev) => {
-                      const next = !prev;
-                      if (next) setTag('packs');
-                      else if (tag === 'packs') setTag('');
-                      return next;
-                    });
-                  }}
-                  className={`flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${
-                    isPack
-                      ? 'bg-[#141414] border-[#141414] text-[#ffdbe7]'
-                      : 'border-[#141414]/15 bg-[#fff9fa] text-[#141414]/80 hover:border-[#141414]/40'
-                  }`}
-                >
-                  <Package size={14} className="shrink-0" />
-                  <span>Nos packs skincare</span>
-                </button>
               </div>
             </div>
           </div>
