@@ -1,6 +1,7 @@
 import React from 'react';
 import { Search, Heart, Menu, UserRound } from 'lucide-react';
 import { useSiteTexts, useT } from '../utils/siteTexts';
+import { navigate } from '../utils/router';
 
 interface BasmaHeaderProps {
   onOpenMenu: () => void;
@@ -133,6 +134,22 @@ export const BasmaHeader: React.FC<BasmaHeaderProps> = ({
           </button>
         </div>
       </div>
+
+      {/* Quick link to the skin concerns page */}
+      <nav className="border-t border-[#141414]/5 bg-white/60">
+        <div className="max-w-6xl mx-auto px-4 py-1.5 flex items-center justify-center">
+          <a
+            href="/problemes-de-peau"
+            onClick={(event) => {
+              event.preventDefault();
+              navigate('/problemes-de-peau');
+            }}
+            className="text-[11px] font-semibold text-[#141414]/75 hover:text-[#e0558b] transition-colors"
+          >
+            {t('menu.concerns', lang)}
+          </a>
+        </div>
+      </nav>
 
       {/* Expandable Search Input */}
       {isSearchOpen && (

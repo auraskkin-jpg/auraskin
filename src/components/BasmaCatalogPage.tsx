@@ -1,7 +1,7 @@
 import React from 'react';
-import { BGProduct, CATEGORIES, CONCERNS } from '../data/basmaglowConstants';
+import { BGProduct } from '../data/basmaglowConstants';
 import { BasmaProductCard } from './BasmaProductCard';
-import { PlusCircle, SlidersHorizontal } from 'lucide-react';
+import { PlusCircle } from 'lucide-react';
 
 interface BasmaCatalogPageProps {
   products: BGProduct[];
@@ -9,11 +9,7 @@ interface BasmaCatalogPageProps {
   subtitle?: string;
   tag: string;
   category: string;
-  concernId?: string;
   search?: string;
-  onSelectTag: (tag: string) => void;
-  onSelectCategory: (category: string) => void;
-  onClearFilters: () => void;
   onSelectProduct: (product: BGProduct) => void;
   onAddToCart: (product: BGProduct) => void;
   onToggleFav: (productId: number) => void;
@@ -24,13 +20,12 @@ interface BasmaCatalogPageProps {
   lang: 'fr' | 'ar';
 }
 
-const TAG_OPTIONS = [
-  { id: 'all', label: 'Tous', labelAr: 'الجميع', badge: '' },
-  { id: 'new', label: 'Nouveautés', labelAr: 'جديد', badge: 'NEW' },
-  { id: 'promo', label: 'Promotions', labelAr: 'عروض', badge: '−%' },
-  { id: 'best', label: 'Meilleures ventes', labelAr: 'الأكثر مبيعاً', badge: '' },
-  { id: 'packs', label: 'Packs & routines', labelAr: 'باقات', badge: '' },
-];
+const TAG_LABELS: Record<string, string> = {
+  new: 'Nouveautés',
+  promo: 'Promotions',
+  best: 'Meilleures ventes',
+  packs: 'Packs & routines',
+};
 
 export const BasmaCatalogPage: React.FC<BasmaCatalogPageProps> = ({
   products,
@@ -38,11 +33,7 @@ export const BasmaCatalogPage: React.FC<BasmaCatalogPageProps> = ({
   subtitle,
   tag,
   category,
-  concernId,
   search = '',
-  onSelectTag,
-  onSelectCategory,
-  onClearFilters,
   onSelectProduct,
   onAddToCart,
   onToggleFav,
@@ -53,26 +44,18 @@ export const BasmaCatalogPage: React.FC<BasmaCatalogPageProps> = ({
   lang,
 }) => {
   const hasTag = (p: BGProduct, value: string) => p.tags?.includes(value) || p.tag === value;
-  const hasConcern = (p: BGProduct, value: string) =>
-    p.linkedConcerns?.includes(value) || p.linkedConcern === value;
 
   const query = search.trim().toLowerCase();
 
   const filtered = products.filter((p) => {
     if (tag !== 'all' && !hasTag(p, tag)) return false;
     if (category !== 'all' && p.cat !== category) return false;
-    if (concernId && !hasConcern(p, concernId)) return false;
     if (query) {
       const haystack = `${p.name} ${p.brand} ${p.desc}`.toLowerCase();
       if (!haystack.includes(query)) return false;
     }
     return true;
   });
-
-  const activeTag = TAG_OPTIONS.find((option) => option.id === tag);
-  const activeCategory = CATEGORIES.find((item) => item.id === category);
-  const activeConcern = concernId ? CONCERNS.find((item) => item.id === concernId) : null;
-  const hasActiveFilters = tag !== 'all' || category !== 'all' || Boolean(concernId) || Boolean(query);
 
   return (
     <section className="py-8 sm:py-12 max-w-6xl mx-auto px-4">
@@ -101,97 +84,6 @@ export const BasmaCatalogPage: React.FC<BasmaCatalogPageProps> = ({
         </div>
       </div>
 
-      {/* Filters */}
-      <div className="bg-white rounded-2xl border border-[#141414]/10 p-3 sm:p-4 mb-6 space-y-3">
-        <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-[#141414]/70">
-          <SlidersHorizontal size={13} />
-          <span>{lang === 'ar' ? 'تصفية' : 'Filtrer'}</span>
-        </div>
-
-        {/* Tag chips */}
-        <div className="flex flex-wrap gap-2">
-          {TAG_OPTIONS.map((option) => {
-            const isSelected = tag === option.id;
-            return (
-              <button
-                key={option.id}
-                onClick={() => onSelectTag(option.id)}
-                className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[10px] font-semibold transition-colors ${
-                  isSelected
-                    ? 'bg-[#141414] border-[#141414] text-[#ffdbe7]'
-                    : 'border-[#141414]/15 bg-white text-[#141414]/80 hover:border-[#141414]/40'
-                }`}
-              >
-                {option.badge && (
-                  <span className="bg-[#141414] text-[#ffdbe7] text-[9px] font-bold px-1 py-0.5 rounded-full">
-                    {option.badge}
-                  </span>
-                )}
-                {lang === 'ar' ? option.labelAr : option.label}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Category chips */}
-        <div className="flex flex-wrap gap-2">
-          <button
-            onClick={() => onSelectCategory('all')}
-            className={`rounded-full border px-3 py-1 text-[10px] font-semibold transition-colors ${
-              category === 'all'
-                ? 'bg-[#ffdbe7] border-[#ffdbe7] text-[#141414]'
-                : 'border-[#141414]/15 bg-white text-[#141414]/80 hover:border-[#141414]/40'
-            }`}
-          >
-            {lang === 'ar' ? 'كل الفئات' : 'Toutes les catégories'}
-          </button>
-          {CATEGORIES.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => onSelectCategory(item.id)}
-              className={`rounded-full border px-3 py-1 text-[10px] font-semibold transition-colors ${
-                category === item.id
-                  ? 'bg-[#ffdbe7] border-[#ffdbe7] text-[#141414]'
-                  : 'border-[#141414]/15 bg-white text-[#141414]/80 hover:border-[#141414]/40'
-              }`}
-            >
-              {lang === 'ar' ? item.nameAr : item.name}
-            </button>
-          ))}
-        </div>
-
-        {hasActiveFilters && (
-          <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-[#141414]/10">
-            {activeTag && tag !== 'all' && (
-              <span className="px-2.5 py-1 rounded-full bg-[#141414]/10 border border-[#141414]/20 text-[10px] font-semibold text-[#141414]">
-                Tag : {lang === 'ar' ? activeTag.labelAr : activeTag.label}
-              </span>
-            )}
-            {activeCategory && (
-              <span className="px-2.5 py-1 rounded-full bg-[#141414]/10 border border-[#141414]/20 text-[10px] font-semibold text-[#141414]">
-                {lang === 'ar' ? activeCategory.nameAr : activeCategory.name}
-              </span>
-            )}
-            {activeConcern && (
-              <span className="px-2.5 py-1 rounded-full bg-[#ffdbe7] border border-[#141414]/10 text-[10px] font-semibold text-[#141414]">
-                {lang === 'ar' ? activeConcern.nameAr : activeConcern.name}
-              </span>
-            )}
-            {query && (
-              <span className="px-2.5 py-1 rounded-full bg-[#141414]/10 border border-[#141414]/20 text-[10px] font-semibold text-[#141414]">
-                « {search} »
-              </span>
-            )}
-            <button
-              onClick={onClearFilters}
-              className="text-[10px] font-semibold text-rose-700 hover:underline"
-            >
-              {lang === 'ar' ? 'إزالة الفلاتر' : 'Réinitialiser les filtres'}
-            </button>
-          </div>
-        )}
-      </div>
-
       {filtered.length > 0 ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
           {filtered.map((p) => (
@@ -218,7 +110,7 @@ export const BasmaCatalogPage: React.FC<BasmaCatalogPageProps> = ({
               : tag !== 'all'
               ? lang === 'ar'
                 ? 'لا توجد منتجات بهذا الوسم.'
-                : `Aucun produit avec le tag « ${activeTag?.label ?? tag} ».`
+                : `Aucun produit avec le tag « ${TAG_LABELS[tag] ?? tag} ».`
               : lang === 'ar'
               ? 'لا توجد منتجات متاحة.'
               : 'Aucun produit disponible pour le moment.'}

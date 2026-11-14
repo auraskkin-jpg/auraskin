@@ -209,9 +209,7 @@ export default function App() {
   const [adminLoginError, setAdminLoginError] = useState('');
   const [isAdminLoggingIn, setIsAdminLoggingIn] = useState(false);
 
-  // Filters & Search
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [selectedTag, setSelectedTag] = useState<string>('all');
+  // Search
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
@@ -229,17 +227,9 @@ export default function App() {
     trackCurrentPageView(pathname);
   }, [pathname]);
 
-  // Keep catalog filters in sync with the current page
+  // Clear the search field when leaving the search results page
   useEffect(() => {
-    if (route.kind === 'catalog') {
-      setSelectedTag(route.tag);
-      setSelectedCategory(route.category);
-      if (!route.search) setSearchQuery('');
-    } else {
-      setSelectedTag('all');
-      setSelectedCategory('all');
-      if (pathname !== '/recherche') setSearchQuery('');
-    }
+    if (route.kind !== 'catalog' || !route.search) setSearchQuery('');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
@@ -557,7 +547,7 @@ export default function App() {
               <BasmaHero onShopClick={() => navigate('/boutique')} canCustomize={Boolean(adminToken)} lang={lang} />
 
               <BasmaCategories
-                selectedCategory={selectedCategory}
+                selectedCategory="all"
                 onSelectCategory={(catId) => {
                   if (catId === 'all') navigate('/boutique');
                   else navigate(`/categorie/${catId}`);
@@ -594,16 +584,9 @@ export default function App() {
               products={publishedProducts}
               title={route.title}
               subtitle={route.subtitle}
-              tag={selectedTag}
-              category={selectedCategory}
+              tag={route.tag}
+              category={route.category}
               search={route.search ? searchQuery : ''}
-              onSelectTag={setSelectedTag}
-              onSelectCategory={setSelectedCategory}
-              onClearFilters={() => {
-                setSelectedTag('all');
-                setSelectedCategory('all');
-                setSearchQuery('');
-              }}
               onSelectProduct={handleSelectProduct}
               onAddToCart={handleAddToCart}
               onToggleFav={handleToggleFav}
