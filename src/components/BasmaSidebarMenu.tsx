@@ -28,6 +28,7 @@ export const BasmaSidebarMenu: React.FC<BasmaSidebarMenuProps> = ({
     { id: 'new', label: t('menu.new', lang), badge: 'NEW', icon: Sparkles },
     { id: 'promo', label: t('menu.promo', lang), badge: '−%', icon: Tag },
     { id: 'best', label: t('menu.best', lang), badge: '', icon: Flame },
+    { id: 'kits', label: t('menu.kits', lang), badge: '', icon: Grid },
     { id: 'all', label: t('menu.all', lang), badge: '', icon: Grid },
   ];
 

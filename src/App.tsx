@@ -496,6 +496,12 @@ export default function App() {
             scrollToSection('section-new');
             return;
           }
+          if (filterType === 'kits') {
+            setSelectedCategory('all');
+            setViewFullCatalog(false);
+            scrollToSection('section-kits');
+            return;
+          }
           if (filterType === 'all') {
             setSelectedCategory('all');
             setViewFullCatalog(true);

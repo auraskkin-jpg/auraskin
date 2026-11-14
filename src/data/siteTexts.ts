@@ -234,6 +234,13 @@ export const SITE_TEXTS: SiteTextDef[] = [
     ar: 'جميع المنتجات',
   },
   {
+    key: 'menu.kits',
+    group: 'Menu (navigation)',
+    label: 'Lien — Packs skincare',
+    fr: 'Nos packs skincare',
+    ar: 'باقات العناية',
+  },
+  {
     key: 'menu.favorites',
     group: 'Menu (navigation)',
     label: 'Lien — Mes favoris',
