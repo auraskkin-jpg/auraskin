@@ -47,14 +47,14 @@ export const BasmaSidebarMenu: React.FC<BasmaSidebarMenuProps> = ({
               alt="AURA SKIN"
               className="h-9 w-auto object-contain"
             />
-            <button onClick={onClose} className="p-1 text-[#C98BAA]/60 hover:text-[#C98BAA]">
+            <button onClick={onClose} className="p-1 text-[#141414]/60 hover:text-[#141414]">
               <X size={20} />
             </button>
           </div>
 
           {/* Links */}
           <div className="p-4 space-y-1">
-            <span className="text-[10px] uppercase font-bold text-[#C98BAA]/60 tracking-wider block mb-2 px-3">
+            <span className="text-[10px] uppercase font-bold text-[#141414]/60 tracking-wider block mb-2 px-3">
               {t('menu.sectionCatalog', lang)}
             </span>
 
@@ -67,10 +67,10 @@ export const BasmaSidebarMenu: React.FC<BasmaSidebarMenuProps> = ({
                     onSelectNav(link.id);
                     onClose();
                   }}
-                  className="w-full text-left px-3 py-2.5 rounded-2xl hover:bg-[#ffdbe7]/40 text-xs font-semibold text-[#C98BAA] flex items-center justify-between transition-colors"
+                  className="w-full text-left px-3 py-2.5 rounded-2xl hover:bg-[#ffdbe7]/40 text-xs font-semibold text-[#141414] flex items-center justify-between transition-colors"
                 >
                   <div className="flex items-center gap-2.5">
-                    <Icon size={16} className="text-[#C98BAA]" />
+                    <Icon size={16} className="text-[#141414]" />
                     <span>{link.label}</span>
                   </div>
                   {link.badge && (
@@ -87,25 +87,25 @@ export const BasmaSidebarMenu: React.FC<BasmaSidebarMenuProps> = ({
                 onOpenFavs();
                 onClose();
               }}
-              className="w-full text-left px-3 py-2.5 rounded-2xl hover:bg-[#ffdbe7]/40 text-xs font-semibold text-[#C98BAA] flex items-center gap-2.5 transition-colors"
+              className="w-full text-left px-3 py-2.5 rounded-2xl hover:bg-[#ffdbe7]/40 text-xs font-semibold text-[#141414] flex items-center gap-2.5 transition-colors"
             >
-              <Heart size={16} className="text-[#C98BAA]" />
+              <Heart size={16} className="text-[#141414]" />
               <span>{t('menu.favorites', lang)}</span>
             </button>
 
             <a
               href="/compte"
               onClick={onClose}
-              className="w-full text-left px-3 py-2.5 rounded-2xl hover:bg-[#ffdbe7]/40 text-xs font-semibold text-[#C98BAA] flex items-center gap-2.5 transition-colors"
+              className="w-full text-left px-3 py-2.5 rounded-2xl hover:bg-[#ffdbe7]/40 text-xs font-semibold text-[#141414] flex items-center gap-2.5 transition-colors"
             >
-              <UserRound size={16} className="text-[#C98BAA]" />
+              <UserRound size={16} className="text-[#141414]" />
               <span>{t('menu.account', lang)}</span>
             </a>
 
           </div>
 
           <div className="p-4 border-t border-[#141414]/10 space-y-1">
-            <span className="text-[10px] uppercase font-bold text-[#C98BAA]/60 tracking-wider block mb-2 px-3">
+            <span className="text-[10px] uppercase font-bold text-[#141414]/60 tracking-wider block mb-2 px-3">
               {t('menu.sectionService', lang)}
             </span>
 
@@ -113,7 +113,7 @@ export const BasmaSidebarMenu: React.FC<BasmaSidebarMenuProps> = ({
               href="https://wa.me/212727707993"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full text-left px-3 py-2.5 rounded-2xl hover:bg-[#ffdbe7]/40 text-xs font-semibold text-[#C98BAA] flex items-center gap-2.5 transition-colors"
+              className="w-full text-left px-3 py-2.5 rounded-2xl hover:bg-[#ffdbe7]/40 text-xs font-semibold text-[#141414] flex items-center gap-2.5 transition-colors"
             >
               <MessageCircle size={16} className="text-emerald-600" />
               <span>{t('menu.whatsapp', lang)}</span>
@@ -121,16 +121,16 @@ export const BasmaSidebarMenu: React.FC<BasmaSidebarMenuProps> = ({
 
             <button
               onClick={onToggleLang}
-              className="w-full text-left px-3 py-2.5 rounded-2xl hover:bg-[#ffdbe7]/40 text-xs font-semibold text-[#C98BAA] flex items-center gap-2.5 transition-colors"
+              className="w-full text-left px-3 py-2.5 rounded-2xl hover:bg-[#ffdbe7]/40 text-xs font-semibold text-[#141414] flex items-center gap-2.5 transition-colors"
             >
-              <Globe size={16} className="text-[#C98BAA]" />
+              <Globe size={16} className="text-[#141414]" />
               <span>{t('menu.switchLang', lang)}</span>
             </button>
           </div>
         </div>
 
         {/* Footer info */}
-        <div className="p-4 border-t border-[#141414]/10 bg-white text-[11px] text-[#C98BAA]/60 text-center">
+        <div className="p-4 border-t border-[#141414]/10 bg-white text-[11px] text-[#141414]/60 text-center">
           <span>{t('menu.copyright', lang)}</span>
         </div>
       </div>

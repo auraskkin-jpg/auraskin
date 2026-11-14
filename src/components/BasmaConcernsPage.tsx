@@ -36,13 +36,13 @@ export const BasmaConcernsPage: React.FC<BasmaConcernsPageProps> = ({
   return (
     <div className="py-6 sm:py-10 max-w-6xl mx-auto px-4 space-y-8">
       <div className="text-center">
-        <span className="text-[11px] uppercase tracking-[0.18em] text-[#C98BAA]/70 font-bold block">
+        <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414]/70 font-bold block">
           {lang === 'ar' ? 'حسب مشكلة البشرة' : 'PAR PROBLÈME DE PEAU'}
         </span>
-        <h1 className="font-brand text-2xl sm:text-3xl text-[#C98BAA] font-normal mt-0.5">
+        <h1 className="font-brand text-2xl sm:text-3xl text-[#141414] font-normal mt-0.5">
           {lang === 'ar' ? 'اختاري مشكلة بشرتك' : 'Choisissez votre problème de peau'}
         </h1>
-        <p className="text-xs text-[#C98BAA]/60 mt-2 max-w-md mx-auto">
+        <p className="text-xs text-[#141414]/60 mt-2 max-w-md mx-auto">
           {lang === 'ar'
             ? 'نرشدك إلى المنتجات المناسبة لحالة بشرتك.'
             : 'Nous vous guidons vers les soins adaptés à votre peau.'}
@@ -54,10 +54,10 @@ export const BasmaConcernsPage: React.FC<BasmaConcernsPageProps> = ({
       {concernId && (
         <section className="space-y-4">
           <div className="flex flex-col items-center text-center gap-1">
-            <h2 className="font-brand text-xl sm:text-2xl text-[#C98BAA]">
+            <h2 className="font-brand text-xl sm:text-2xl text-[#141414]">
               {lang === 'ar' ? concern?.nameAr : concern?.name}
             </h2>
-            <span className="text-xs text-[#C98BAA]/60 font-medium">
+            <span className="text-xs text-[#141414]/60 font-medium">
               {linked.length} {lang === 'ar' ? 'منتج' : 'produit(s)'}
             </span>
           </div>
@@ -80,12 +80,12 @@ export const BasmaConcernsPage: React.FC<BasmaConcernsPageProps> = ({
             </div>
           ) : (
             <div className="text-center py-14 bg-white rounded-2xl border border-dashed border-[#141414]/15 p-6 space-y-2">
-              <p className="text-sm text-[#C98BAA]/70">
+              <p className="text-sm text-[#141414]/70">
                 {lang === 'ar'
                   ? 'لا يوجد منتج مرتبط بهذه المشكلة حالياً.'
                   : 'Aucun produit n’est encore lié à ce problème de peau.'}
               </p>
-              <p className="text-[10px] text-[#C98BAA]/50">
+              <p className="text-[10px] text-[#141414]/50">
                 {lang === 'ar'
                   ? 'من لوحة التحكم، حرّر منتجاً وحدد مشاكل البشرة المرتبطة به.'
                   : 'Depuis l’admin, modifiez un produit et cochez les problèmes de peau associés.'}

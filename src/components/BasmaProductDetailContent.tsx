@@ -51,15 +51,15 @@ export const BasmaProductDetailContent: React.FC<BasmaProductDetailContentProps>
           {product.img ? (
             <img src={product.img} alt={product.name} className="w-full h-full object-contain" />
           ) : onEdit ? (
-            <div className="flex flex-col items-center justify-center text-center p-4 text-[#C98BAA]/50 group-hover:text-[#C98BAA] transition-colors">
-              <div className="w-14 h-14 rounded-full bg-[#ffdbe7]/60 flex items-center justify-center mb-2 text-[#C98BAA] group-hover:scale-110 transition-transform">
+            <div className="flex flex-col items-center justify-center text-center p-4 text-[#141414]/50 group-hover:text-[#141414] transition-colors">
+              <div className="w-14 h-14 rounded-full bg-[#ffdbe7]/60 flex items-center justify-center mb-2 text-[#141414] group-hover:scale-110 transition-transform">
                 <ImagePlus size={26} />
               </div>
               <span className="text-xs font-bold block">Emplacement Image</span>
-              <span className="text-[10px] text-[#C98BAA]/60 mt-1">Cliquer pour ajouter votre photo</span>
+              <span className="text-[10px] text-[#141414]/60 mt-1">Cliquer pour ajouter votre photo</span>
             </div>
           ) : (
-            <span className="text-sm text-[#C98BAA]/50">Image indisponible</span>
+            <span className="text-sm text-[#141414]/50">Image indisponible</span>
           )}
 
           {product.off > 0 && (
@@ -72,18 +72,18 @@ export const BasmaProductDetailContent: React.FC<BasmaProductDetailContentProps>
         {/* Product Info */}
         <div className="space-y-4">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-[#C98BAA]/70 block">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#141414]/70 block">
               {product.brand}
             </span>
-            <h2 className="font-brand text-2xl text-[#C98BAA] font-semibold leading-tight mt-1">
+            <h2 className="font-brand text-2xl text-[#141414] font-semibold leading-tight mt-1">
               {product.name}
             </h2>
-            <div className="flex items-center gap-2 mt-1.5 text-xs text-[#C98BAA]/70">
+            <div className="flex items-center gap-2 mt-1.5 text-xs text-[#141414]/70">
               <div className="flex text-amber-500 font-bold">★★★★★</div>
-              <span className="font-semibold text-[#C98BAA]">4.9</span>
+              <span className="font-semibold text-[#141414]">4.9</span>
               <span>({product.reviewsCount} avis vérifiés au Maroc)</span>
             </div>
-            <span className="text-xs text-[#C98BAA]/60 block mt-1">
+            <span className="text-xs text-[#141414]/60 block mt-1">
               Contenance : <strong>{product.vol}</strong>
             </span>
           </div>
@@ -93,19 +93,19 @@ export const BasmaProductDetailContent: React.FC<BasmaProductDetailContentProps>
             {displayPrice > 0 ? (
               <div className="flex items-baseline gap-2">
                 {originalPrice > 0 && (
-                  <span className="text-sm text-[#C98BAA]/40 line-through">
+                  <span className="text-sm text-[#141414]/40 line-through">
                     {formatPriceMAD(originalPrice)}
                   </span>
                 )}
-                <span className="text-xl sm:text-2xl font-extrabold text-[#C98BAA]">
+                <span className="text-xl sm:text-2xl font-extrabold text-[#141414]">
                   {formatPriceMAD(displayPrice)}
                 </span>
               </div>
             ) : onEdit ? (
               <div className="flex items-center justify-between py-1">
                 <div>
-                  <span className="text-sm font-bold text-[#C98BAA]">Emplacement Prix (-- DH)</span>
-                  <span className="text-[11px] text-[#C98BAA]/50 block">Cliquez pour ajouter votre tarif</span>
+                  <span className="text-sm font-bold text-[#141414]">Emplacement Prix (-- DH)</span>
+                  <span className="text-[11px] text-[#141414]/50 block">Cliquez pour ajouter votre tarif</span>
                 </div>
                 <button
                   type="button"
@@ -117,7 +117,7 @@ export const BasmaProductDetailContent: React.FC<BasmaProductDetailContentProps>
                 </button>
               </div>
             ) : (
-              <span className="text-sm text-[#C98BAA]/55">Prix indisponible pour le moment.</span>
+              <span className="text-sm text-[#141414]/55">Prix indisponible pour le moment.</span>
             )}
             {isSoldOut ? (
               <span className="text-[11px] text-[#6b6b6b] font-semibold block mt-1">
@@ -128,7 +128,7 @@ export const BasmaProductDetailContent: React.FC<BasmaProductDetailContentProps>
                 ✓ En stock · Paiement à la livraison partout au Maroc
               </span>
             ) : (
-              <span className="text-[11px] text-[#C98BAA]/50 font-medium block mt-1">
+              <span className="text-[11px] text-[#141414]/50 font-medium block mt-1">
                 Produit indisponible à l’achat pour le moment.
               </span>
             )}
@@ -140,7 +140,7 @@ export const BasmaProductDetailContent: React.FC<BasmaProductDetailContentProps>
               <div className="flex items-center border border-[#141414]/20 rounded-full px-3 py-1 bg-white">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="p-1 text-[#C98BAA]/60 hover:text-[#C98BAA]"
+                  className="p-1 text-[#141414]/60 hover:text-[#141414]"
                   aria-label="Diminuer la quantité"
                 >
                   -
@@ -148,7 +148,7 @@ export const BasmaProductDetailContent: React.FC<BasmaProductDetailContentProps>
                 <span className="w-8 text-center text-xs font-bold">{quantity}</span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="p-1 text-[#C98BAA]/60 hover:text-[#C98BAA]"
+                  className="p-1 text-[#141414]/60 hover:text-[#141414]"
                   aria-label="Augmenter la quantité"
                 >
                   +
@@ -161,7 +161,7 @@ export const BasmaProductDetailContent: React.FC<BasmaProductDetailContentProps>
               disabled={displayPrice <= 0 || isSoldOut}
               className={`flex-1 py-2.5 px-4 rounded-full text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md disabled:cursor-not-allowed disabled:opacity-60 ${
                 displayPrice <= 0 || isSoldOut
-                  ? 'bg-[#f5f2f3] text-[#C98BAA]/50'
+                  ? 'bg-[#f5f2f3] text-[#141414]/50'
                   : isAdded
                   ? 'bg-emerald-700 text-white'
                   : 'bg-[#141414] hover:bg-[#2a2a2a] text-[#ffdbe7] hover:scale-102'
@@ -186,7 +186,7 @@ export const BasmaProductDetailContent: React.FC<BasmaProductDetailContentProps>
               className={`p-2.5 rounded-full border transition-all ${
                 isFav
                   ? 'bg-[#ffdbe7] text-[#e0558b] border-[#ffdbe7]'
-                  : 'bg-white text-[#C98BAA]/60 border-[#141414]/20 hover:border-[#ffdbe7]'
+                  : 'bg-white text-[#141414]/60 border-[#141414]/20 hover:border-[#ffdbe7]'
               }`}
               aria-label="Favoris"
             >
@@ -197,25 +197,25 @@ export const BasmaProductDetailContent: React.FC<BasmaProductDetailContentProps>
       </div>
 
       {/* Details Tabs & Clinical Data */}
-      <div className="space-y-3 pt-3 border-t border-[#141414]/10 text-xs text-[#C98BAA]/80">
+      <div className="space-y-3 pt-3 border-t border-[#141414]/10 text-xs text-[#141414]/80">
         <div className="p-3 bg-white rounded-xl border border-[#141414]/10 space-y-1">
-          <span className="font-bold text-[#C98BAA] block">Description & Bienfaits :</span>
+          <span className="font-bold text-[#141414] block">Description & Bienfaits :</span>
           <p className="leading-relaxed">{product.desc}</p>
         </div>
 
         <div className="grid grid-cols-2 gap-3">
           <div className="p-3 bg-white rounded-xl border border-[#141414]/10">
-            <span className="font-bold text-[#C98BAA] block mb-0.5">Type de peau</span>
+            <span className="font-bold text-[#141414] block mb-0.5">Type de peau</span>
             <span>{product.skin}</span>
           </div>
           <div className="p-3 bg-white rounded-xl border border-[#141414]/10">
-            <span className="font-bold text-[#C98BAA] block mb-0.5">Fréquence</span>
+            <span className="font-bold text-[#141414] block mb-0.5">Fréquence</span>
             <span>{product.usage}</span>
           </div>
         </div>
 
-        <div className="flex items-center gap-2 text-[11px] text-[#C98BAA]/80 p-3 bg-[#ffdbe7]/30 rounded-xl border border-[#ffdbe7]">
-          <ShieldCheck size={16} className="text-[#C98BAA] shrink-0" />
+        <div className="flex items-center gap-2 text-[11px] text-[#141414]/80 p-3 bg-[#ffdbe7]/30 rounded-xl border border-[#ffdbe7]">
+          <ShieldCheck size={16} className="text-[#141414] shrink-0" />
           <span>
             Garantie d'authenticité Aura Skin : tous nos soins coréens sont commandés auprès de
             distributeurs agréés officiels en Corée.

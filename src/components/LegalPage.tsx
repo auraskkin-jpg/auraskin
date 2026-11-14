@@ -136,9 +136,9 @@ export default function LegalPage({ page }: LegalPageProps) {
   }, [page.path, page.title]);
 
   return (
-    <main className="min-h-screen bg-[#fff9fa] px-4 py-8 text-[#C98BAA] sm:py-12">
+    <main className="min-h-screen bg-[#fff9fa] px-4 py-8 text-[#141414] sm:py-12">
       <div className="mx-auto max-w-3xl">
-        <a href="/" className="inline-flex items-center gap-2 text-sm text-[#C98BAA]/70 hover:text-[#C98BAA]">
+        <a href="/" className="inline-flex items-center gap-2 text-sm text-[#141414]/70 hover:text-[#141414]">
           <ArrowLeft size={16} /> Retour à la boutique
         </a>
         <article className="mt-6 rounded-3xl border border-[#141414]/10 bg-white p-5 shadow-sm sm:p-9">
@@ -148,14 +148,14 @@ export default function LegalPage({ page }: LegalPageProps) {
             className="mb-6 h-12 w-auto object-contain object-left"
           />
           <h1 className="font-brand text-3xl font-semibold sm:text-4xl">{page.title}</h1>
-          <p className="mt-3 text-sm leading-relaxed text-[#C98BAA]/65">{page.introduction}</p>
-          <p className="mt-2 text-[11px] text-[#C98BAA]/45">Dernière mise à jour : 10 novembre 2026</p>
+          <p className="mt-3 text-sm leading-relaxed text-[#141414]/65">{page.introduction}</p>
+          <p className="mt-2 text-[11px] text-[#141414]/45">Dernière mise à jour : 10 novembre 2026</p>
 
           <div className="mt-8 space-y-7">
             {page.sections.map((section) => (
               <section key={section.heading}>
                 <h2 className="font-brand text-xl font-semibold">{section.heading}</h2>
-                <div className="mt-2 space-y-3 text-sm leading-relaxed text-[#C98BAA]/75">
+                <div className="mt-2 space-y-3 text-sm leading-relaxed text-[#141414]/75">
                   {section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                   {section.items && (
                     <ul className="list-disc space-y-2 pl-5">
@@ -170,14 +170,14 @@ export default function LegalPage({ page }: LegalPageProps) {
           </div>
         </article>
 
-        <nav className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-xs text-[#C98BAA]/60" aria-label="Pages légales">
+        <nav className="mt-6 flex flex-wrap gap-x-4 gap-y-2 text-xs text-[#141414]/60" aria-label="Pages légales">
           {LEGAL_PAGES.filter((legalPage) => legalPage.path !== page.path).map((legalPage) => (
-            <a key={legalPage.path} href={legalPage.path} className="underline underline-offset-2 hover:text-[#C98BAA]">
+            <a key={legalPage.path} href={legalPage.path} className="underline underline-offset-2 hover:text-[#141414]">
               {legalPage.title}
             </a>
           ))}
         </nav>
-        <p className="mt-5 text-center text-[11px] text-[#C98BAA]/45">AURA SKIN © 2026</p>
+        <p className="mt-5 text-center text-[11px] text-[#141414]/45">AURA SKIN © 2026</p>
       </div>
     </main>
   );

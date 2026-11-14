@@ -25,10 +25,10 @@ export const BasmaFAQ: React.FC<BasmaFAQProps> = ({ lang }) => {
     <section className="py-10 sm:py-16 max-w-3xl mx-auto px-4">
       {/* Title */}
       <div className="text-center mb-8">
-        <span className="text-[11px] uppercase tracking-[0.18em] text-[#C98BAA]/70 font-bold block">
+        <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414]/70 font-bold block">
           {t('faq.eyebrow', lang)}
         </span>
-        <h2 className="font-brand text-2xl sm:text-3xl text-[#C98BAA] font-normal mt-0.5">
+        <h2 className="font-brand text-2xl sm:text-3xl text-[#141414] font-normal mt-0.5">
           {t('faq.title', lang)}
         </h2>
       </div>
@@ -44,19 +44,19 @@ export const BasmaFAQ: React.FC<BasmaFAQProps> = ({ lang }) => {
             >
               <button
                 onClick={() => toggle(idx)}
-                className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 font-medium text-xs sm:text-sm text-[#C98BAA] hover:bg-[#ffdbe7]/20 transition-colors"
+                className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 font-medium text-xs sm:text-sm text-[#141414] hover:bg-[#ffdbe7]/20 transition-colors"
               >
                 <span>{faq.q}</span>
                 <ChevronDown
                   size={16}
-                  className={`text-[#C98BAA] transition-transform duration-200 shrink-0 ${
+                  className={`text-[#141414] transition-transform duration-200 shrink-0 ${
                     isOpen ? 'rotate-180' : ''
                   }`}
                 />
               </button>
 
               {isOpen && (
-                <div className="px-4 pb-4 sm:px-5 sm:pb-5 text-xs text-[#C98BAA]/75 leading-relaxed border-t border-[#141414]/5 pt-3 bg-[#fff9fa] whitespace-pre-line">
+                <div className="px-4 pb-4 sm:px-5 sm:pb-5 text-xs text-[#141414]/75 leading-relaxed border-t border-[#141414]/5 pt-3 bg-[#fff9fa] whitespace-pre-line">
                   {faq.a}
                 </div>
               )}

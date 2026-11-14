@@ -79,7 +79,7 @@ export const BasmaHero: React.FC<BasmaHeroProps> = ({ onShopClick, canCustomize,
               </button>
 
               {showUploader && (
-                <div className="absolute top-10 right-0 z-30 p-3 bg-white rounded-2xl shadow-2xl border border-[#141414]/15 w-64 text-xs text-[#C98BAA] space-y-2 animate-fadeIn">
+                <div className="absolute top-10 right-0 z-30 p-3 bg-white rounded-2xl shadow-2xl border border-[#141414]/15 w-64 text-xs text-[#141414] space-y-2 animate-fadeIn">
                   <span className="font-bold block">Image de la bannière :</span>
                   <label className="flex items-center justify-center gap-1.5 w-full py-2 bg-[#ffdbe7] hover:bg-[#ffdbe7]/80 rounded-xl cursor-pointer font-semibold transition-colors">
                     <span>Choisir un fichier</span>
@@ -99,7 +99,7 @@ export const BasmaHero: React.FC<BasmaHeroProps> = ({ onShopClick, canCustomize,
                       <span>Retirer l'image</span>
                     </button>
                   )}
-                  <p className="text-[10px] text-[#C98BAA]/50">L’image est enregistrée dans ce navigateur.</p>
+                  <p className="text-[10px] text-[#141414]/50">L’image est enregistrée dans ce navigateur.</p>
                 </div>
               )}
             </div>
@@ -107,7 +107,7 @@ export const BasmaHero: React.FC<BasmaHeroProps> = ({ onShopClick, canCustomize,
 
           {/* Centered Editorial Content */}
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 text-white">
-            <span className="inline-block px-3.5 py-1 rounded-full bg-[#ffdbe7]/95 text-[#C98BAA] text-[11px] font-semibold tracking-widest uppercase mb-2 shadow-xs backdrop-blur-xs">
+            <span className="inline-block px-3.5 py-1 rounded-full bg-[#ffdbe7]/95 text-[#141414] text-[11px] font-semibold tracking-widest uppercase mb-2 shadow-xs backdrop-blur-xs">
               {t('hero.badge', lang)}
             </span>
 

@@ -99,7 +99,7 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
     <div id="catalog" className="space-y-12 sm:space-y-16 py-4 max-w-6xl mx-auto px-4">
       {visibleSections.length === 0 && onAddNewProduct && (
         <div className="text-center py-14 bg-white rounded-2xl border border-dashed border-[#141414]/15 p-6 space-y-3">
-          <p className="text-sm text-[#C98BAA]/70">
+          <p className="text-sm text-[#141414]/70">
             {lang === 'ar'
               ? 'لا توجد منتجات منشورة بعد.'
               : 'Aucun produit publié pour le moment.'}
@@ -118,16 +118,16 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
         <section key={section.id} id={section.id}>
           <div className="mb-6 text-center">
             <div>
-              <span className="text-[11px] uppercase tracking-[0.18em] text-[#C98BAA]/70 font-bold block">
+              <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414]/70 font-bold block">
                 {lang === 'ar' ? section.eyebrowAr : section.eyebrow}
               </span>
-              <h2 className="font-brand text-2xl sm:text-3xl text-[#C98BAA] font-normal mt-0.5">
+              <h2 className="font-brand text-2xl sm:text-3xl text-[#141414] font-normal mt-0.5">
                 {lang === 'ar' ? section.titleAr : section.title}
               </h2>
             </div>
             <button
               onClick={() => onSeeAll(section.tag)}
-              className="mt-2 inline-flex items-center gap-1 text-[11px] font-semibold text-[#C98BAA]/70 hover:text-[#C98BAA]"
+              className="mt-2 inline-flex items-center gap-1 text-[11px] font-semibold text-[#141414]/70 hover:text-[#141414]"
             >
               <span>{lang === 'ar' ? 'عرض الكل' : 'Voir tout'}</span>
               <ArrowRight size={13} />

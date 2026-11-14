@@ -100,19 +100,19 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
           <div className="flex items-center gap-2">
             <button
               onClick={onClose}
-              className="p-1 text-[#C98BAA]/70 hover:text-[#C98BAA] flex items-center gap-1 text-xs font-semibold"
+              className="p-1 text-[#141414]/70 hover:text-[#141414] flex items-center gap-1 text-xs font-semibold"
             >
               <ArrowLeft size={16} />
               <span>{lang === 'ar' ? 'رجوع' : 'Retour'}</span>
             </button>
-            <span className="font-brand text-xl text-[#C98BAA] font-semibold ml-2">
+            <span className="font-brand text-xl text-[#141414] font-semibold ml-2">
               {lang === 'ar' ? 'سلة التسوق' : 'Ton panier'}
             </span>
-            <span className="bg-[#ffdbe7] text-[#C98BAA] text-xs font-bold rounded-full px-2 py-0.5">
+            <span className="bg-[#ffdbe7] text-[#141414] text-xs font-bold rounded-full px-2 py-0.5">
               {cartItems.reduce((acc, i) => acc + i.quantity, 0)}
             </span>
           </div>
-          <button onClick={onClose} className="p-1 text-[#C98BAA]/50 hover:text-[#C98BAA]">
+          <button onClick={onClose} className="p-1 text-[#141414]/50 hover:text-[#141414]">
             <X size={20} />
           </button>
         </div>
@@ -125,10 +125,10 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
               <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto border-2 border-emerald-500">
                 <CheckCircle size={36} />
               </div>
-              <h3 className="font-brand text-2xl text-[#C98BAA]">
+              <h3 className="font-brand text-2xl text-[#141414]">
                 {lang === 'ar' ? 'تم تأكيد طلبك بنجاح !' : 'Commande confirmée !'}
               </h3>
-              <p className="text-xs text-[#C98BAA]/80 max-w-xs mx-auto">
+              <p className="text-xs text-[#141414]/80 max-w-xs mx-auto">
                 {lang === 'ar'
                   ? 'شكراً لطلبكِ من Aura Skin! سنتصل بكِ لتأكيد موعد التسليم إلى عنوانك.'
                   : 'Merci pour ta commande Aura Skin ! Notre équipe prépare ton colis pour expédition rapide.'}
@@ -136,20 +136,20 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
 
               <div className="p-4 rounded-xl bg-white border border-[#141414]/10 text-xs text-left space-y-2">
                 <div className="flex justify-between">
-                  <span className="text-[#C98BAA]/60">N° de Commande:</span>
-                  <span className="font-bold text-[#C98BAA]">{orderId}</span>
+                  <span className="text-[#141414]/60">N° de Commande:</span>
+                  <span className="font-bold text-[#141414]">{orderId}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#C98BAA]/60">Client:</span>
-                  <span className="font-semibold text-[#C98BAA]">{fullName}</span>
+                  <span className="text-[#141414]/60">Client:</span>
+                  <span className="font-semibold text-[#141414]">{fullName}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#C98BAA]/60">Ville de livraison:</span>
-                  <span className="font-semibold text-[#C98BAA]">{selectedCity.fr}</span>
+                  <span className="text-[#141414]/60">Ville de livraison:</span>
+                  <span className="font-semibold text-[#141414]">{selectedCity.fr}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#C98BAA]/60">Montant à régler en DH:</span>
-                  <span className="font-extrabold text-base text-[#C98BAA]">
+                  <span className="text-[#141414]/60">Montant à régler en DH:</span>
+                  <span className="font-extrabold text-base text-[#141414]">
                     {formatPriceMAD(confirmedTotal ?? totals.total)}
                   </span>
                 </div>
@@ -173,10 +173,10 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
             /* Empty Cart */
             <div className="py-16 text-center space-y-3">
               <span className="text-4xl block">🛍️</span>
-              <h4 className="font-brand text-xl text-[#C98BAA]">
+              <h4 className="font-brand text-xl text-[#141414]">
                 {lang === 'ar' ? 'سلة التسوق فارغة' : 'Ton panier est vide'}
               </h4>
-              <p className="text-xs text-[#C98BAA]/60 max-w-xs mx-auto">
+              <p className="text-xs text-[#141414]/60 max-w-xs mx-auto">
                 {lang === 'ar'
                   ? 'اكتشفي تشكيلتنا من مستحضرات العناية الكورية الأصلية 100% بالمغرب.'
                   : 'Découvre nos soins coréens authentiques avec livraison rapide partout au Maroc.'}
@@ -193,7 +193,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
               {/* Free Delivery Progression in Morocco */}
               <div className="p-3 bg-white rounded-xl border border-[#ffdbe7] space-y-1.5 shadow-xs">
                 <div className="flex items-center justify-between text-xs">
-                  <span className="font-semibold text-[#C98BAA]">
+                  <span className="font-semibold text-[#141414]">
                     {totals.isFreeDelivery
                       ? '🎉 Livraison gratuite partout au Maroc !'
                       : `Plus que ${formatPriceMAD(totals.freeDeliveryRemaining)} pour la livraison gratuite (dès 1000 DH) 🎁`}
@@ -217,33 +217,33 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
                     {item.img ? (
                       <img src={item.img} alt={item.name} className="w-14 h-14 object-contain shrink-0" />
                     ) : (
-                      <div className="w-14 h-14 rounded-xl bg-[#ffdbe7]/40 border border-[#141414]/10 flex items-center justify-center text-[#C98BAA]/50 shrink-0">
+                      <div className="w-14 h-14 rounded-xl bg-[#ffdbe7]/40 border border-[#141414]/10 flex items-center justify-center text-[#141414]/50 shrink-0">
                         <Sparkles size={18} />
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
-                      <span className="text-[10px] font-bold text-[#C98BAA]/70 uppercase block truncate">{item.brand}</span>
-                      <h4 className="text-xs font-semibold text-[#C98BAA] truncate">{item.name}</h4>
-                      <span className="text-[11px] font-bold text-[#C98BAA] block">{formatPriceMAD(item.price)}</span>
+                      <span className="text-[10px] font-bold text-[#141414]/70 uppercase block truncate">{item.brand}</span>
+                      <h4 className="text-xs font-semibold text-[#141414] truncate">{item.name}</h4>
+                      <span className="text-[11px] font-bold text-[#141414] block">{formatPriceMAD(item.price)}</span>
                       
                       <div className="flex items-center justify-between mt-1.5">
                         <div className="flex items-center border border-[#141414]/15 rounded-full px-2 py-0.5 bg-[#fff9fa]">
                           <button
                             onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
-                            className="p-0.5 text-[#C98BAA]/60 hover:text-[#C98BAA]"
+                            className="p-0.5 text-[#141414]/60 hover:text-[#141414]"
                           >
                             <Minus size={11} />
                           </button>
                           <span className="w-6 text-center text-xs font-bold">{item.quantity}</span>
                           <button
                             onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
-                            className="p-0.5 text-[#C98BAA]/60 hover:text-[#C98BAA]"
+                            className="p-0.5 text-[#141414]/60 hover:text-[#141414]"
                           >
                             <Plus size={11} />
                           </button>
                         </div>
 
-                        <span className="text-xs font-bold text-[#C98BAA]">
+                        <span className="text-xs font-bold text-[#141414]">
                           {formatPriceMAD(item.price * item.quantity)}
                         </span>
                       </div>
@@ -251,7 +251,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
 
                     <button
                       onClick={() => onRemoveItem(item.id)}
-                      className="p-1.5 text-[#C98BAA]/40 hover:text-rose-600 transition-colors"
+                      className="p-1.5 text-[#141414]/40 hover:text-rose-600 transition-colors"
                     >
                       <Trash2 size={15} />
                     </button>
@@ -291,15 +291,15 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
               {/* Moroccan Checkout Form (Paiement à la livraison au Maroc) */}
               <div className="p-4 bg-white rounded-xl border border-[#141414]/10 space-y-3 shadow-xs">
                 <div className="flex items-center gap-2 pb-1 border-b border-[#141414]/10">
-                  <Truck size={16} className="text-[#C98BAA]" />
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#C98BAA]">
+                  <Truck size={16} className="text-[#141414]" />
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#141414]">
                     Informations de livraison au Maroc
                   </span>
                 </div>
 
                 <div className="space-y-2 text-xs">
                   <div>
-                    <label className="block text-[11px] font-semibold text-[#C98BAA] mb-1">
+                    <label className="block text-[11px] font-semibold text-[#141414] mb-1">
                       Nom complet *
                     </label>
                     <input
@@ -313,7 +313,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-semibold text-[#C98BAA] mb-1">
+                    <label className="block text-[11px] font-semibold text-[#141414] mb-1">
                       Numéro de téléphone WhatsApp *
                     </label>
                     <input
@@ -327,7 +327,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-semibold text-[#C98BAA] mb-1">
+                    <label className="block text-[11px] font-semibold text-[#141414] mb-1">
                       Ville du Maroc *
                     </label>
                     <select
@@ -347,7 +347,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-semibold text-[#C98BAA] mb-1">
+                    <label className="block text-[11px] font-semibold text-[#141414] mb-1">
                       Adresse complète de livraison *
                     </label>
                     <input
@@ -362,8 +362,8 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
 
                   {/* Livraison partout au Maroc (à domicile) */}
                   <div className="flex items-center gap-2 p-2.5 rounded-lg bg-[#fff9fa] border border-[#141414]/10">
-                    <Truck size={14} className="text-[#C98BAA] shrink-0" />
-                    <span className="text-[11px] text-[#C98BAA]/80">
+                    <Truck size={14} className="text-[#141414] shrink-0" />
+                    <span className="text-[11px] text-[#141414]/80">
                       {lang === 'ar'
                         ? `التوصيل إلى المنزل في جميع أنحاء المغرب — ${selectedCity.feeHome} درهم`
                         : `Livraison à domicile partout au Maroc — ${formatPriceMAD(selectedCity.feeHome)}`}
@@ -385,7 +385,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
         {!isOrdered && cartItems.length > 0 && (
           <div className="p-4 border-t border-[#141414]/10 bg-white space-y-3">
             <div className="space-y-1 text-xs">
-              <div className="flex justify-between text-[#C98BAA]/70">
+              <div className="flex justify-between text-[#141414]/70">
                 <span>Sous-total</span>
                 <span>{formatPriceMAD(totals.subtotal)}</span>
               </div>
@@ -395,13 +395,13 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
                   <span>-{formatPriceMAD(totals.discount)}</span>
                 </div>
               )}
-              <div className="flex justify-between text-[#C98BAA]/70">
+              <div className="flex justify-between text-[#141414]/70">
                 <span>Frais de livraison ({selectedCity.fr})</span>
                 <span>{totals.deliveryFee === 0 ? 'Gratuite' : formatPriceMAD(totals.deliveryFee)}</span>
               </div>
-              <div className="flex justify-between text-sm font-bold text-[#C98BAA] pt-2 border-t border-[#141414]/10">
+              <div className="flex justify-between text-sm font-bold text-[#141414] pt-2 border-t border-[#141414]/10">
                 <span>Total à payer à la livraison</span>
-                <span className="text-base font-extrabold text-[#C98BAA]">{formatPriceMAD(totals.total)}</span>
+                <span className="text-base font-extrabold text-[#141414]">{formatPriceMAD(totals.total)}</span>
               </div>
             </div>
 
@@ -417,7 +417,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
                 : 'Confirmer la commande (Paiement à la livraison)'}
             </button>
 
-            <span className="text-[10px] text-center block text-[#C98BAA]/60">
+            <span className="text-[10px] text-center block text-[#141414]/60">
               💵 Vous réglez en espèces au livreur après ouverture et vérification du colis.
             </span>
           </div>

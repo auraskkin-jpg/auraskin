@@ -208,21 +208,21 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
         {/* Header */}
         <div className="p-4 border-b border-[#141414]/10 bg-white flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="p-1.5 rounded-full bg-[#ffdbe7] text-[#C98BAA]">
+            <div className="p-1.5 rounded-full bg-[#ffdbe7] text-[#141414]">
               <Sparkles size={16} />
             </div>
             <div>
-              <h3 className="font-brand text-xl text-[#C98BAA] font-semibold">
+              <h3 className="font-brand text-xl text-[#141414] font-semibold">
                 {isNewProduct ? 'Ajouter un nouveau soin' : 'Modifier le soin'}
               </h3>
-              <p className="text-[11px] text-[#C98BAA]/60">
+              <p className="text-[11px] text-[#141414]/60">
                 Pour apparaître dans la boutique : ajoutez une photo, une description et un prix supérieur à 0 DH.
               </p>
             </div>
           </div>
           <button 
             onClick={onClose} 
-            className="p-1.5 rounded-full hover:bg-[#ffdbe7]/50 text-[#C98BAA]/60 hover:text-[#C98BAA] transition-colors"
+            className="p-1.5 rounded-full hover:bg-[#ffdbe7]/50 text-[#141414]/60 hover:text-[#141414] transition-colors"
           >
             <X size={20} />
           </button>
@@ -244,7 +244,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
 
           {/* Image Upload Slot */}
           <div className="p-4 bg-white rounded-2xl border border-[#141414]/10 space-y-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#C98BAA] block">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#141414] block">
               1. Emplacement Photo du produit
             </span>
 
@@ -264,10 +264,10 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                     </button>
                   </>
                 ) : (
-                  <div className="text-center p-3 text-[#C98BAA]/50 flex flex-col items-center gap-1.5">
-                    <ImageIcon size={28} className="text-[#C98BAA]/30" />
+                  <div className="text-center p-3 text-[#141414]/50 flex flex-col items-center gap-1.5">
+                    <ImageIcon size={28} className="text-[#141414]/30" />
                     <span className="text-[11px] font-medium leading-tight">Aucune image</span>
-                    <span className="text-[9px] text-[#C98BAA]/40">Slot prêt</span>
+                    <span className="text-[9px] text-[#141414]/40">Slot prêt</span>
                   </div>
                 )}
               </div>
@@ -279,7 +279,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                     type="button"
                     onClick={() => setIsUrlTab(false)}
                     className={`text-xs px-3 py-1 rounded-full font-semibold transition-colors ${
-                      !isUrlTab ? 'bg-[#141414] text-[#ffdbe7]' : 'bg-[#141414]/5 text-[#C98BAA]/70 hover:bg-[#141414]/10'
+                      !isUrlTab ? 'bg-[#141414] text-[#ffdbe7]' : 'bg-[#141414]/5 text-[#141414]/70 hover:bg-[#141414]/10'
                     }`}
                   >
                     Téléverser un fichier
@@ -288,7 +288,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                     type="button"
                     onClick={() => setIsUrlTab(true)}
                     className={`text-xs px-3 py-1 rounded-full font-semibold transition-colors ${
-                      isUrlTab ? 'bg-[#141414] text-[#ffdbe7]' : 'bg-[#141414]/5 text-[#C98BAA]/70 hover:bg-[#141414]/10'
+                      isUrlTab ? 'bg-[#141414] text-[#ffdbe7]' : 'bg-[#141414]/5 text-[#141414]/70 hover:bg-[#141414]/10'
                     }`}
                   >
                     Lien image (URL)
@@ -297,7 +297,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
 
                 {!isUrlTab ? (
                   <div>
-                    <label className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-[#ffdbe7]/40 hover:bg-[#ffdbe7]/70 text-[#C98BAA] border border-[#141414]/15 rounded-xl cursor-pointer text-xs font-bold transition-all shadow-xs">
+                    <label className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-[#ffdbe7]/40 hover:bg-[#ffdbe7]/70 text-[#141414] border border-[#141414]/15 rounded-xl cursor-pointer text-xs font-bold transition-all shadow-xs">
                       <Upload size={16} />
                       <span>Choisir une image sur mon appareil</span>
                       <input
@@ -307,7 +307,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                         className="hidden"
                       />
                     </label>
-                    <span className="text-[10px] text-[#C98BAA]/50 block mt-1">
+                    <span className="text-[10px] text-[#141414]/50 block mt-1">
                       Formats supportés : PNG, JPG, WebP. L'image est sauvegardée instantanément.
                     </span>
                   </div>
@@ -346,13 +346,13 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
 
           {/* Pricing & General Info */}
           <div className="p-4 bg-white rounded-2xl border border-[#141414]/10 space-y-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#C98BAA] block">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#141414] block">
               2. Informations & Prix en Dirhams (DH)
             </span>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <div>
-                <label className="block text-[11px] font-semibold text-[#C98BAA] mb-1">
+                <label className="block text-[11px] font-semibold text-[#141414] mb-1">
                   Nom du produit *
                 </label>
                 <input
@@ -366,7 +366,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-[11px] font-semibold text-[#C98BAA] mb-1">
+                <label className="block text-[11px] font-semibold text-[#141414] mb-1">
                   Marque
                 </label>
                 <input
@@ -379,7 +379,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-[11px] font-semibold text-[#C98BAA] mb-1">
+                <label className="block text-[11px] font-semibold text-[#141414] mb-1">
                   Prix standard (en DH)
                 </label>
                 <input
@@ -393,7 +393,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-[11px] font-semibold text-[#C98BAA] mb-1">
+                <label className="block text-[11px] font-semibold text-[#141414] mb-1">
                   Prix Promotionnel (en DH - laisser vide si pas de promo)
                 </label>
                 <input
@@ -407,7 +407,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-[11px] font-semibold text-[#C98BAA] mb-1">
+                <label className="block text-[11px] font-semibold text-[#141414] mb-1">
                   Contenance / Format
                 </label>
                 <input
@@ -420,7 +420,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-[11px] font-semibold text-[#C98BAA] mb-1">
+                <label className="block text-[11px] font-semibold text-[#141414] mb-1">
                   Catégorie
                 </label>
                 <select
@@ -437,10 +437,10 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
               </div>
 
               <div className="sm:col-span-2">
-                <label className="block text-[11px] font-semibold text-[#C98BAA] mb-1">
+                <label className="block text-[11px] font-semibold text-[#141414] mb-1">
                   Tags boutique (choix multiple)
                 </label>
-                <p className="text-[10px] text-[#C98BAA]/55 mb-3">
+                <p className="text-[10px] text-[#141414]/55 mb-3">
                   Sélectionnez un ou plusieurs tags (ex. Nouveauté + Pack / Routine).
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -460,7 +460,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                         className={`px-3 py-1.5 rounded-full border text-xs font-semibold transition-all ${
                           selected
                             ? 'bg-[#141414] text-[#ffdbe7] border-[#141414]'
-                            : 'bg-[#fff9fa] text-[#C98BAA]/80 border-[#141414]/15 hover:border-[#141414]/40'
+                            : 'bg-[#fff9fa] text-[#141414]/80 border-[#141414]/15 hover:border-[#141414]/40'
                         }`}
                         aria-pressed={selected}
                       >
@@ -472,7 +472,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
               </div>
 
               <div className="sm:col-span-2">
-                <label className="block text-[11px] font-semibold text-[#C98BAA] mb-1">
+                <label className="block text-[11px] font-semibold text-[#141414] mb-1">
                   Produit lié à un ou plusieurs problèmes de peau (clic sur la section “Par problème de peau”)
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -492,7 +492,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                         className={`px-3 py-1.5 rounded-full border text-xs font-semibold transition-all ${
                           selected
                             ? 'bg-[#141414] text-[#ffdbe7] border-[#141414]'
-                            : 'bg-[#fff9fa] text-[#C98BAA]/80 border-[#141414]/15 hover:border-[#141414]/40'
+                            : 'bg-[#fff9fa] text-[#141414]/80 border-[#141414]/15 hover:border-[#141414]/40'
                         }`}
                         aria-pressed={selected}
                       >
@@ -501,7 +501,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                     );
                   })}
                 </div>
-                <p className="mt-1.5 text-[10px] text-[#C98BAA]/55">
+                <p className="mt-1.5 text-[10px] text-[#141414]/55">
                   Tu peux sélectionner plusieurs problèmes (ex. Acné + Taches brunes). Quand un visiteur clique sur l’un de ces problèmes, ce produit sera affiché.
                 </p>
               </div>
@@ -510,13 +510,13 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
 
           {/* Description & Usage */}
           <div className="p-4 bg-white rounded-2xl border border-[#141414]/10 space-y-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#C98BAA] block">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#141414] block">
               3. Description & Conseils de soin
             </span>
 
             <div className="space-y-3 text-xs">
               <div>
-                <label className="block text-[11px] font-semibold text-[#C98BAA] mb-1">
+                <label className="block text-[11px] font-semibold text-[#141414] mb-1">
                   Description complète du soin
                 </label>
                 <textarea
@@ -530,7 +530,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-semibold text-[#C98BAA] mb-1">
+                  <label className="block text-[11px] font-semibold text-[#141414] mb-1">
                     Type de peau recommandé
                   </label>
                   <input
@@ -543,7 +543,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-semibold text-[#C98BAA] mb-1">
+                  <label className="block text-[11px] font-semibold text-[#141414] mb-1">
                     Fréquence d'utilisation
                   </label>
                   <input
@@ -577,7 +577,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                 type="button"
                 onClick={onClose}
                 disabled={isSaving || isDeleting}
-                className="px-5 py-2.5 rounded-full border border-[#141414]/15 text-[#C98BAA]/70 hover:bg-[#141414]/5 text-xs font-semibold transition-colors"
+                className="px-5 py-2.5 rounded-full border border-[#141414]/15 text-[#141414]/70 hover:bg-[#141414]/5 text-xs font-semibold transition-colors"
               >
                 Annuler
               </button>

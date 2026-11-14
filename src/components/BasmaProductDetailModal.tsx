@@ -31,7 +31,7 @@ export const BasmaProductDetailModal: React.FC<BasmaProductDetailModalProps> = (
       >
         {/* Top Header */}
         <div className="p-3 sm:p-4 border-b border-[#141414]/10 bg-white flex items-center justify-between">
-          <span className="text-[11px] font-bold uppercase tracking-wider text-[#C98BAA]">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-[#141414]">
             {product.brand} • AURA SKIN MAROC • 100% K-Beauty Original
           </span>
           <div className="flex items-center gap-2">
@@ -41,14 +41,14 @@ export const BasmaProductDetailModal: React.FC<BasmaProductDetailModalProps> = (
                   onClose();
                   onEdit(product);
                 }}
-                className="px-3 py-1 rounded-full bg-[#ffdbe7] hover:bg-[#141414] text-[#C98BAA] hover:text-[#ffdbe7] text-xs font-semibold flex items-center gap-1.5 transition-colors"
+                className="px-3 py-1 rounded-full bg-[#ffdbe7] hover:bg-[#141414] text-[#141414] hover:text-[#ffdbe7] text-xs font-semibold flex items-center gap-1.5 transition-colors"
                 title="Modifier l'image, le prix ou la description"
               >
                 <Edit3 size={13} />
                 <span>Modifier</span>
               </button>
             )}
-            <button onClick={onClose} className="p-1 text-[#C98BAA]/60 hover:text-[#C98BAA]" aria-label="Fermer">
+            <button onClick={onClose} className="p-1 text-[#141414]/60 hover:text-[#141414]" aria-label="Fermer">
               <X size={20} />
             </button>
           </div>

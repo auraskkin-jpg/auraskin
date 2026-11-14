@@ -38,13 +38,13 @@ export const BasmaQuiz: React.FC<BasmaQuizProps> = ({ products, onAddRoutineToCa
     <section className="py-10 sm:py-14 max-w-4xl mx-auto px-4">
       {/* Quiz Card on Home */}
       <div className="bg-gradient-to-br from-[#fff9fa] via-[#ffdbe7]/30 to-[#fff9fa] border border-[#ffdbe7] rounded-3xl p-6 sm:p-10 shadow-xs text-center">
-        <span className="text-[11px] uppercase tracking-[0.18em] text-[#C98BAA] font-bold block mb-1">
+        <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414] font-bold block mb-1">
           {lang === 'ar' ? 'تشخيص مجاني · دقيقة واحدة' : 'QUIZ · 3 QUESTIONS · 1 MINUTE'}
         </span>
-        <h2 className="font-brand text-3xl sm:text-4xl text-[#C98BAA] font-normal leading-tight">
+        <h2 className="font-brand text-3xl sm:text-4xl text-[#141414] font-normal leading-tight">
           {lang === 'ar' ? 'تشخيص البشرة الذكي' : 'Diagnostic de peau'}
         </h2>
-        <p className="text-xs sm:text-sm text-[#C98BAA]/80 max-w-lg mx-auto mt-2 leading-relaxed">
+        <p className="text-xs sm:text-sm text-[#141414]/80 max-w-lg mx-auto mt-2 leading-relaxed">
           {lang === 'ar'
             ? 'أجيبي على أسئلة سريعة واكتشفي روتين العناية الكوري المخصص لكِ صباحاً ومساءً بالمغرب.'
             : 'Réponds à quelques questions et reçois ta routine matin & soir avec nos produits coréens 100% originaux.'}
@@ -62,7 +62,7 @@ export const BasmaQuiz: React.FC<BasmaQuizProps> = ({ products, onAddRoutineToCa
         </button>
 
         {/* Trust Badges */}
-        <div className="mt-4 flex flex-wrap justify-center items-center gap-4 text-[11px] text-[#C98BAA]/70">
+        <div className="mt-4 flex flex-wrap justify-center items-center gap-4 text-[11px] text-[#141414]/70">
           <span>✓ {lang === 'ar' ? 'مجاني 100%' : 'Gratuit'}</span>
           <span>•</span>
           <span>✓ {lang === 'ar' ? 'روتين مخصص لنوع بشرتك' : 'Routine adaptée à ta peau'}</span>
@@ -78,7 +78,7 @@ export const BasmaQuiz: React.FC<BasmaQuizProps> = ({ products, onAddRoutineToCa
             {/* Close Button */}
             <button
               onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-[#ffdbe7] text-[#C98BAA]/70"
+              className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-[#ffdbe7] text-[#141414]/70"
             >
               <X size={18} />
             </button>
@@ -86,7 +86,7 @@ export const BasmaQuiz: React.FC<BasmaQuizProps> = ({ products, onAddRoutineToCa
             {!isFinished ? (
               <div>
                 {/* Step tracker */}
-                <span className="text-[10px] uppercase font-bold text-[#C98BAA] tracking-wider block mb-1">
+                <span className="text-[10px] uppercase font-bold text-[#141414] tracking-wider block mb-1">
                   Question {currentStep + 1} sur {QUIZ_QUESTIONS.length}
                 </span>
                 <div className="w-full bg-[#ffdbe7]/50 h-1.5 rounded-full overflow-hidden mb-6">
@@ -96,7 +96,7 @@ export const BasmaQuiz: React.FC<BasmaQuizProps> = ({ products, onAddRoutineToCa
                   />
                 </div>
 
-                <h3 className="font-brand text-2xl text-[#C98BAA] font-semibold mb-6">
+                <h3 className="font-brand text-2xl text-[#141414] font-semibold mb-6">
                   {lang === 'ar' ? QUIZ_QUESTIONS[currentStep].titleAr : QUIZ_QUESTIONS[currentStep].title}
                 </h3>
 
@@ -105,10 +105,10 @@ export const BasmaQuiz: React.FC<BasmaQuizProps> = ({ products, onAddRoutineToCa
                     <button
                       key={opt.id}
                       onClick={() => handleSelectOption(QUIZ_QUESTIONS[currentStep].id, opt.id)}
-                      className="w-full text-left p-3.5 rounded-2xl border border-[#141414]/15 hover:border-[#141414] bg-white hover:bg-[#ffdbe7]/30 transition-all font-medium text-xs sm:text-sm text-[#C98BAA] flex items-center justify-between"
+                      className="w-full text-left p-3.5 rounded-2xl border border-[#141414]/15 hover:border-[#141414] bg-white hover:bg-[#ffdbe7]/30 transition-all font-medium text-xs sm:text-sm text-[#141414] flex items-center justify-between"
                     >
                       <span>{lang === 'ar' ? opt.labelAr : opt.label}</span>
-                      <ArrowRight size={14} className="text-[#C98BAA] opacity-60" />
+                      <ArrowRight size={14} className="text-[#141414] opacity-60" />
                     </button>
                   ))}
                 </div>
@@ -116,13 +116,13 @@ export const BasmaQuiz: React.FC<BasmaQuizProps> = ({ products, onAddRoutineToCa
             ) : (
               /* Finished Routine Result */
               <div className="text-center space-y-4">
-                <div className="w-12 h-12 rounded-full bg-[#ffdbe7] text-[#C98BAA] flex items-center justify-center mx-auto">
+                <div className="w-12 h-12 rounded-full bg-[#ffdbe7] text-[#141414] flex items-center justify-center mx-auto">
                   <Sparkles size={24} />
                 </div>
-                <h3 className="font-brand text-2xl text-[#C98BAA]">
+                <h3 className="font-brand text-2xl text-[#141414]">
                   {lang === 'ar' ? 'روتينك الكوري المخصص' : 'Ta routine personnalisée Aura Skin'}
                 </h3>
-                <p className="text-xs text-[#C98BAA]/80">
+                <p className="text-xs text-[#141414]/80">
                   {lang === 'ar'
                     ? 'بناءً على إجاباتك، هذه المنتجات الأكثر توافقاً لمنح بشرتك نضارة ولمعان طبيعي.'
                     : 'Voici les soins coréens les plus recommandés pour équilibrer et illuminer ta peau.'}
@@ -134,13 +134,13 @@ export const BasmaQuiz: React.FC<BasmaQuizProps> = ({ products, onAddRoutineToCa
                       {p.img ? (
                         <img src={p.img} alt={p.name} className="w-12 h-12 object-contain" />
                       ) : (
-                        <div className="w-12 h-12 rounded-lg bg-[#ffdbe7]/40 border border-[#141414]/10 flex items-center justify-center text-[#C98BAA]/50 shrink-0">
+                        <div className="w-12 h-12 rounded-lg bg-[#ffdbe7]/40 border border-[#141414]/10 flex items-center justify-center text-[#141414]/50 shrink-0">
                           <Sparkles size={16} />
                         </div>
                       )}
                       <div className="flex-1 min-w-0">
-                        <span className="text-[10px] font-bold uppercase text-[#C98BAA]/70 block">{p.brand}</span>
-                        <span className="text-xs font-bold text-[#C98BAA]">
+                        <span className="text-[10px] font-bold uppercase text-[#141414]/70 block">{p.brand}</span>
+                        <span className="text-xs font-bold text-[#141414]">
                           {p.price > 0 ? formatPriceMAD(p.price) : '-- DH'}
                         </span>
                       </div>
