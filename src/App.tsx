@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import productsData from './data/basmaglowProducts.json';
-import { BGProduct, BGReview, REVIEWS } from './data/basmaglowConstants';
+import { BGProduct, BGReview, CONCERNS, REVIEWS } from './data/basmaglowConstants';
 import { BGCartItem } from './utils/routineCalculations';
 import { createOrder, deleteProduct as deleteProductFromApi, getProducts, getReviews, getSiteTexts, login, saveProduct as saveProductToApi, CheckoutRequest } from './utils/api';
 import { trackCurrentPageView } from './utils/analytics';
@@ -436,19 +436,27 @@ export default function App() {
         {/* Skin Concerns Section */}
         <BasmaConcerns
           onSelectConcern={(concernId) => {
-            const linked = products.filter(
+            const concern = CONCERNS.find((c) => c.id === concernId);
+            const linked = publishedProducts.filter(
               (p) => p.linkedConcerns?.includes(concernId) || p.linkedConcern === concernId
             );
             if (linked.length === 1) {
               setSelectedProduct(linked[0]);
             } else if (linked.length > 1) {
               setSelectedCategory(`concern:${concernId}`);
+              setSelectedTag('all');
               setSearchQuery('');
+              setViewFullCatalog(false);
               scrollToSection('catalog');
             } else {
-              setSearchQuery(concernId);
               setSelectedCategory('all');
+              setSelectedTag('all');
+              setSearchQuery('');
+              setViewFullCatalog(true);
               scrollToSection('catalog');
+              showToast(
+                `Aucun produit lié à "${concern?.name || concernId}". Ajoutez ce problème de peau à un produit depuis l'admin.`
+              );
             }
           }}
           lang={lang}
