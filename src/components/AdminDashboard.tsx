@@ -159,13 +159,16 @@ export default function AdminDashboard() {
 
   const handleSaveProduct = async (product: BGProduct) => {
     if (!token) throw new Error('Session expirée. Reconnectez-vous.');
-    const savedProduct = await saveProduct(product, token, isNewProduct);
+    // Update an existing product instead of creating a duplicate when the
+    // same new product is saved twice (e.g. after adding the missing photo).
+    const exists = products.some((item) => item.id === product.id);
+    const savedProduct = await saveProduct(product, token, !exists);
     setProducts((current) =>
-      isNewProduct
-        ? [savedProduct, ...current]
-        : current.map((item) => (item.id === savedProduct.id ? savedProduct : item))
+      exists
+        ? current.map((item) => (item.id === savedProduct.id ? savedProduct : item))
+        : [savedProduct, ...current]
     );
-    setNotice(isNewProduct ? 'Produit ajouté au catalogue.' : 'Produit mis à jour.');
+    setNotice(exists ? 'Produit mis à jour.' : 'Produit ajouté au catalogue.');
     setError('');
   };
 
