@@ -45,6 +45,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
   const [error, setError] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [notice, setNotice] = useState('');
 
   useEffect(() => {
     if (product) {
@@ -67,6 +68,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
       setImg(product.img || '');
       setUrlInput(product.img && !product.img.startsWith('data:') ? product.img : '');
       setError('');
+      setNotice('');
     } else if (isNewProduct) {
       setName('');
       setBrand('Aura Skin');
@@ -82,6 +84,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
       setImg('');
       setUrlInput('');
       setError('');
+      setNotice('');
     }
   }, [product, isNewProduct, isOpen]);
 
@@ -124,21 +127,14 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
       setError('Le nom du produit est requis.');
       return;
     }
-    if (!img.trim()) {
-      setError('Une photo du produit est requise pour apparaître dans la boutique.');
-      return;
-    }
-    if (!desc.trim()) {
-      setError('Une description est requise pour apparaître dans la boutique.');
-      return;
-    }
     const finalPrice = Math.max(0, Number(price) || 0);
     const finalSale = Math.max(0, Number(sale) || 0);
-    if (finalPrice <= 0) {
-      setError('Le prix doit être supérieur à 0 DH pour apparaître dans la boutique.');
-      return;
-    }
     const offPercentage = finalSale > 0 && finalSale < finalPrice ? Math.round(((finalPrice - finalSale) / finalPrice) * 100) : 0;
+
+    const missing: string[] = [];
+    if (!img.trim()) missing.push('photo');
+    if (!desc.trim()) missing.push('description');
+    if (finalPrice <= 0) missing.push('prix supérieur à 0 DH');
 
     const updatedProduct: BGProduct = {
       id: isNewProduct ? Date.now() : product?.id || Date.now(),
@@ -164,6 +160,11 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
     setIsSaving(true);
     try {
       await onSave(updatedProduct);
+      if (missing.length > 0) {
+        setNotice(
+          `Produit enregistré mais non publié : ajoutez ${missing.join(' et ')} pour qu’il apparaisse dans la boutique.`
+        );
+      }
       onClose();
     } catch (saveError) {
       setError(saveError instanceof Error ? saveError.message : 'Impossible d’enregistrer le produit.');
@@ -213,6 +214,12 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
             <X size={20} />
           </button>
         </div>
+
+        {notice && (
+          <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-xs mb-4">
+            {notice}
+          </div>
+        )}
 
         {/* Form Body */}
         <form onSubmit={handleSubmit} className="overflow-y-auto p-4 sm:p-6 space-y-5">
