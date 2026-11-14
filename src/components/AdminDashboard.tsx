@@ -1,8 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import {
   AuthResponse,
+  CustomerOrder,
   deleteProduct,
   deleteReview,
+  getAdminOrders,
   getCurrentUser,
   getProducts,
   getReviews,
@@ -17,11 +19,11 @@ import { BGProduct, BGReview, CATEGORIES, CONCERNS } from '../data/basmaglowCons
 import { SITE_TEXT_GROUPS, SITE_TEXTS, siteTextDefaults } from '../data/siteTexts';
 import { AdminAnalytics } from './AdminAnalytics';
 import { ProductEditModal } from './ProductEditModal';
-import { ArrowLeft, BarChart3, LogOut, MessageSquare, Package, Settings, ShieldCheck, Type } from 'lucide-react';
+import { ArrowLeft, BarChart3, LogOut, MessageSquare, Package, Settings, ShieldCheck, ShoppingBag, Type } from 'lucide-react';
 
 const TOKEN_KEY = 'auraskin_admin_token';
 
-type AdminTab = 'products' | 'analytics' | 'reviews' | 'texts' | 'account';
+type AdminTab = 'products' | 'orders' | 'analytics' | 'reviews' | 'texts' | 'account';
 
 const emptyReview: BGReview = {
   id: 0,
@@ -37,6 +39,7 @@ export default function AdminDashboard() {
   const [token, setToken] = useState(() => sessionStorage.getItem(TOKEN_KEY));
   const [user, setUser] = useState<AuthResponse['user'] | null>(null);
   const [products, setProducts] = useState<BGProduct[]>([]);
+  const [orders, setOrders] = useState<CustomerOrder[]>([]);
   const [reviews, setReviews] = useState<BGReview[]>([]);
   const [activeTab, setActiveTab] = useState<AdminTab>('products');
   const [isLoading, setIsLoading] = useState(false);
@@ -63,12 +66,14 @@ export default function AdminDashboard() {
   const [isSavingTexts, setIsSavingTexts] = useState(false);
 
   const loadAdminData = useCallback(async (sessionToken: string) => {
-    const [loadedProducts, loadedReviews, loadedTexts] = await Promise.all([
+    const [loadedProducts, loadedOrders, loadedReviews, loadedTexts] = await Promise.all([
       getProducts(),
+      getAdminOrders(sessionToken).catch(() => [] as CustomerOrder[]),
       getReviews(),
       getSiteTexts().catch(() => ({})),
     ]);
     setProducts(loadedProducts);
+    setOrders(loadedOrders);
     setReviews(loadedReviews);
     setSiteTexts({ ...siteTextDefaults(), ...loadedTexts });
   }, []);
@@ -134,6 +139,7 @@ export default function AdminDashboard() {
     setToken(null);
     setUser(null);
     setProducts([]);
+    setOrders([]);
     setReviews([]);
     setError('');
   };
@@ -265,6 +271,7 @@ export default function AdminDashboard() {
 
   const tabs: Array<{ id: AdminTab; label: string; icon: React.ElementType }> = [
     { id: 'products', label: `Produits (${products.length})`, icon: Package },
+    { id: 'orders', label: `Commandes (${orders.length})`, icon: ShoppingBag },
     { id: 'analytics', label: 'Statistiques', icon: BarChart3 },
     { id: 'reviews', label: `Avis (${reviews.length})`, icon: MessageSquare },
     { id: 'texts', label: 'Textes', icon: Type },
@@ -366,6 +373,105 @@ export default function AdminDashboard() {
 
         {error && <p role="alert" className="mb-4 rounded-xl border border-rose-200 bg-rose-50 p-3 text-xs text-rose-700">{error}</p>}
         {notice && <p role="status" className="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-xs text-emerald-800">{notice}</p>}
+
+        {activeTab === 'orders' && (
+          <section className="rounded-2xl border border-[#141414]/10 bg-white p-4 shadow-sm sm:p-6">
+            <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <h2 className="font-brand text-2xl font-semibold">Commandes</h2>
+                <p className="text-xs text-[#141414]/60">Toutes les commandes passées sur le site (clients connectés et invités).</p>
+              </div>
+              <button
+                onClick={async () => {
+                  if (!token) return;
+                  setError('');
+                  try {
+                    const loaded = await getAdminOrders(token);
+                    setOrders(loaded);
+                    setNotice('Commandes actualisées.');
+                  } catch (e) {
+                    setError(e instanceof Error ? e.message : 'Impossible de charger les commandes.');
+                  }
+                }}
+                className="rounded-full border border-[#141414]/15 px-4 py-2.5 text-xs font-semibold hover:bg-[#fff9fa]"
+              >
+                Actualiser
+              </button>
+            </div>
+            {orders.length === 0 ? (
+              <p className="py-8 text-center text-xs text-[#141414]/60">Aucune commande pour le moment.</p>
+            ) : (
+              <div className="space-y-4">
+                {orders.map((order) => {
+                  const created = (() => {
+                    try {
+                      return new Date(order.createdAt).toLocaleString('fr-MA', { dateStyle: 'medium', timeStyle: 'short' });
+                    } catch {
+                      return order.createdAt;
+                    }
+                  })();
+                  const statusLabel = (s: string) => {
+                    switch (s) {
+                      case 'pending': return 'En attente';
+                      case 'confirmed': return 'Confirmée';
+                      case 'shipped': return 'Expédiée';
+                      case 'delivered': return 'Livrée';
+                      case 'cancelled': return 'Annulée';
+                      default: return s || '—';
+                    }
+                  };
+                  return (
+                    <article key={order.id} className="rounded-xl border border-[#141414]/10 p-4">
+                      <div className="flex flex-wrap items-start justify-between gap-3">
+                        <div className="min-w-0">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="text-xs font-bold">{order.id}</span>
+                            <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${order.customerId ? 'bg-emerald-100 text-emerald-800' : 'bg-[#141414]/5 text-[#141414]/70'}`}>
+                              {order.customerId ? 'Compte client' : 'Invité'}
+                            </span>
+                            <span className="rounded-full bg-[#ffdbe7]/60 px-2 py-0.5 text-[10px] font-semibold">
+                              {statusLabel(order.status)}
+                            </span>
+                          </div>
+                          <div className="mt-1 text-[11px] text-[#141414]/60">{created}</div>
+                          <div className="mt-2 text-xs">
+                            <div><span className="font-semibold">Client :</span> {order.customerName} · {order.phone}</div>
+                            <div className="text-[#141414]/70"><span className="font-semibold text-[#141414]">Adresse :</span> {order.address} ({order.cityCode}) — {order.deliveryType === 'home' ? 'Livraison à domicile' : order.deliveryType}</div>
+                            <div className="text-[#141414]/70"><span className="font-semibold text-[#141414]">Paiement :</span> {order.paymentMethod === 'cod' ? 'À la livraison' : order.paymentMethod}</div>
+                          </div>
+                        </div>
+                        <div className="text-right shrink-0">
+                          <div className="text-sm font-extrabold">{order.total.toFixed(2)} DH</div>
+                          <div className="text-[10px] text-[#141414]/60">Sous-total {order.subtotal.toFixed(2)} DH</div>
+                          <div className="text-[10px] text-[#141414]/60">Livraison {order.deliveryFee.toFixed(2)} DH</div>
+                          {order.discount > 0 && <div className="text-[10px] text-emerald-700">Remise -{order.discount.toFixed(2)} DH</div>}
+                        </div>
+                      </div>
+                      <div className="mt-3 space-y-2 border-t border-[#141414]/10 pt-3">
+                        {order.items.map((item, idx) => (
+                          <div key={`${order.id}-${item.productId}-${idx}`} className="flex items-center justify-between gap-3 text-xs">
+                            <div className="flex items-center gap-2 min-w-0">
+                              {item.img ? (
+                                <img src={item.img} alt="" className="h-10 w-10 rounded-lg object-contain bg-[#fff9fa] border border-[#141414]/10" />
+                              ) : (
+                                <div className="h-10 w-10 rounded-lg bg-[#fff9fa] border border-[#141414]/10" />
+                              )}
+                              <div className="min-w-0">
+                                <div className="truncate font-semibold">{item.brand} — {item.name}</div>
+                                <div className="text-[11px] text-[#141414]/60">Qté {item.quantity} · {item.price.toFixed(2)} DH {item.vol ? `· ${item.vol}` : ''}</div>
+                              </div>
+                            </div>
+                            <div className="font-semibold shrink-0">{(item.price * item.quantity).toFixed(2)} DH</div>
+                          </div>
+                        ))}
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+            )}
+          </section>
+        )}
 
         {activeTab === 'analytics' && <AdminAnalytics token={token} />}
 

@@ -194,6 +194,12 @@ export function getMyOrders(token: string): Promise<CustomerOrder[]> {
   });
 }
 
+export function getAdminOrders(token: string): Promise<CustomerOrder[]> {
+  return request('/api/admin/orders', {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+}
+
 export function updateCustomerAccount(
   input: CustomerAccountUpdateRequest,
   token: string
