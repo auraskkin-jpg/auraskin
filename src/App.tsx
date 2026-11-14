@@ -356,15 +356,9 @@ export default function App() {
   };
 
   const publishedProducts = products.filter((product) => {
-    const effectivePrice = product.sale > 0 ? product.sale : product.price;
-    return (
-      typeof product.img === 'string' &&
-      product.img.trim().length > 0 &&
-      typeof product.desc === 'string' &&
-      product.desc.trim().length > 0 &&
-      Number.isFinite(effectivePrice) &&
-      effectivePrice > 0
-    );
+    // Un produit est publié dès qu'il a un nom. Les champs image/description/prix
+    // sont affichés avec des placeholders s'ils sont manquants.
+    return typeof product.name === 'string' && product.name.trim().length > 0;
   });
   const favoriteProducts = publishedProducts.filter((p) => favProductIds.has(p.id));
 
