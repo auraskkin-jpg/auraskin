@@ -73,6 +73,21 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
           </div>
         </div>
 
+        {/* Active tag badge */}
+        {selectedTag !== 'all' && (
+          <div className="mb-4 flex items-center gap-2">
+            <span className="px-3 py-1 rounded-full bg-[#141414]/10 border border-[#141414]/20 text-[10px] font-semibold text-[#141414]">
+              Filtre actif : {tagOptions.find((t) => t.id === selectedTag)?.label}
+            </span>
+            <button
+              onClick={() => onSelectTag?.('all')}
+              className="text-[10px] font-semibold text-rose-700 hover:underline"
+            >
+              Réinitialiser le filtre
+            </button>
+          </div>
+        )}
+
         {/* Tag filter chips */}
         <div className="flex flex-wrap gap-2 mb-6">
           {tagOptions.map((tag) => {
@@ -114,8 +129,21 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
         {tagFiltered.length === 0 && (
           <div className="text-center py-16 bg-white rounded-2xl border border-dashed border-[#141414]/15 p-6 space-y-3">
             <p className="text-sm text-[#141414]/70">
-              {lang === 'ar' ? 'لا توجد منتجات.' : 'Aucun produit disponible.'}
+              {selectedTag !== 'all'
+                ? lang === 'ar'
+                  ? 'لا توجد منتجات بهذا الوسم. أضف المنتج عبر لوحة التحكم.'
+                  : `Aucun produit avec le tag "${tagOptions.find((t) => t.id === selectedTag)?.label}".`
+                : lang === 'ar'
+                ? 'لا توجد منتجات.'
+                : 'Aucun produit disponible.'}
             </p>
+            {selectedTag !== 'all' && (
+              <p className="text-[10px] text-[#141414]/50">
+                {lang === 'ar'
+                  ? 'اذهب إلى لوحة التحكم وحدد وسم "حزمة / روتين" للمنتج.'
+                  : 'Allez dans l\'admin et cochez le tag « Pack / Routine » sur le produit.'}
+              </p>
+            )}
           </div>
         )}
       </section>
