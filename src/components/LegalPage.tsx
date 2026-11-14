@@ -141,7 +141,7 @@ export default function LegalPage({ page }: LegalPageProps) {
         <a href="/" className="inline-flex items-center gap-2 text-sm text-[#C98BAA]/70 hover:text-[#C98BAA]">
           <ArrowLeft size={16} /> Retour à la boutique
         </a>
-        <article className="mt-6 rounded-3xl border border-[#C98BAA]/10 bg-white p-5 shadow-sm sm:p-9">
+        <article className="mt-6 rounded-3xl border border-[#141414]/10 bg-white p-5 shadow-sm sm:p-9">
           <img
             src="/assets/aura_skin_logo_transparent.png"
             alt="AURA SKIN"

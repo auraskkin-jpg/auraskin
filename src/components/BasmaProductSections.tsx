@@ -98,7 +98,7 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
   return (
     <div id="catalog" className="space-y-12 sm:space-y-16 py-4 max-w-6xl mx-auto px-4">
       {visibleSections.length === 0 && onAddNewProduct && (
-        <div className="text-center py-14 bg-white rounded-2xl border border-dashed border-[#C98BAA]/15 p-6 space-y-3">
+        <div className="text-center py-14 bg-white rounded-2xl border border-dashed border-[#141414]/15 p-6 space-y-3">
           <p className="text-sm text-[#C98BAA]/70">
             {lang === 'ar'
               ? 'لا توجد منتجات منشورة بعد.'
@@ -106,7 +106,7 @@ export const BasmaProductSections: React.FC<BasmaProductSectionsProps> = ({
           </p>
           <button
             onClick={onAddNewProduct}
-            className="px-4 py-2 bg-[#C98BAA] text-[#ffdbe7] rounded-full text-xs font-semibold inline-flex items-center gap-1.5 shadow-sm"
+            className="px-4 py-2 bg-[#141414] text-[#ffdbe7] rounded-full text-xs font-semibold inline-flex items-center gap-1.5 shadow-sm"
           >
             <PlusCircle size={14} />
             <span>Ajouter un produit</span>

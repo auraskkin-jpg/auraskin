@@ -96,7 +96,7 @@ export default function AuthPage() {
       </div>
 
       <section className="mx-auto flex max-w-5xl justify-center py-12 sm:py-16">
-        <div className="w-full max-w-md rounded-3xl border border-[#C98BAA]/10 bg-white p-6 shadow-xl sm:p-8">
+        <div className="w-full max-w-md rounded-3xl border border-[#141414]/10 bg-white p-6 shadow-xl sm:p-8">
           <div className="mb-6 text-center">
             <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-[#ffdbe7]">
               <Sparkles size={20} />
@@ -123,20 +123,20 @@ export default function AuthPage() {
               </div>
               <a
                 href="/compte"
-                className="block w-full rounded-full bg-[#C98BAA] px-4 py-3 text-center text-xs font-bold text-[#ffdbe7]"
+                className="block w-full rounded-full bg-[#141414] px-4 py-3 text-center text-xs font-bold text-[#ffdbe7]"
               >
                 Voir mon compte & mes achats
               </a>
               <a
                 href="/"
-                className="block w-full rounded-full border border-[#C98BAA]/15 px-4 py-3 text-center text-xs font-semibold"
+                className="block w-full rounded-full border border-[#141414]/15 px-4 py-3 text-center text-xs font-semibold"
               >
                 Continuer mes achats
               </a>
               <button
                 type="button"
                 onClick={handleLogout}
-                className="mx-auto flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold text-[#C98BAA]/70 hover:bg-[#C98BAA]/5"
+                className="mx-auto flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold text-[#C98BAA]/70 hover:bg-[#141414]/5"
               >
                 <LogOut size={14} />
                 Se déconnecter
@@ -160,7 +160,7 @@ export default function AuthPage() {
                       maxLength={120}
                       value={name}
                       onChange={(event) => setName(event.target.value)}
-                      className="mt-1 w-full rounded-xl border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#C98BAA]"
+                      className="mt-1 w-full rounded-xl border border-[#141414]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#141414]"
                     />
                   </label>
                 )}
@@ -172,7 +172,7 @@ export default function AuthPage() {
                     required
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
-                    className="mt-1 w-full rounded-xl border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#C98BAA]"
+                    className="mt-1 w-full rounded-xl border border-[#141414]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#141414]"
                   />
                 </label>
                 <label className="block text-xs font-semibold">
@@ -185,7 +185,7 @@ export default function AuthPage() {
                     maxLength={128}
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
-                    className="mt-1 w-full rounded-xl border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#C98BAA]"
+                    className="mt-1 w-full rounded-xl border border-[#141414]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#141414]"
                   />
                   {isSignUp && <span className="mt-1 block text-[10px] font-normal text-[#C98BAA]/55">10 caractères minimum.</span>}
                 </label>
@@ -200,14 +200,14 @@ export default function AuthPage() {
                       maxLength={128}
                       value={confirmPassword}
                       onChange={(event) => setConfirmPassword(event.target.value)}
-                      className="mt-1 w-full rounded-xl border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#C98BAA]"
+                      className="mt-1 w-full rounded-xl border border-[#141414]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#141414]"
                     />
                   </label>
                 )}
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full rounded-full bg-[#C98BAA] px-4 py-3 text-xs font-bold text-[#ffdbe7] disabled:opacity-60"
+                  className="w-full rounded-full bg-[#141414] px-4 py-3 text-xs font-bold text-[#ffdbe7] disabled:opacity-60"
                 >
                   {isSubmitting
                     ? 'Veuillez patienter...'

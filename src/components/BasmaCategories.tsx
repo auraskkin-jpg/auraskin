@@ -42,8 +42,8 @@ export const BasmaCategories: React.FC<BasmaCategoriesProps> = ({
               <div
                 className={`w-16 h-16 sm:w-18 sm:h-18 rounded-full overflow-hidden transition-all duration-300 shadow-xs flex items-center justify-center text-2xl sm:text-3xl bg-gradient-to-br ${cat.color} ${
                   isSelected
-                    ? 'ring-2 ring-[#C98BAA] scale-105 shadow-md'
-                    : 'border border-[#C98BAA]/10 hover:border-[#ffdbe7] group-hover:scale-105'
+                    ? 'ring-2 ring-[#141414] scale-105 shadow-md'
+                    : 'border border-[#141414]/10 hover:border-[#ffdbe7] group-hover:scale-105'
                 }`}
               >
                 {customIcon ? (

@@ -96,7 +96,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Drawer Header */}
-        <div className="p-4 border-b border-[#C98BAA]/10 bg-white flex items-center justify-between">
+        <div className="p-4 border-b border-[#141414]/10 bg-white flex items-center justify-between">
           <div className="flex items-center gap-2">
             <button
               onClick={onClose}
@@ -134,7 +134,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
                   : 'Merci pour ta commande Aura Skin ! Notre équipe prépare ton colis pour expédition rapide.'}
               </p>
 
-              <div className="p-4 rounded-xl bg-white border border-[#C98BAA]/10 text-xs text-left space-y-2">
+              <div className="p-4 rounded-xl bg-white border border-[#141414]/10 text-xs text-left space-y-2">
                 <div className="flex justify-between">
                   <span className="text-[#C98BAA]/60">N° de Commande:</span>
                   <span className="font-bold text-[#C98BAA]">{orderId}</span>
@@ -164,7 +164,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
                   setIsOrdered(false);
                   onClose();
                 }}
-                className="w-full py-3 bg-[#C98BAA] text-[#ffdbe7] rounded-full text-xs font-bold uppercase tracking-wider shadow-md hover:bg-[#2a2a2a] transition-all"
+                className="w-full py-3 bg-[#141414] text-[#ffdbe7] rounded-full text-xs font-bold uppercase tracking-wider shadow-md hover:bg-[#2a2a2a] transition-all"
               >
                 {lang === 'ar' ? 'مواصلة التسوق' : 'Continuer mes achats'}
               </button>
@@ -183,7 +183,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
               </p>
               <button
                 onClick={onClose}
-                className="mt-2 px-6 py-2 bg-[#C98BAA] text-[#ffdbe7] rounded-full text-xs font-semibold shadow hover:bg-[#2a2a2a]"
+                className="mt-2 px-6 py-2 bg-[#141414] text-[#ffdbe7] rounded-full text-xs font-semibold shadow hover:bg-[#2a2a2a]"
               >
                 {lang === 'ar' ? 'تصفح المنتجات' : 'Découvrir nos produits'}
               </button>
@@ -201,7 +201,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
                 </div>
                 <div className="w-full bg-[#fce1eb] h-1.5 rounded-full overflow-hidden">
                   <div
-                    className="bg-[#C98BAA] h-full transition-all duration-300"
+                    className="bg-[#141414] h-full transition-all duration-300"
                     style={{ width: `${Math.min(100, (totals.subtotal / FREE_DELIVERY_THRESHOLD) * 100)}%` }}
                   />
                 </div>
@@ -212,12 +212,12 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
                 {cartItems.map((item) => (
                   <div
                     key={item.id}
-                    className="p-3 bg-white rounded-xl border border-[#C98BAA]/10 flex items-center gap-3 shadow-xs"
+                    className="p-3 bg-white rounded-xl border border-[#141414]/10 flex items-center gap-3 shadow-xs"
                   >
                     {item.img ? (
                       <img src={item.img} alt={item.name} className="w-14 h-14 object-contain shrink-0" />
                     ) : (
-                      <div className="w-14 h-14 rounded-xl bg-[#ffdbe7]/40 border border-[#C98BAA]/10 flex items-center justify-center text-[#C98BAA]/50 shrink-0">
+                      <div className="w-14 h-14 rounded-xl bg-[#ffdbe7]/40 border border-[#141414]/10 flex items-center justify-center text-[#C98BAA]/50 shrink-0">
                         <Sparkles size={18} />
                       </div>
                     )}
@@ -227,7 +227,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
                       <span className="text-[11px] font-bold text-[#C98BAA] block">{formatPriceMAD(item.price)}</span>
                       
                       <div className="flex items-center justify-between mt-1.5">
-                        <div className="flex items-center border border-[#C98BAA]/15 rounded-full px-2 py-0.5 bg-[#fff9fa]">
+                        <div className="flex items-center border border-[#141414]/15 rounded-full px-2 py-0.5 bg-[#fff9fa]">
                           <button
                             onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
                             className="p-0.5 text-[#C98BAA]/60 hover:text-[#C98BAA]"
@@ -267,11 +267,11 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
                     value={promoCode}
                     onChange={(e) => setPromoCode(e.target.value)}
                     placeholder="Code promo (ex: AURA10)"
-                    className="flex-1 px-3 py-2 bg-white border border-[#C98BAA]/15 rounded-lg text-xs outline-none focus:border-[#C98BAA]"
+                    className="flex-1 px-3 py-2 bg-white border border-[#141414]/15 rounded-lg text-xs outline-none focus:border-[#141414]"
                   />
                   <button
                     type="submit"
-                    className="px-4 py-2 bg-[#C98BAA] text-[#ffdbe7] text-xs font-bold rounded-lg hover:bg-[#2a2a2a]"
+                    className="px-4 py-2 bg-[#141414] text-[#ffdbe7] text-xs font-bold rounded-lg hover:bg-[#2a2a2a]"
                   >
                     Appliquer
                   </button>
@@ -289,8 +289,8 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
               </form>
 
               {/* Moroccan Checkout Form (Paiement à la livraison au Maroc) */}
-              <div className="p-4 bg-white rounded-xl border border-[#C98BAA]/10 space-y-3 shadow-xs">
-                <div className="flex items-center gap-2 pb-1 border-b border-[#C98BAA]/10">
+              <div className="p-4 bg-white rounded-xl border border-[#141414]/10 space-y-3 shadow-xs">
+                <div className="flex items-center gap-2 pb-1 border-b border-[#141414]/10">
                   <Truck size={16} className="text-[#C98BAA]" />
                   <span className="text-xs font-bold uppercase tracking-wider text-[#C98BAA]">
                     Informations de livraison au Maroc
@@ -308,7 +308,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
                       onChange={(e) => setFullName(e.target.value)}
                       placeholder="Votre nom et prénom"
                       required
-                      className="w-full px-3 py-2 bg-[#fff9fa] border border-[#C98BAA]/15 rounded-lg text-xs outline-none focus:border-[#C98BAA]"
+                      className="w-full px-3 py-2 bg-[#fff9fa] border border-[#141414]/15 rounded-lg text-xs outline-none focus:border-[#141414]"
                     />
                   </div>
 
@@ -322,7 +322,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="06 / 07... (ex: 06 12 34 56 78)"
                       required
-                      className="w-full px-3 py-2 bg-[#fff9fa] border border-[#C98BAA]/15 rounded-lg text-xs outline-none focus:border-[#C98BAA]"
+                      className="w-full px-3 py-2 bg-[#fff9fa] border border-[#141414]/15 rounded-lg text-xs outline-none focus:border-[#141414]"
                     />
                   </div>
 
@@ -336,7 +336,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
                         const city = MOROCCO_CITIES.find((item) => item.code === e.target.value);
                         if (city) setSelectedCity(city);
                       }}
-                      className="w-full px-3 py-2 bg-[#fff9fa] border border-[#C98BAA]/15 rounded-lg text-xs outline-none focus:border-[#C98BAA] cursor-pointer"
+                      className="w-full px-3 py-2 bg-[#fff9fa] border border-[#141414]/15 rounded-lg text-xs outline-none focus:border-[#141414] cursor-pointer"
                     >
                       {MOROCCO_CITIES.map((c) => (
                         <option key={c.code} value={c.code}>
@@ -356,12 +356,12 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
                       onChange={(e) => setAddress(e.target.value)}
                       placeholder="Quartier, résidence, rue, n° porte"
                       required
-                      className="w-full px-3 py-2 bg-[#fff9fa] border border-[#C98BAA]/15 rounded-lg text-xs outline-none focus:border-[#C98BAA]"
+                      className="w-full px-3 py-2 bg-[#fff9fa] border border-[#141414]/15 rounded-lg text-xs outline-none focus:border-[#141414]"
                     />
                   </div>
 
                   {/* Livraison partout au Maroc (à domicile) */}
-                  <div className="flex items-center gap-2 p-2.5 rounded-lg bg-[#fff9fa] border border-[#C98BAA]/10">
+                  <div className="flex items-center gap-2 p-2.5 rounded-lg bg-[#fff9fa] border border-[#141414]/10">
                     <Truck size={14} className="text-[#C98BAA] shrink-0" />
                     <span className="text-[11px] text-[#C98BAA]/80">
                       {lang === 'ar'
@@ -383,7 +383,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
 
         {/* Drawer Footer with Totals and Order Confirmation */}
         {!isOrdered && cartItems.length > 0 && (
-          <div className="p-4 border-t border-[#C98BAA]/10 bg-white space-y-3">
+          <div className="p-4 border-t border-[#141414]/10 bg-white space-y-3">
             <div className="space-y-1 text-xs">
               <div className="flex justify-between text-[#C98BAA]/70">
                 <span>Sous-total</span>
@@ -399,7 +399,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
                 <span>Frais de livraison ({selectedCity.fr})</span>
                 <span>{totals.deliveryFee === 0 ? 'Gratuite' : formatPriceMAD(totals.deliveryFee)}</span>
               </div>
-              <div className="flex justify-between text-sm font-bold text-[#C98BAA] pt-2 border-t border-[#C98BAA]/10">
+              <div className="flex justify-between text-sm font-bold text-[#C98BAA] pt-2 border-t border-[#141414]/10">
                 <span>Total à payer à la livraison</span>
                 <span className="text-base font-extrabold text-[#C98BAA]">{formatPriceMAD(totals.total)}</span>
               </div>
@@ -408,7 +408,7 @@ export const BasmaCartDrawer: React.FC<BasmaCartDrawerProps> = ({
             <button
               onClick={handleConfirmOrder}
               disabled={isSubmitting}
-              className="w-full py-3.5 bg-[#C98BAA] hover:bg-[#2a2a2a] text-[#ffdbe7] text-xs font-bold uppercase tracking-wider rounded-full shadow-lg transition-all disabled:cursor-wait disabled:opacity-60"
+              className="w-full py-3.5 bg-[#141414] hover:bg-[#2a2a2a] text-[#ffdbe7] text-xs font-bold uppercase tracking-wider rounded-full shadow-lg transition-all disabled:cursor-wait disabled:opacity-60"
             >
               {isSubmitting
                 ? 'Envoi de la commande...'

@@ -29,7 +29,7 @@ export const BasmaFavoritesDrawer: React.FC<BasmaFavoritesDrawerProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="p-4 border-b border-[#C98BAA]/10 bg-white flex items-center justify-between">
+        <div className="p-4 border-b border-[#141414]/10 bg-white flex items-center justify-between">
           <div className="flex items-center gap-2">
             <button
               onClick={onClose}
@@ -68,12 +68,12 @@ export const BasmaFavoritesDrawer: React.FC<BasmaFavoritesDrawerProps> = ({
             favorites.map((p) => (
               <div
                 key={p.id}
-                className="p-3 bg-white rounded-xl border border-[#C98BAA]/10 flex items-center gap-3 shadow-xs"
+                className="p-3 bg-white rounded-xl border border-[#141414]/10 flex items-center gap-3 shadow-xs"
               >
                 {p.img ? (
                   <img src={p.img} alt={p.name} className="w-14 h-14 object-contain shrink-0" />
                 ) : (
-                  <div className="w-14 h-14 rounded-xl bg-[#ffdbe7]/40 border border-[#C98BAA]/10 flex items-center justify-center text-[#C98BAA]/50 shrink-0">
+                  <div className="w-14 h-14 rounded-xl bg-[#ffdbe7]/40 border border-[#141414]/10 flex items-center justify-center text-[#C98BAA]/50 shrink-0">
                     <Sparkles size={18} />
                   </div>
                 )}
@@ -88,7 +88,7 @@ export const BasmaFavoritesDrawer: React.FC<BasmaFavoritesDrawerProps> = ({
                 <div className="flex items-center gap-1.5 shrink-0">
                   <button
                     onClick={() => onAddToCart(p)}
-                    className="p-2 bg-[#C98BAA] text-[#ffdbe7] rounded-full hover:bg-[#2a2a2a] transition-colors"
+                    className="p-2 bg-[#141414] text-[#ffdbe7] rounded-full hover:bg-[#2a2a2a] transition-colors"
                     title="Ajouter au panier"
                   >
                     <ShoppingBag size={14} />
@@ -108,13 +108,13 @@ export const BasmaFavoritesDrawer: React.FC<BasmaFavoritesDrawerProps> = ({
 
         {/* Footer */}
         {favorites.length > 0 && (
-          <div className="p-4 border-t border-[#C98BAA]/10 bg-white">
+          <div className="p-4 border-t border-[#141414]/10 bg-white">
             <button
               onClick={() => {
                 favorites.forEach((p) => onAddToCart(p));
                 onClose();
               }}
-              className="w-full py-3 bg-[#C98BAA] text-[#ffdbe7] rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#2a2a2a]"
+              className="w-full py-3 bg-[#141414] text-[#ffdbe7] rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#2a2a2a]"
             >
               {lang === 'ar' ? 'إضافة الكل للسلة' : 'Tout ajouter au panier'}
             </button>

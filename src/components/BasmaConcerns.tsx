@@ -12,7 +12,7 @@ export const BasmaConcerns: React.FC<BasmaConcernsProps> = ({ onSelectConcern, l
   const t = useT();
   const { texts } = useSiteTexts();
   return (
-    <section className="py-8 sm:py-12 max-w-6xl mx-auto px-4 bg-white rounded-3xl my-6 border border-[#C98BAA]/10 shadow-xs">
+    <section className="py-8 sm:py-12 max-w-6xl mx-auto px-4 bg-white rounded-3xl my-6 border border-[#141414]/10 shadow-xs">
       {!hideHeader && (
         <div className="text-center mb-8">
           <span className="text-[11px] uppercase tracking-[0.18em] text-[#C98BAA]/70 font-bold block">
@@ -31,7 +31,7 @@ export const BasmaConcerns: React.FC<BasmaConcernsProps> = ({ onSelectConcern, l
           <button
             key={concern.id}
             onClick={() => onSelectConcern(concern.id)}
-            className="flex flex-col items-center p-3 rounded-2xl bg-[#fff9fa] border border-[#C98BAA]/10 hover:border-[#ffdbe7] hover:bg-[#ffdbe7]/20 group cursor-pointer focus:outline-none transition-all duration-300 hover:scale-102"
+            className="flex flex-col items-center p-3 rounded-2xl bg-[#fff9fa] border border-[#141414]/10 hover:border-[#ffdbe7] hover:bg-[#ffdbe7]/20 group cursor-pointer focus:outline-none transition-all duration-300 hover:scale-102"
           >
             {/* Circular Concern Icon */}
             <div className="w-14 h-14 rounded-full bg-white shadow-xs flex items-center justify-center text-2xl mb-2 group-hover:scale-110 transition-transform overflow-hidden">

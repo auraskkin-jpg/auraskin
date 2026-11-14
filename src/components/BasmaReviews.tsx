@@ -30,13 +30,13 @@ export const BasmaReviews: React.FC<BasmaReviewsProps> = ({ reviews, lang }) => 
         {reviews.map((review) => (
           <div
             key={review.id}
-            className="bg-white rounded-2xl border border-[#C98BAA]/10 p-5 shadow-xs hover:shadow-md transition-all flex flex-col justify-between relative"
+            className="bg-white rounded-2xl border border-[#141414]/10 p-5 shadow-xs hover:shadow-md transition-all flex flex-col justify-between relative"
           >
             <div>
               {/* Top review header with customer initials & date */}
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-10 h-10 rounded-full bg-[#ffdbe7] text-[#C98BAA] font-bold text-xs flex items-center justify-center border border-[#C98BAA]/10">
+                  <div className="w-10 h-10 rounded-full bg-[#ffdbe7] text-[#C98BAA] font-bold text-xs flex items-center justify-center border border-[#141414]/10">
                     {review.initials}
                   </div>
                   <div>
@@ -66,7 +66,7 @@ export const BasmaReviews: React.FC<BasmaReviewsProps> = ({ reviews, lang }) => 
             </div>
 
             {/* Author & Verification badge */}
-            <div className="mt-4 pt-3 border-t border-[#C98BAA]/5 flex items-center justify-between text-xs">
+            <div className="mt-4 pt-3 border-t border-[#141414]/5 flex items-center justify-between text-xs">
               <span className="font-semibold text-[#C98BAA]">{review.wilaya}</span>
               <span className="text-[11px] text-emerald-800 flex items-center gap-1 font-medium bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
                 <CheckCircle size={12} className="text-emerald-600" />

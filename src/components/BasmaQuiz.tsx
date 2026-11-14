@@ -56,7 +56,7 @@ export const BasmaQuiz: React.FC<BasmaQuizProps> = ({ products, onAddRoutineToCa
             handleReset();
             setIsOpen(true);
           }}
-          className="mt-6 px-8 py-3 bg-[#C98BAA] hover:bg-[#2a2a2a] text-[#ffdbe7] text-xs sm:text-sm font-semibold tracking-wider rounded-full shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2 hover:scale-105"
+          className="mt-6 px-8 py-3 bg-[#141414] hover:bg-[#2a2a2a] text-[#ffdbe7] text-xs sm:text-sm font-semibold tracking-wider rounded-full shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2 hover:scale-105"
         >
           <span>{lang === 'ar' ? 'ابدئي التشخيص الآن →' : 'Commencer le diagnostic →'}</span>
         </button>
@@ -74,7 +74,7 @@ export const BasmaQuiz: React.FC<BasmaQuizProps> = ({ products, onAddRoutineToCa
       {/* Interactive Modal */}
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
-          <div className="relative w-full max-w-lg bg-[#fff9fa] rounded-3xl shadow-2xl border border-[#C98BAA]/10 p-6 sm:p-8 overflow-hidden">
+          <div className="relative w-full max-w-lg bg-[#fff9fa] rounded-3xl shadow-2xl border border-[#141414]/10 p-6 sm:p-8 overflow-hidden">
             {/* Close Button */}
             <button
               onClick={() => setIsOpen(false)}
@@ -91,7 +91,7 @@ export const BasmaQuiz: React.FC<BasmaQuizProps> = ({ products, onAddRoutineToCa
                 </span>
                 <div className="w-full bg-[#ffdbe7]/50 h-1.5 rounded-full overflow-hidden mb-6">
                   <div
-                    className="bg-[#C98BAA] h-full transition-all duration-300"
+                    className="bg-[#141414] h-full transition-all duration-300"
                     style={{ width: `${((currentStep + 1) / QUIZ_QUESTIONS.length) * 100}%` }}
                   />
                 </div>
@@ -105,7 +105,7 @@ export const BasmaQuiz: React.FC<BasmaQuizProps> = ({ products, onAddRoutineToCa
                     <button
                       key={opt.id}
                       onClick={() => handleSelectOption(QUIZ_QUESTIONS[currentStep].id, opt.id)}
-                      className="w-full text-left p-3.5 rounded-2xl border border-[#C98BAA]/15 hover:border-[#C98BAA] bg-white hover:bg-[#ffdbe7]/30 transition-all font-medium text-xs sm:text-sm text-[#C98BAA] flex items-center justify-between"
+                      className="w-full text-left p-3.5 rounded-2xl border border-[#141414]/15 hover:border-[#141414] bg-white hover:bg-[#ffdbe7]/30 transition-all font-medium text-xs sm:text-sm text-[#C98BAA] flex items-center justify-between"
                     >
                       <span>{lang === 'ar' ? opt.labelAr : opt.label}</span>
                       <ArrowRight size={14} className="text-[#C98BAA] opacity-60" />
@@ -130,11 +130,11 @@ export const BasmaQuiz: React.FC<BasmaQuizProps> = ({ products, onAddRoutineToCa
 
                 <div className="space-y-2.5 text-left pt-2">
                   {recommendedRoutine.map((p) => (
-                    <div key={p.id} className="p-2.5 bg-white rounded-xl border border-[#C98BAA]/10 flex items-center gap-3">
+                    <div key={p.id} className="p-2.5 bg-white rounded-xl border border-[#141414]/10 flex items-center gap-3">
                       {p.img ? (
                         <img src={p.img} alt={p.name} className="w-12 h-12 object-contain" />
                       ) : (
-                        <div className="w-12 h-12 rounded-lg bg-[#ffdbe7]/40 border border-[#C98BAA]/10 flex items-center justify-center text-[#C98BAA]/50 shrink-0">
+                        <div className="w-12 h-12 rounded-lg bg-[#ffdbe7]/40 border border-[#141414]/10 flex items-center justify-center text-[#C98BAA]/50 shrink-0">
                           <Sparkles size={16} />
                         </div>
                       )}
@@ -154,7 +154,7 @@ export const BasmaQuiz: React.FC<BasmaQuizProps> = ({ products, onAddRoutineToCa
                       onAddRoutineToCart(recommendedRoutine);
                       setIsOpen(false);
                     }}
-                    className="flex-1 py-3 bg-[#C98BAA] hover:bg-[#2a2a2a] text-[#ffdbe7] rounded-full text-xs font-bold uppercase tracking-wider shadow-md"
+                    className="flex-1 py-3 bg-[#141414] hover:bg-[#2a2a2a] text-[#ffdbe7] rounded-full text-xs font-bold uppercase tracking-wider shadow-md"
                   >
                     Ajouter la routine au panier
                   </button>

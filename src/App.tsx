@@ -640,7 +640,7 @@ export default function App() {
               </p>
               <a
                 href="/"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C98BAA] text-[#ffdbe7] text-xs font-semibold"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#141414] text-[#ffdbe7] text-xs font-semibold"
               >
                 Retour à l’accueil
               </a>
@@ -710,7 +710,7 @@ export default function App() {
                   autoComplete="username"
                   value={adminEmail}
                   onChange={(event) => setAdminEmail(event.target.value)}
-                  className="mt-1 w-full rounded-lg border border-[#C98BAA]/15 bg-white px-3 py-2 font-normal"
+                  className="mt-1 w-full rounded-lg border border-[#141414]/15 bg-white px-3 py-2 font-normal"
                 />
               </label>
               <label className="block text-xs font-semibold">
@@ -721,7 +721,7 @@ export default function App() {
                   autoComplete="current-password"
                   value={adminPassword}
                   onChange={(event) => setAdminPassword(event.target.value)}
-                  className="mt-1 w-full rounded-lg border border-[#C98BAA]/15 bg-white px-3 py-2 font-normal"
+                  className="mt-1 w-full rounded-lg border border-[#141414]/15 bg-white px-3 py-2 font-normal"
                 />
               </label>
               {adminLoginError && (
@@ -736,7 +736,7 @@ export default function App() {
                 <button
                   type="submit"
                   disabled={isAdminLoggingIn}
-                  className="rounded-full bg-[#C98BAA] px-4 py-2 text-xs font-bold text-[#ffdbe7] disabled:opacity-60"
+                  className="rounded-full bg-[#141414] px-4 py-2 text-xs font-bold text-[#ffdbe7] disabled:opacity-60"
                 >
                   {isAdminLoggingIn ? 'Connexion...' : 'Se connecter'}
                 </button>
@@ -747,7 +747,7 @@ export default function App() {
 
         {/* Toast Notification */}
         {toastMessage && (
-          <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#C98BAA] text-[#ffdbe7] shadow-xl text-xs font-semibold tracking-wide border border-[#ffdbe7]/30 animate-slideUp">
+          <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#141414] text-[#ffdbe7] shadow-xl text-xs font-semibold tracking-wide border border-[#ffdbe7]/30 animate-slideUp">
             <Check size={14} className="text-[#ffdbe7]" />
             <span>{toastMessage}</span>
           </div>
@@ -757,7 +757,7 @@ export default function App() {
         {showScrollTop && (
           <button
             onClick={scrollToTop}
-            className="fixed bottom-6 left-6 z-30 p-2.5 rounded-full bg-white hover:bg-[#ffdbe7]/50 text-[#C98BAA] border border-[#C98BAA]/15 shadow-md transition-all hover:scale-105"
+            className="fixed bottom-6 left-6 z-30 p-2.5 rounded-full bg-white hover:bg-[#ffdbe7]/50 text-[#C98BAA] border border-[#141414]/15 shadow-md transition-all hover:scale-105"
             aria-label="Haut de page"
           >
             <ArrowUp size={16} />

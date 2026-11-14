@@ -26,11 +26,11 @@ export const BasmaProductDetailModal: React.FC<BasmaProductDetailModalProps> = (
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
       <div
-        className="relative w-full max-w-2xl bg-[#fff9fa] rounded-3xl shadow-2xl border border-[#C98BAA]/10 overflow-hidden flex flex-col max-h-[90vh]"
+        className="relative w-full max-w-2xl bg-[#fff9fa] rounded-3xl shadow-2xl border border-[#141414]/10 overflow-hidden flex flex-col max-h-[90vh]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Header */}
-        <div className="p-3 sm:p-4 border-b border-[#C98BAA]/10 bg-white flex items-center justify-between">
+        <div className="p-3 sm:p-4 border-b border-[#141414]/10 bg-white flex items-center justify-between">
           <span className="text-[11px] font-bold uppercase tracking-wider text-[#C98BAA]">
             {product.brand} • AURA SKIN MAROC • 100% K-Beauty Original
           </span>
@@ -41,7 +41,7 @@ export const BasmaProductDetailModal: React.FC<BasmaProductDetailModalProps> = (
                   onClose();
                   onEdit(product);
                 }}
-                className="px-3 py-1 rounded-full bg-[#ffdbe7] hover:bg-[#C98BAA] text-[#C98BAA] hover:text-[#ffdbe7] text-xs font-semibold flex items-center gap-1.5 transition-colors"
+                className="px-3 py-1 rounded-full bg-[#ffdbe7] hover:bg-[#141414] text-[#C98BAA] hover:text-[#ffdbe7] text-xs font-semibold flex items-center gap-1.5 transition-colors"
                 title="Modifier l'image, le prix ou la description"
               >
                 <Edit3 size={13} />

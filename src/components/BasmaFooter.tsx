@@ -11,7 +11,7 @@ export const BasmaFooter: React.FC<BasmaFooterProps> = ({ lang }) => {
   const { texts } = useSiteTexts();
   const logoSrc = texts['image.logo.footer'] || '/assets/aura_skin_logo_transparent.png';
   return (
-    <footer className="bg-white border-t border-[#C98BAA]/10 pt-12 pb-8 mt-12 text-[#C98BAA]">
+    <footer className="bg-white border-t border-[#141414]/10 pt-12 pb-8 mt-12 text-[#C98BAA]">
       <div className="max-w-4xl mx-auto px-4 flex flex-col items-center text-center space-y-6">
         
         {/* Footer Transparent Logo */}
@@ -48,7 +48,7 @@ export const BasmaFooter: React.FC<BasmaFooterProps> = ({ lang }) => {
               href="https://wa.me/212727707993"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#C98BAA] text-[#ffdbe7] text-xs font-semibold hover:bg-[#2a2a2a] transition-colors shadow-xs"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#141414] text-[#ffdbe7] text-xs font-semibold hover:bg-[#2a2a2a] transition-colors shadow-xs"
             >
               <MessageCircle size={15} />
               <span>WhatsApp</span>
@@ -58,7 +58,7 @@ export const BasmaFooter: React.FC<BasmaFooterProps> = ({ lang }) => {
               href="https://www.instagram.com/auraskin_by_chayy?mdxt=bmwyYjkzNG51NHdw"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#ffdbe7] text-[#C98BAA] text-xs font-semibold hover:bg-[#fce1eb] transition-colors border border-[#C98BAA]/10"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#ffdbe7] text-[#C98BAA] text-xs font-semibold hover:bg-[#fce1eb] transition-colors border border-[#141414]/10"
             >
               <Instagram size={15} />
               <span>Instagram</span>
@@ -68,7 +68,7 @@ export const BasmaFooter: React.FC<BasmaFooterProps> = ({ lang }) => {
               href="https://www.tiktok.com/@auraskin_by_chayy?_r=1&_t=ZS-9B6wZnUOLvp"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#C98BAA] text-[#ffdbe7] text-xs font-semibold shadow-xs"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#141414] text-[#ffdbe7] text-xs font-semibold shadow-xs"
             >
               <Music2 size={15} />
               <span>TikTok</span>
@@ -95,18 +95,18 @@ export const BasmaFooter: React.FC<BasmaFooterProps> = ({ lang }) => {
 
         {/* Moroccan Delivery & Trust Badges */}
         <div className="pt-2 flex flex-wrap items-center justify-center gap-6 text-xs text-[#C98BAA]/70">
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fff9fa] border border-[#C98BAA]/10">
+          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fff9fa] border border-[#141414]/10">
             <Truck size={14} className="text-[#C98BAA]" />
             <span>{t('footer.badge1', lang)}</span>
           </div>
-          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fff9fa] border border-[#C98BAA]/10">
+          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fff9fa] border border-[#141414]/10">
             <ShieldCheck size={14} className="text-[#C98BAA]" />
             <span>{t('footer.badge2', lang)}</span>
           </div>
         </div>
 
         {/* Legal Links */}
-        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-[#C98BAA]/60 pt-3 border-t border-[#C98BAA]/5 w-full">
+        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-[#C98BAA]/60 pt-3 border-t border-[#141414]/5 w-full">
           <a href="/conditions-utilisation" className="hover:text-[#C98BAA]">Conditions d’utilisation</a>
           <span>•</span>
           <a href="/politique-confidentialite" className="hover:text-[#C98BAA]">Politique de confidentialité</a>

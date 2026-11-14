@@ -202,11 +202,11 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
       <div 
-        className="relative w-full max-w-2xl bg-[#fff9fa] rounded-3xl shadow-2xl border border-[#C98BAA]/10 overflow-hidden flex flex-col max-h-[92vh]"
+        className="relative w-full max-w-2xl bg-[#fff9fa] rounded-3xl shadow-2xl border border-[#141414]/10 overflow-hidden flex flex-col max-h-[92vh]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="p-4 border-b border-[#C98BAA]/10 bg-white flex items-center justify-between">
+        <div className="p-4 border-b border-[#141414]/10 bg-white flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="p-1.5 rounded-full bg-[#ffdbe7] text-[#C98BAA]">
               <Sparkles size={16} />
@@ -243,14 +243,14 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
           )}
 
           {/* Image Upload Slot */}
-          <div className="p-4 bg-white rounded-2xl border border-[#C98BAA]/10 space-y-3">
+          <div className="p-4 bg-white rounded-2xl border border-[#141414]/10 space-y-3">
             <span className="text-xs font-bold uppercase tracking-wider text-[#C98BAA] block">
               1. Emplacement Photo du produit
             </span>
 
             <div className="flex flex-col sm:flex-row gap-4 items-center">
               {/* Image Preview / Empty Placeholder Slot */}
-              <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-2xl border-2 border-dashed border-[#C98BAA]/20 bg-[#fff9fa] flex flex-col items-center justify-center relative overflow-hidden shrink-0 group">
+              <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-2xl border-2 border-dashed border-[#141414]/20 bg-[#fff9fa] flex flex-col items-center justify-center relative overflow-hidden shrink-0 group">
                 {img ? (
                   <>
                     <img src={img} alt="Aperçu" className="w-full h-full object-contain p-2" />
@@ -279,7 +279,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                     type="button"
                     onClick={() => setIsUrlTab(false)}
                     className={`text-xs px-3 py-1 rounded-full font-semibold transition-colors ${
-                      !isUrlTab ? 'bg-[#C98BAA] text-[#ffdbe7]' : 'bg-[#C98BAA]/5 text-[#C98BAA]/70 hover:bg-[#C98BAA]/10'
+                      !isUrlTab ? 'bg-[#141414] text-[#ffdbe7]' : 'bg-[#141414]/5 text-[#C98BAA]/70 hover:bg-[#141414]/10'
                     }`}
                   >
                     Téléverser un fichier
@@ -288,7 +288,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                     type="button"
                     onClick={() => setIsUrlTab(true)}
                     className={`text-xs px-3 py-1 rounded-full font-semibold transition-colors ${
-                      isUrlTab ? 'bg-[#C98BAA] text-[#ffdbe7]' : 'bg-[#C98BAA]/5 text-[#C98BAA]/70 hover:bg-[#C98BAA]/10'
+                      isUrlTab ? 'bg-[#141414] text-[#ffdbe7]' : 'bg-[#141414]/5 text-[#C98BAA]/70 hover:bg-[#141414]/10'
                     }`}
                   >
                     Lien image (URL)
@@ -297,7 +297,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
 
                 {!isUrlTab ? (
                   <div>
-                    <label className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-[#ffdbe7]/40 hover:bg-[#ffdbe7]/70 text-[#C98BAA] border border-[#C98BAA]/15 rounded-xl cursor-pointer text-xs font-bold transition-all shadow-xs">
+                    <label className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-[#ffdbe7]/40 hover:bg-[#ffdbe7]/70 text-[#C98BAA] border border-[#141414]/15 rounded-xl cursor-pointer text-xs font-bold transition-all shadow-xs">
                       <Upload size={16} />
                       <span>Choisir une image sur mon appareil</span>
                       <input
@@ -318,12 +318,12 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                       value={urlInput}
                       onChange={(e) => setUrlInput(e.target.value)}
                       placeholder="https://.../mon-image.jpg"
-                      className="flex-1 px-3 py-2 bg-[#fff9fa] border border-[#C98BAA]/15 rounded-xl text-xs outline-none focus:border-[#C98BAA]"
+                      className="flex-1 px-3 py-2 bg-[#fff9fa] border border-[#141414]/15 rounded-xl text-xs outline-none focus:border-[#141414]"
                     />
                     <button
                       type="button"
                       onClick={handleApplyUrl}
-                      className="px-4 py-2 bg-[#C98BAA] text-[#ffdbe7] text-xs font-bold rounded-xl"
+                      className="px-4 py-2 bg-[#141414] text-[#ffdbe7] text-xs font-bold rounded-xl"
                     >
                       Appliquer
                     </button>
@@ -345,7 +345,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
           </div>
 
           {/* Pricing & General Info */}
-          <div className="p-4 bg-white rounded-2xl border border-[#C98BAA]/10 space-y-3">
+          <div className="p-4 bg-white rounded-2xl border border-[#141414]/10 space-y-3">
             <span className="text-xs font-bold uppercase tracking-wider text-[#C98BAA] block">
               2. Informations & Prix en Dirhams (DH)
             </span>
@@ -361,7 +361,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Ex: Sérum Apaisant Centella"
                   required
-                  className="w-full px-3 py-2 bg-[#fff9fa] border border-[#C98BAA]/15 rounded-xl text-xs outline-none focus:border-[#C98BAA]"
+                  className="w-full px-3 py-2 bg-[#fff9fa] border border-[#141414]/15 rounded-xl text-xs outline-none focus:border-[#141414]"
                 />
               </div>
 
@@ -374,7 +374,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                   value={brand}
                   onChange={(e) => setBrand(e.target.value)}
                   placeholder="Ex: Aura Skin / Anua / COSRX"
-                  className="w-full px-3 py-2 bg-[#fff9fa] border border-[#C98BAA]/15 rounded-xl text-xs outline-none focus:border-[#C98BAA]"
+                  className="w-full px-3 py-2 bg-[#fff9fa] border border-[#141414]/15 rounded-xl text-xs outline-none focus:border-[#141414]"
                 />
               </div>
 
@@ -388,7 +388,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                   onChange={(e) => setPrice(e.target.value === '' ? 0 : Number(e.target.value))}
                   placeholder="Entrez votre prix en DH (ex: 220)"
                   min={0}
-                  className="w-full px-3 py-2 bg-[#fff9fa] border border-[#C98BAA]/15 rounded-xl text-xs outline-none focus:border-[#C98BAA]"
+                  className="w-full px-3 py-2 bg-[#fff9fa] border border-[#141414]/15 rounded-xl text-xs outline-none focus:border-[#141414]"
                 />
               </div>
 
@@ -402,7 +402,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                   onChange={(e) => setSale(e.target.value === '' ? 0 : Number(e.target.value))}
                   placeholder="Prix réduit en DH (optionnel)"
                   min={0}
-                  className="w-full px-3 py-2 bg-[#fff9fa] border border-[#C98BAA]/15 rounded-xl text-xs outline-none focus:border-[#C98BAA]"
+                  className="w-full px-3 py-2 bg-[#fff9fa] border border-[#141414]/15 rounded-xl text-xs outline-none focus:border-[#141414]"
                 />
               </div>
 
@@ -415,7 +415,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                   value={vol}
                   onChange={(e) => setVol(e.target.value)}
                   placeholder="Ex: 50 ml / 150 ml / 60 g"
-                  className="w-full px-3 py-2 bg-[#fff9fa] border border-[#C98BAA]/15 rounded-xl text-xs outline-none focus:border-[#C98BAA]"
+                  className="w-full px-3 py-2 bg-[#fff9fa] border border-[#141414]/15 rounded-xl text-xs outline-none focus:border-[#141414]"
                 />
               </div>
 
@@ -426,7 +426,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                 <select
                   value={cat}
                   onChange={(e) => setCat(e.target.value)}
-                  className="w-full px-3 py-2 bg-[#fff9fa] border border-[#C98BAA]/15 rounded-xl text-xs outline-none focus:border-[#C98BAA] cursor-pointer"
+                  className="w-full px-3 py-2 bg-[#fff9fa] border border-[#141414]/15 rounded-xl text-xs outline-none focus:border-[#141414] cursor-pointer"
                 >
                   {CATEGORIES.map((c) => (
                     <option key={c.id} value={c.id}>
@@ -459,8 +459,8 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                         }
                         className={`px-3 py-1.5 rounded-full border text-xs font-semibold transition-all ${
                           selected
-                            ? 'bg-[#C98BAA] text-[#ffdbe7] border-[#C98BAA]'
-                            : 'bg-[#fff9fa] text-[#C98BAA]/80 border-[#C98BAA]/15 hover:border-[#C98BAA]/40'
+                            ? 'bg-[#141414] text-[#ffdbe7] border-[#141414]'
+                            : 'bg-[#fff9fa] text-[#C98BAA]/80 border-[#141414]/15 hover:border-[#141414]/40'
                         }`}
                         aria-pressed={selected}
                       >
@@ -491,8 +491,8 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                         }
                         className={`px-3 py-1.5 rounded-full border text-xs font-semibold transition-all ${
                           selected
-                            ? 'bg-[#C98BAA] text-[#ffdbe7] border-[#C98BAA]'
-                            : 'bg-[#fff9fa] text-[#C98BAA]/80 border-[#C98BAA]/15 hover:border-[#C98BAA]/40'
+                            ? 'bg-[#141414] text-[#ffdbe7] border-[#141414]'
+                            : 'bg-[#fff9fa] text-[#C98BAA]/80 border-[#141414]/15 hover:border-[#141414]/40'
                         }`}
                         aria-pressed={selected}
                       >
@@ -509,7 +509,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
           </div>
 
           {/* Description & Usage */}
-          <div className="p-4 bg-white rounded-2xl border border-[#C98BAA]/10 space-y-3">
+          <div className="p-4 bg-white rounded-2xl border border-[#141414]/10 space-y-3">
             <span className="text-xs font-bold uppercase tracking-wider text-[#C98BAA] block">
               3. Description & Conseils de soin
             </span>
@@ -524,7 +524,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                   value={desc}
                   onChange={(e) => setDesc(e.target.value)}
                   placeholder="Décrivez les bienfaits, la texture et les ingrédients phares..."
-                  className="w-full px-3 py-2 bg-[#fff9fa] border border-[#C98BAA]/15 rounded-xl text-xs outline-none focus:border-[#C98BAA] resize-none"
+                  className="w-full px-3 py-2 bg-[#fff9fa] border border-[#141414]/15 rounded-xl text-xs outline-none focus:border-[#141414] resize-none"
                 />
               </div>
 
@@ -538,7 +538,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                     value={skin}
                     onChange={(e) => setSkin(e.target.value)}
                     placeholder="Ex: Tous types, Peaux grasses, Sensibles"
-                    className="w-full px-3 py-2 bg-[#fff9fa] border border-[#C98BAA]/15 rounded-xl text-xs outline-none focus:border-[#C98BAA]"
+                    className="w-full px-3 py-2 bg-[#fff9fa] border border-[#141414]/15 rounded-xl text-xs outline-none focus:border-[#141414]"
                   />
                 </div>
 
@@ -551,7 +551,7 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                     value={usage}
                     onChange={(e) => setUsage(e.target.value)}
                     placeholder="Ex: Matin et/ou soir"
-                    className="w-full px-3 py-2 bg-[#fff9fa] border border-[#C98BAA]/15 rounded-xl text-xs outline-none focus:border-[#C98BAA]"
+                    className="w-full px-3 py-2 bg-[#fff9fa] border border-[#141414]/15 rounded-xl text-xs outline-none focus:border-[#141414]"
                   />
                 </div>
               </div>
@@ -577,14 +577,14 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
                 type="button"
                 onClick={onClose}
                 disabled={isSaving || isDeleting}
-                className="px-5 py-2.5 rounded-full border border-[#C98BAA]/15 text-[#C98BAA]/70 hover:bg-[#C98BAA]/5 text-xs font-semibold transition-colors"
+                className="px-5 py-2.5 rounded-full border border-[#141414]/15 text-[#C98BAA]/70 hover:bg-[#141414]/5 text-xs font-semibold transition-colors"
               >
                 Annuler
               </button>
               <button
                 type="submit"
                 disabled={isSaving || isDeleting}
-                className="px-6 py-2.5 rounded-full bg-[#C98BAA] hover:bg-[#2a2a2a] text-[#ffdbe7] text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-md transition-all"
+                className="px-6 py-2.5 rounded-full bg-[#141414] hover:bg-[#2a2a2a] text-[#ffdbe7] text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-md transition-all"
               >
                 <Check size={14} />
                 <span>{isSaving ? 'Enregistrement...' : 'Enregistrer'}</span>

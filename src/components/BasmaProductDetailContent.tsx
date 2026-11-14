@@ -41,7 +41,7 @@ export const BasmaProductDetailContent: React.FC<BasmaProductDetailContentProps>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-start">
         {/* Product Image / Placeholder Slot */}
         <div
-          className={`aspect-square bg-white rounded-2xl border border-[#C98BAA]/10 flex items-center justify-center p-4 relative shadow-xs group ${
+          className={`aspect-square bg-white rounded-2xl border border-[#141414]/10 flex items-center justify-center p-4 relative shadow-xs group ${
             onEdit ? 'cursor-pointer' : ''
           }`}
           onClick={() => {
@@ -63,7 +63,7 @@ export const BasmaProductDetailContent: React.FC<BasmaProductDetailContentProps>
           )}
 
           {product.off > 0 && (
-            <div className="absolute top-3 right-3 bg-[#C98BAA] text-[#ffdbe7] text-xs font-bold px-2.5 py-0.5 rounded-full">
+            <div className="absolute top-3 right-3 bg-[#141414] text-[#ffdbe7] text-xs font-bold px-2.5 py-0.5 rounded-full">
               -{product.off}%
             </div>
           )}
@@ -110,7 +110,7 @@ export const BasmaProductDetailContent: React.FC<BasmaProductDetailContentProps>
                 <button
                   type="button"
                   onClick={() => onEdit(product)}
-                  className="px-3.5 py-1.5 rounded-full bg-[#C98BAA] text-[#ffdbe7] text-xs font-semibold hover:bg-[#2a2a2a] transition-all flex items-center gap-1.5"
+                  className="px-3.5 py-1.5 rounded-full bg-[#141414] text-[#ffdbe7] text-xs font-semibold hover:bg-[#2a2a2a] transition-all flex items-center gap-1.5"
                 >
                   <Edit3 size={12} />
                   <span>+ Définir le prix</span>
@@ -137,7 +137,7 @@ export const BasmaProductDetailContent: React.FC<BasmaProductDetailContentProps>
           {/* Quantity and Actions */}
           <div className="flex items-center gap-3">
             {displayPrice > 0 && !isSoldOut && (
-              <div className="flex items-center border border-[#C98BAA]/20 rounded-full px-3 py-1 bg-white">
+              <div className="flex items-center border border-[#141414]/20 rounded-full px-3 py-1 bg-white">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
                   className="p-1 text-[#C98BAA]/60 hover:text-[#C98BAA]"
@@ -164,7 +164,7 @@ export const BasmaProductDetailContent: React.FC<BasmaProductDetailContentProps>
                   ? 'bg-[#f5f2f3] text-[#C98BAA]/50'
                   : isAdded
                   ? 'bg-emerald-700 text-white'
-                  : 'bg-[#C98BAA] hover:bg-[#2a2a2a] text-[#ffdbe7] hover:scale-102'
+                  : 'bg-[#141414] hover:bg-[#2a2a2a] text-[#ffdbe7] hover:scale-102'
               }`}
             >
               {isSoldOut ? (
@@ -186,7 +186,7 @@ export const BasmaProductDetailContent: React.FC<BasmaProductDetailContentProps>
               className={`p-2.5 rounded-full border transition-all ${
                 isFav
                   ? 'bg-[#ffdbe7] text-[#e0558b] border-[#ffdbe7]'
-                  : 'bg-white text-[#C98BAA]/60 border-[#C98BAA]/20 hover:border-[#ffdbe7]'
+                  : 'bg-white text-[#C98BAA]/60 border-[#141414]/20 hover:border-[#ffdbe7]'
               }`}
               aria-label="Favoris"
             >
@@ -197,18 +197,18 @@ export const BasmaProductDetailContent: React.FC<BasmaProductDetailContentProps>
       </div>
 
       {/* Details Tabs & Clinical Data */}
-      <div className="space-y-3 pt-3 border-t border-[#C98BAA]/10 text-xs text-[#C98BAA]/80">
-        <div className="p-3 bg-white rounded-xl border border-[#C98BAA]/10 space-y-1">
+      <div className="space-y-3 pt-3 border-t border-[#141414]/10 text-xs text-[#C98BAA]/80">
+        <div className="p-3 bg-white rounded-xl border border-[#141414]/10 space-y-1">
           <span className="font-bold text-[#C98BAA] block">Description & Bienfaits :</span>
           <p className="leading-relaxed">{product.desc}</p>
         </div>
 
         <div className="grid grid-cols-2 gap-3">
-          <div className="p-3 bg-white rounded-xl border border-[#C98BAA]/10">
+          <div className="p-3 bg-white rounded-xl border border-[#141414]/10">
             <span className="font-bold text-[#C98BAA] block mb-0.5">Type de peau</span>
             <span>{product.skin}</span>
           </div>
-          <div className="p-3 bg-white rounded-xl border border-[#C98BAA]/10">
+          <div className="p-3 bg-white rounded-xl border border-[#141414]/10">
             <span className="font-bold text-[#C98BAA] block mb-0.5">Fréquence</span>
             <span>{product.usage}</span>
           </div>

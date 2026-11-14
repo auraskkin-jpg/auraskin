@@ -52,7 +52,7 @@ export function AdminAnalytics({ token }: AdminAnalyticsProps) {
           type="button"
           onClick={() => void loadAnalytics()}
           disabled={isLoading}
-          className="inline-flex items-center gap-2 rounded-full border border-[#C98BAA]/15 bg-white px-4 py-2.5 text-xs font-semibold disabled:opacity-60"
+          className="inline-flex items-center gap-2 rounded-full border border-[#141414]/15 bg-white px-4 py-2.5 text-xs font-semibold disabled:opacity-60"
         >
           <RefreshCw size={14} className={isLoading ? 'animate-spin' : ''} />
           Actualiser
@@ -66,7 +66,7 @@ export function AdminAnalytics({ token }: AdminAnalyticsProps) {
         <>
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
             {metrics.map(({ label, value, icon: Icon }) => (
-              <article key={label} className="rounded-2xl border border-[#C98BAA]/10 bg-white p-4 shadow-sm">
+              <article key={label} className="rounded-2xl border border-[#141414]/10 bg-white p-4 shadow-sm">
                 <div className="flex items-center justify-between gap-3">
                   <p className="text-xs text-[#C98BAA]/60">{label}</p>
                   <Icon size={17} className="shrink-0 text-[#e0558b]" />
@@ -77,14 +77,14 @@ export function AdminAnalytics({ token }: AdminAnalyticsProps) {
           </div>
 
           <div className="grid gap-5 lg:grid-cols-[1.4fr_1fr]">
-            <section className="overflow-hidden rounded-2xl border border-[#C98BAA]/10 bg-white p-4 shadow-sm sm:p-5">
+            <section className="overflow-hidden rounded-2xl border border-[#141414]/10 bg-white p-4 shadow-sm sm:p-5">
               <div className="flex items-center gap-2">
                 <BarChart3 size={17} className="text-[#e0558b]" />
                 <h3 className="font-semibold">Activité des 14 derniers jours</h3>
               </div>
               <div className="mt-4 flex flex-wrap gap-4 text-[11px] text-[#C98BAA]/60">
                 <span className="inline-flex items-center gap-1.5"><i className="h-2.5 w-2.5 rounded-sm bg-[#e0558b]" /> Visiteurs</span>
-                <span className="inline-flex items-center gap-1.5"><i className="h-2.5 w-2.5 rounded-sm bg-[#C98BAA]" /> Pages vues</span>
+                <span className="inline-flex items-center gap-1.5"><i className="h-2.5 w-2.5 rounded-sm bg-[#141414]" /> Pages vues</span>
               </div>
               <div className="mt-4 overflow-x-auto">
                 <div className="grid min-w-[560px] grid-cols-[repeat(14,minmax(0,1fr))] gap-2">
@@ -96,7 +96,7 @@ export function AdminAnalytics({ token }: AdminAnalyticsProps) {
                           style={{ height: `${(day.visitors / maxDailyTraffic) * 100}%` }}
                         />
                         <div
-                          className="w-2.5 rounded-t bg-[#C98BAA] sm:w-3"
+                          className="w-2.5 rounded-t bg-[#141414] sm:w-3"
                           style={{ height: `${(day.pageViews / maxDailyTraffic) * 100}%` }}
                         />
                       </div>
@@ -109,10 +109,10 @@ export function AdminAnalytics({ token }: AdminAnalyticsProps) {
               </div>
             </section>
 
-            <section className="rounded-2xl border border-[#C98BAA]/10 bg-white p-4 shadow-sm sm:p-5">
+            <section className="rounded-2xl border border-[#141414]/10 bg-white p-4 shadow-sm sm:p-5">
               <h3 className="font-semibold">Pages les plus vues — 30 jours</h3>
               {analytics.popularPages.length > 0 ? (
-                <div className="mt-3 divide-y divide-[#C98BAA]/5">
+                <div className="mt-3 divide-y divide-[#141414]/5">
                   {analytics.popularPages.map((page) => (
                     <div key={page.path} className="flex items-center justify-between gap-3 py-3 text-xs">
                       <span className="min-w-0 truncate font-medium" title={page.path}>{page.path}</span>

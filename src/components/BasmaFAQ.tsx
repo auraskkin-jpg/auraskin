@@ -40,7 +40,7 @@ export const BasmaFAQ: React.FC<BasmaFAQProps> = ({ lang }) => {
           return (
             <div
               key={idx}
-              className="bg-white rounded-2xl border border-[#C98BAA]/10 overflow-hidden transition-all shadow-xs"
+              className="bg-white rounded-2xl border border-[#141414]/10 overflow-hidden transition-all shadow-xs"
             >
               <button
                 onClick={() => toggle(idx)}
@@ -56,7 +56,7 @@ export const BasmaFAQ: React.FC<BasmaFAQProps> = ({ lang }) => {
               </button>
 
               {isOpen && (
-                <div className="px-4 pb-4 sm:px-5 sm:pb-5 text-xs text-[#C98BAA]/75 leading-relaxed border-t border-[#C98BAA]/5 pt-3 bg-[#fff9fa] whitespace-pre-line">
+                <div className="px-4 pb-4 sm:px-5 sm:pb-5 text-xs text-[#C98BAA]/75 leading-relaxed border-t border-[#141414]/5 pt-3 bg-[#fff9fa] whitespace-pre-line">
                   {faq.a}
                 </div>
               )}

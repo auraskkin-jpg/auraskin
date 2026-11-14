@@ -75,7 +75,7 @@ export const BasmaCatalogPage: React.FC<BasmaCatalogPageProps> = ({
           {onAddNewProduct && (
             <button
               onClick={onAddNewProduct}
-              className="px-3.5 py-1.5 rounded-full bg-[#C98BAA] hover:bg-[#2a2a2a] text-[#ffdbe7] text-xs font-semibold flex items-center gap-1.5 transition-all shadow-xs"
+              className="px-3.5 py-1.5 rounded-full bg-[#141414] hover:bg-[#2a2a2a] text-[#ffdbe7] text-xs font-semibold flex items-center gap-1.5 transition-all shadow-xs"
             >
               <PlusCircle size={14} />
               <span>+ Ajouter un soin</span>
@@ -101,7 +101,7 @@ export const BasmaCatalogPage: React.FC<BasmaCatalogPageProps> = ({
           ))}
         </div>
       ) : (
-        <div className="text-center py-16 bg-white rounded-2xl border border-dashed border-[#C98BAA]/15 p-6 space-y-3">
+        <div className="text-center py-16 bg-white rounded-2xl border border-dashed border-[#141414]/15 p-6 space-y-3">
           <p className="text-sm text-[#C98BAA]/70">
             {query
               ? lang === 'ar'
@@ -123,7 +123,7 @@ export const BasmaCatalogPage: React.FC<BasmaCatalogPageProps> = ({
           {onAddNewProduct && (
             <button
               onClick={onAddNewProduct}
-              className="px-4 py-2 bg-[#C98BAA] text-[#ffdbe7] rounded-full text-xs font-semibold inline-flex items-center gap-1.5 shadow-sm"
+              className="px-4 py-2 bg-[#141414] text-[#ffdbe7] rounded-full text-xs font-semibold inline-flex items-center gap-1.5 shadow-sm"
             >
               <PlusCircle size={14} />
               <span>Ajouter un produit</span>

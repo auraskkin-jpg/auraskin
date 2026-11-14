@@ -44,7 +44,7 @@ export const BasmaProductPage: React.FC<BasmaProductPageProps> = ({
         </p>
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C98BAA] text-[#ffdbe7] text-xs font-semibold"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#141414] text-[#ffdbe7] text-xs font-semibold"
         >
           <ArrowLeft size={14} />
           <span>{lang === 'ar' ? 'العودة إلى المتجر' : 'Retour à la boutique'}</span>
@@ -68,7 +68,7 @@ export const BasmaProductPage: React.FC<BasmaProductPageProps> = ({
         <span className="text-[#C98BAA] font-semibold truncate max-w-[200px]">{product.name}</span>
       </nav>
 
-      <div className="bg-[#fff9fa] rounded-3xl border border-[#C98BAA]/10 shadow-xs p-4 sm:p-6 relative">
+      <div className="bg-[#fff9fa] rounded-3xl border border-[#141414]/10 shadow-xs p-4 sm:p-6 relative">
         <div className="flex items-center justify-between gap-3 mb-4">
           <button
             onClick={onBack}
@@ -84,7 +84,7 @@ export const BasmaProductPage: React.FC<BasmaProductPageProps> = ({
             {onEdit && (
               <button
                 onClick={() => onEdit(product)}
-                className="px-3 py-1 rounded-full bg-[#ffdbe7] hover:bg-[#C98BAA] text-[#C98BAA] hover:text-[#ffdbe7] text-xs font-semibold flex items-center gap-1.5 transition-colors"
+                className="px-3 py-1 rounded-full bg-[#ffdbe7] hover:bg-[#141414] text-[#C98BAA] hover:text-[#ffdbe7] text-xs font-semibold flex items-center gap-1.5 transition-colors"
               >
                 <Edit3 size={13} />
                 <span>Modifier</span>

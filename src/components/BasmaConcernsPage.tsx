@@ -79,7 +79,7 @@ export const BasmaConcernsPage: React.FC<BasmaConcernsPageProps> = ({
               ))}
             </div>
           ) : (
-            <div className="text-center py-14 bg-white rounded-2xl border border-dashed border-[#C98BAA]/15 p-6 space-y-2">
+            <div className="text-center py-14 bg-white rounded-2xl border border-dashed border-[#141414]/15 p-6 space-y-2">
               <p className="text-sm text-[#C98BAA]/70">
                 {lang === 'ar'
                   ? 'لا يوجد منتج مرتبط بهذه المشكلة حالياً.'

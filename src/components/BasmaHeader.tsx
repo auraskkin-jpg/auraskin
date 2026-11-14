@@ -45,7 +45,7 @@ export const BasmaHeader: React.FC<BasmaHeaderProps> = ({
   const phrases = [t('header.announce1', lang), t('header.announce2', lang)];
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#fff9fa] border-b border-[#C98BAA]/10 shadow-[0_2px_10px_rgba(20,20,20,0.03)]">
+    <header className="sticky top-0 z-40 w-full bg-[#fff9fa] border-b border-[#141414]/10 shadow-[0_2px_10px_rgba(20,20,20,0.03)]">
       {/* Top Announcement Bar - only 2 phrases displayed one by one */}
       <div className="bg-[#C98BAA] text-[#ffdbe7] py-2 px-4 text-xs font-medium tracking-wider h-8 sm:h-9 flex items-center justify-center overflow-hidden">
         <div
@@ -78,7 +78,7 @@ export const BasmaHeader: React.FC<BasmaHeaderProps> = ({
 
           <button
             onClick={onToggleLang}
-            className="px-2.5 py-1 text-xs font-bold text-[#C98BAA] border border-[#C98BAA]/20 rounded-full hover:bg-[#ffdbe7]/50 transition-colors"
+            className="px-2.5 py-1 text-xs font-bold text-[#C98BAA] border border-[#141414]/20 rounded-full hover:bg-[#ffdbe7]/50 transition-colors"
             aria-label="Changer de langue"
           >
             {lang === 'fr' ? 'AR' : 'FR'}
@@ -114,7 +114,7 @@ export const BasmaHeader: React.FC<BasmaHeaderProps> = ({
             aria-label="Favoris"
           >
             <Heart size={21} className={favCount > 0 ? "fill-[#e0558b] text-[#e0558b]" : ""} />
-            <span className="absolute top-0 right-0 bg-[#C98BAA] text-[#ffdbe7] text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+            <span className="absolute top-0 right-0 bg-[#141414] text-[#ffdbe7] text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
               {favCount}
             </span>
           </button>
@@ -122,12 +122,12 @@ export const BasmaHeader: React.FC<BasmaHeaderProps> = ({
           {/* Cart Button */}
           <button
             onClick={onOpenCart}
-            className="relative flex items-center gap-1.5 px-3 py-1.5 border border-[#C98BAA]/20 rounded-full bg-white hover:bg-[#ffdbe7]/40 text-xs font-semibold text-[#C98BAA] transition-colors shadow-xs"
+            className="relative flex items-center gap-1.5 px-3 py-1.5 border border-[#141414]/20 rounded-full bg-white hover:bg-[#ffdbe7]/40 text-xs font-semibold text-[#C98BAA] transition-colors shadow-xs"
             aria-label="Panier"
           >
             <span className="text-sm">🛍️</span>
             <span className="hidden sm:inline text-xs font-medium">Panier</span>
-            <span className="bg-[#C98BAA] text-[#ffdbe7] text-[10px] font-bold rounded-full px-1.5 min-w-[18px] h-[18px] flex items-center justify-center">
+            <span className="bg-[#141414] text-[#ffdbe7] text-[10px] font-bold rounded-full px-1.5 min-w-[18px] h-[18px] flex items-center justify-center">
               {cartCount}
             </span>
           </button>
@@ -137,7 +137,7 @@ export const BasmaHeader: React.FC<BasmaHeaderProps> = ({
       {/* Expandable Search Input */}
       {isSearchOpen && (
         <div className="max-w-6xl mx-auto px-4 pb-3 animate-fadeIn">
-          <div className="flex items-center gap-2 bg-white border border-[#ffdbe7] focus-within:border-[#C98BAA] rounded-full px-4 py-2 shadow-sm transition-all">
+          <div className="flex items-center gap-2 bg-white border border-[#ffdbe7] focus-within:border-[#141414] rounded-full px-4 py-2 shadow-sm transition-all">
             <Search size={16} className="text-[#C98BAA]/60" />
             <input
               type="text"

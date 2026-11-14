@@ -44,7 +44,7 @@ export const BasmaHero: React.FC<BasmaHeroProps> = ({ onShopClick, canCustomize,
     <section className="relative w-full overflow-hidden bg-[#fff9fa]">
       {/* Hero Banner Container */}
       <div className="relative max-w-6xl mx-auto px-4 py-4 sm:py-6">
-        <div className="relative rounded-3xl overflow-hidden shadow-sm aspect-[16/9] sm:aspect-[21/9] max-h-[460px] w-full bg-gradient-to-r from-[#C98BAA] via-[#221c20] to-[#C98BAA] group">
+        <div className="relative rounded-3xl overflow-hidden shadow-sm aspect-[16/9] sm:aspect-[21/9] max-h-[460px] w-full bg-gradient-to-r from-[#141414] via-[#221c20] to-[#141414] group">
           
           {/* Custom Banner Image if uploaded */}
           {bannerImg ? (
@@ -55,7 +55,7 @@ export const BasmaHero: React.FC<BasmaHeroProps> = ({ onShopClick, canCustomize,
             />
           ) : (
             /* Elegant Pure CSS Editorial Banner with Logo Aesthetic */
-            <div className="absolute inset-0 bg-gradient-to-br from-[#1a1618] via-[#2d2227] to-[#C98BAA] flex items-center justify-center overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#1a1618] via-[#2d2227] to-[#141414] flex items-center justify-center overflow-hidden">
               {/* Organic blush pink glow shapes inspired by the logo */}
               <div className="absolute -top-16 -right-16 w-80 h-80 rounded-full bg-[#ffdbe7]/15 blur-3xl pointer-events-none" />
               <div className="absolute -bottom-20 -left-16 w-96 h-96 rounded-full bg-[#ffdbe7]/10 blur-3xl pointer-events-none" />
@@ -79,7 +79,7 @@ export const BasmaHero: React.FC<BasmaHeroProps> = ({ onShopClick, canCustomize,
               </button>
 
               {showUploader && (
-                <div className="absolute top-10 right-0 z-30 p-3 bg-white rounded-2xl shadow-2xl border border-[#C98BAA]/15 w-64 text-xs text-[#C98BAA] space-y-2 animate-fadeIn">
+                <div className="absolute top-10 right-0 z-30 p-3 bg-white rounded-2xl shadow-2xl border border-[#141414]/15 w-64 text-xs text-[#C98BAA] space-y-2 animate-fadeIn">
                   <span className="font-bold block">Image de la bannière :</span>
                   <label className="flex items-center justify-center gap-1.5 w-full py-2 bg-[#ffdbe7] hover:bg-[#ffdbe7]/80 rounded-xl cursor-pointer font-semibold transition-colors">
                     <span>Choisir un fichier</span>
@@ -121,7 +121,7 @@ export const BasmaHero: React.FC<BasmaHeroProps> = ({ onShopClick, canCustomize,
 
             <button
               onClick={onShopClick}
-              className="mt-4 sm:mt-6 px-6 sm:px-8 py-2.5 sm:py-3 bg-[#C98BAA] hover:bg-[#2a2a2a] text-[#ffdbe7] text-xs sm:text-sm font-semibold tracking-widest rounded-full border border-[#ffdbe7]/30 shadow-lg hover:scale-105 transition-all uppercase"
+              className="mt-4 sm:mt-6 px-6 sm:px-8 py-2.5 sm:py-3 bg-[#141414] hover:bg-[#2a2a2a] text-[#ffdbe7] text-xs sm:text-sm font-semibold tracking-widest rounded-full border border-[#ffdbe7]/30 shadow-lg hover:scale-105 transition-all uppercase"
             >
               {t('hero.cta', lang)}
             </button>
