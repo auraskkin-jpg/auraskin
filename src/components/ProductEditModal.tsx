@@ -124,13 +124,24 @@ export const ProductEditModal: React.FC<ProductEditModalProps> = ({
       setError('Le nom du produit est requis.');
       return;
     }
-
+    if (!img.trim()) {
+      setError('Une photo du produit est requise pour apparaître dans la boutique.');
+      return;
+    }
+    if (!desc.trim()) {
+      setError('Une description est requise pour apparaître dans la boutique.');
+      return;
+    }
     const finalPrice = Math.max(0, Number(price) || 0);
     const finalSale = Math.max(0, Number(sale) || 0);
+    if (finalPrice <= 0) {
+      setError('Le prix doit être supérieur à 0 DH pour apparaître dans la boutique.');
+      return;
+    }
     const offPercentage = finalSale > 0 && finalSale < finalPrice ? Math.round(((finalPrice - finalSale) / finalPrice) * 100) : 0;
 
     const updatedProduct: BGProduct = {
-      id: isNewProduct ? 0 : product?.id || Date.now(),
+      id: isNewProduct ? Date.now() : product?.id || Date.now(),
       name: name.trim(),
       brand: brand.trim() || 'Aura Skin',
       price: finalPrice,
