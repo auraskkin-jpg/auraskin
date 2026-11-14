@@ -523,7 +523,7 @@ export default function App() {
 
   return (
     <SiteTextsProvider texts={siteTexts}>
-      <div className={`min-h-screen flex flex-col bg-[#fff9fa] text-[#141414] ${lang === 'ar' ? 'font-ar' : ''}`}>
+      <div className={`min-h-screen flex flex-col bg-[#fff9fa] text-[#C98BAA] ${lang === 'ar' ? 'font-ar' : ''}`}>
         {/* Aura Skin Header */}
         <BasmaHeader
           onOpenMenu={() => setIsMenuOpen(true)}
@@ -634,13 +634,13 @@ export default function App() {
 
           {route.kind === 'notfound' && (
             <div className="max-w-3xl mx-auto px-4 py-24 text-center space-y-4">
-              <h1 className="font-brand text-3xl text-[#141414]">Page introuvable</h1>
-              <p className="text-sm text-[#141414]/60">
+              <h1 className="font-brand text-3xl text-[#C98BAA]">Page introuvable</h1>
+              <p className="text-sm text-[#C98BAA]/60">
                 La page que vous cherchez n’existe pas ou a été déplacée.
               </p>
               <a
                 href="/"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#141414] text-[#ffdbe7] text-xs font-semibold"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C98BAA] text-[#ffdbe7] text-xs font-semibold"
               >
                 Retour à l’accueil
               </a>
@@ -700,7 +700,7 @@ export default function App() {
             <form onSubmit={handleAdminLogin} className="w-full max-w-sm space-y-4 rounded-2xl bg-[#fff9fa] p-6 shadow-2xl">
               <div>
                 <h2 className="font-brand text-xl font-semibold">Connexion administrateur</h2>
-                <p className="mt-1 text-xs text-[#141414]/60">Connectez-vous pour gérer le catalogue.</p>
+                <p className="mt-1 text-xs text-[#C98BAA]/60">Connectez-vous pour gérer le catalogue.</p>
               </div>
               <label className="block text-xs font-semibold">
                 E-mail
@@ -710,7 +710,7 @@ export default function App() {
                   autoComplete="username"
                   value={adminEmail}
                   onChange={(event) => setAdminEmail(event.target.value)}
-                  className="mt-1 w-full rounded-lg border border-[#141414]/15 bg-white px-3 py-2 font-normal"
+                  className="mt-1 w-full rounded-lg border border-[#C98BAA]/15 bg-white px-3 py-2 font-normal"
                 />
               </label>
               <label className="block text-xs font-semibold">
@@ -721,7 +721,7 @@ export default function App() {
                   autoComplete="current-password"
                   value={adminPassword}
                   onChange={(event) => setAdminPassword(event.target.value)}
-                  className="mt-1 w-full rounded-lg border border-[#141414]/15 bg-white px-3 py-2 font-normal"
+                  className="mt-1 w-full rounded-lg border border-[#C98BAA]/15 bg-white px-3 py-2 font-normal"
                 />
               </label>
               {adminLoginError && (
@@ -736,7 +736,7 @@ export default function App() {
                 <button
                   type="submit"
                   disabled={isAdminLoggingIn}
-                  className="rounded-full bg-[#141414] px-4 py-2 text-xs font-bold text-[#ffdbe7] disabled:opacity-60"
+                  className="rounded-full bg-[#C98BAA] px-4 py-2 text-xs font-bold text-[#ffdbe7] disabled:opacity-60"
                 >
                   {isAdminLoggingIn ? 'Connexion...' : 'Se connecter'}
                 </button>
@@ -747,7 +747,7 @@ export default function App() {
 
         {/* Toast Notification */}
         {toastMessage && (
-          <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#141414] text-[#ffdbe7] shadow-xl text-xs font-semibold tracking-wide border border-[#ffdbe7]/30 animate-slideUp">
+          <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#C98BAA] text-[#ffdbe7] shadow-xl text-xs font-semibold tracking-wide border border-[#ffdbe7]/30 animate-slideUp">
             <Check size={14} className="text-[#ffdbe7]" />
             <span>{toastMessage}</span>
           </div>
@@ -757,7 +757,7 @@ export default function App() {
         {showScrollTop && (
           <button
             onClick={scrollToTop}
-            className="fixed bottom-6 left-6 z-30 p-2.5 rounded-full bg-white hover:bg-[#ffdbe7]/50 text-[#141414] border border-[#141414]/15 shadow-md transition-all hover:scale-105"
+            className="fixed bottom-6 left-6 z-30 p-2.5 rounded-full bg-white hover:bg-[#ffdbe7]/50 text-[#C98BAA] border border-[#C98BAA]/15 shadow-md transition-all hover:scale-105"
             aria-label="Haut de page"
           >
             <ArrowUp size={16} />

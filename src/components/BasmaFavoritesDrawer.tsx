@@ -29,23 +29,23 @@ export const BasmaFavoritesDrawer: React.FC<BasmaFavoritesDrawerProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="p-4 border-b border-[#141414]/10 bg-white flex items-center justify-between">
+        <div className="p-4 border-b border-[#C98BAA]/10 bg-white flex items-center justify-between">
           <div className="flex items-center gap-2">
             <button
               onClick={onClose}
-              className="p-1 text-[#141414]/70 hover:text-[#141414] flex items-center gap-1 text-xs font-semibold"
+              className="p-1 text-[#C98BAA]/70 hover:text-[#C98BAA] flex items-center gap-1 text-xs font-semibold"
             >
               <ArrowLeft size={16} />
               <span>{lang === 'ar' ? 'رجوع' : 'Retour'}</span>
             </button>
-            <span className="font-brand text-xl text-[#141414] font-semibold ml-2">
+            <span className="font-brand text-xl text-[#C98BAA] font-semibold ml-2">
               {lang === 'ar' ? 'قائمة المفضلة' : 'Mes favoris'}
             </span>
-            <span className="bg-[#ffdbe7] text-[#141414] text-xs font-bold rounded-full px-2 py-0.5">
+            <span className="bg-[#ffdbe7] text-[#C98BAA] text-xs font-bold rounded-full px-2 py-0.5">
               {favorites.length}
             </span>
           </div>
-          <button onClick={onClose} className="p-1 text-[#141414]/50 hover:text-[#141414]">
+          <button onClick={onClose} className="p-1 text-[#C98BAA]/50 hover:text-[#C98BAA]">
             <X size={20} />
           </button>
         </div>
@@ -55,10 +55,10 @@ export const BasmaFavoritesDrawer: React.FC<BasmaFavoritesDrawerProps> = ({
           {favorites.length === 0 ? (
             <div className="py-20 text-center space-y-3">
               <span className="text-4xl block">♡</span>
-              <h4 className="font-brand text-xl text-[#141414]">
+              <h4 className="font-brand text-xl text-[#C98BAA]">
                 {lang === 'ar' ? 'ليس لديكِ أي منتجات مفضلة حالياً' : "Tu n'as pas encore de favoris"}
               </h4>
-              <p className="text-xs text-[#141414]/60 max-w-xs mx-auto">
+              <p className="text-xs text-[#C98BAA]/60 max-w-xs mx-auto">
                 {lang === 'ar'
                   ? 'المسي رمز القلب ♡ على أي منتج لإضافته إلى قائمتك.'
                   : 'Touche le cœur ♡ sur un produit pour le retrouver ici.'}
@@ -68,19 +68,19 @@ export const BasmaFavoritesDrawer: React.FC<BasmaFavoritesDrawerProps> = ({
             favorites.map((p) => (
               <div
                 key={p.id}
-                className="p-3 bg-white rounded-xl border border-[#141414]/10 flex items-center gap-3 shadow-xs"
+                className="p-3 bg-white rounded-xl border border-[#C98BAA]/10 flex items-center gap-3 shadow-xs"
               >
                 {p.img ? (
                   <img src={p.img} alt={p.name} className="w-14 h-14 object-contain shrink-0" />
                 ) : (
-                  <div className="w-14 h-14 rounded-xl bg-[#ffdbe7]/40 border border-[#141414]/10 flex items-center justify-center text-[#141414]/50 shrink-0">
+                  <div className="w-14 h-14 rounded-xl bg-[#ffdbe7]/40 border border-[#C98BAA]/10 flex items-center justify-center text-[#C98BAA]/50 shrink-0">
                     <Sparkles size={18} />
                   </div>
                 )}
                 <div className="flex-1 min-w-0">
-                  <span className="text-[10px] font-bold text-[#141414]/70 uppercase block truncate">{p.brand}</span>
-                  <h4 className="text-xs font-semibold text-[#141414] truncate">{p.name}</h4>
-                  <span className="text-xs font-bold text-[#141414] block">
+                  <span className="text-[10px] font-bold text-[#C98BAA]/70 uppercase block truncate">{p.brand}</span>
+                  <h4 className="text-xs font-semibold text-[#C98BAA] truncate">{p.name}</h4>
+                  <span className="text-xs font-bold text-[#C98BAA] block">
                     {(p.sale > 0 ? p.sale : p.price) > 0 ? formatPriceMAD(p.sale > 0 ? p.sale : p.price) : '-- DH'}
                   </span>
                 </div>
@@ -88,14 +88,14 @@ export const BasmaFavoritesDrawer: React.FC<BasmaFavoritesDrawerProps> = ({
                 <div className="flex items-center gap-1.5 shrink-0">
                   <button
                     onClick={() => onAddToCart(p)}
-                    className="p-2 bg-[#141414] text-[#ffdbe7] rounded-full hover:bg-[#2a2a2a] transition-colors"
+                    className="p-2 bg-[#C98BAA] text-[#ffdbe7] rounded-full hover:bg-[#2a2a2a] transition-colors"
                     title="Ajouter au panier"
                   >
                     <ShoppingBag size={14} />
                   </button>
                   <button
                     onClick={() => onRemoveFav(p.id)}
-                    className="p-2 text-[#141414]/40 hover:text-rose-600 transition-colors"
+                    className="p-2 text-[#C98BAA]/40 hover:text-rose-600 transition-colors"
                     title="Retirer des favoris"
                   >
                     <Trash2 size={14} />
@@ -108,13 +108,13 @@ export const BasmaFavoritesDrawer: React.FC<BasmaFavoritesDrawerProps> = ({
 
         {/* Footer */}
         {favorites.length > 0 && (
-          <div className="p-4 border-t border-[#141414]/10 bg-white">
+          <div className="p-4 border-t border-[#C98BAA]/10 bg-white">
             <button
               onClick={() => {
                 favorites.forEach((p) => onAddToCart(p));
                 onClose();
               }}
-              className="w-full py-3 bg-[#141414] text-[#ffdbe7] rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#2a2a2a]"
+              className="w-full py-3 bg-[#C98BAA] text-[#ffdbe7] rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#2a2a2a]"
             >
               {lang === 'ar' ? 'إضافة الكل للسلة' : 'Tout ajouter au panier'}
             </button>

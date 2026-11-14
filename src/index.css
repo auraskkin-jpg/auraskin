@@ -6,7 +6,7 @@
   --font-arabic: "Cairo", sans-serif;
   
   --color-cream: #fff9fa;
-  --color-aura-noir: #141414;
+  --color-aura-noir: #C98BAA;
   --color-aura-pink: #ffdbe7;
   --color-aura-pink-soft: #fce1eb;
   --color-aura-rose: #e0558b;
@@ -14,8 +14,8 @@
   --color-ink: #1f1a1d;
   --color-card: #ffffff;
   --color-line: rgba(20, 20, 20, 0.08);
-  --color-price-strong: #141414;
-  --color-badge-bg: #141414;
+  --color-price-strong: #C98BAA;
+  --color-badge-bg: #C98BAA;
 }
 
 @layer base {

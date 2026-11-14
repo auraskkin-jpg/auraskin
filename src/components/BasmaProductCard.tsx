@@ -29,7 +29,7 @@ export const BasmaProductCard: React.FC<BasmaProductCardProps> = ({
   const isSoldOut = product.tag === 'soldout' || product.tags?.includes('soldout');
 
   return (
-    <div className="bg-white rounded-2xl p-3 sm:p-4 border border-[#141414]/10 hover:border-[#ffdbe7] hover:shadow-[0_8px_30px_rgb(255,219,231,0.4)] transition-all duration-300 flex flex-col justify-between group relative">
+    <div className="bg-white rounded-2xl p-3 sm:p-4 border border-[#C98BAA]/10 hover:border-[#ffdbe7] hover:shadow-[0_8px_30px_rgb(255,219,231,0.4)] transition-all duration-300 flex flex-col justify-between group relative">
       
       {/* Edit trigger button on the card */}
       {onEdit && (
@@ -38,7 +38,7 @@ export const BasmaProductCard: React.FC<BasmaProductCardProps> = ({
             e.stopPropagation();
             onEdit(product);
           }}
-          className="absolute top-2 right-2 z-20 p-1.5 rounded-full bg-white/90 hover:bg-[#141414] text-[#141414] hover:text-[#ffdbe7] border border-[#141414]/15 shadow-sm transition-all hover:scale-105"
+          className="absolute top-2 right-2 z-20 p-1.5 rounded-full bg-white/90 hover:bg-[#C98BAA] text-[#C98BAA] hover:text-[#ffdbe7] border border-[#C98BAA]/15 shadow-sm transition-all hover:scale-105"
           title="Modifier l'image, le prix ou la description"
           aria-label="Modifier le produit"
         >
@@ -48,7 +48,7 @@ export const BasmaProductCard: React.FC<BasmaProductCardProps> = ({
 
       {/* Top Image or Dedicated Placeholder Slot */}
       <div 
-        className="relative w-full aspect-square rounded-xl overflow-hidden bg-[#fff9fa] mb-3 cursor-pointer flex items-center justify-center p-2 border border-dashed border-[#141414]/10 group-hover:border-[#141414]/30 transition-colors"
+        className="relative w-full aspect-square rounded-xl overflow-hidden bg-[#fff9fa] mb-3 cursor-pointer flex items-center justify-center p-2 border border-dashed border-[#C98BAA]/10 group-hover:border-[#C98BAA]/30 transition-colors"
         onClick={() => {
           if (!product.img && onEdit) {
             onEdit(product);
@@ -66,15 +66,15 @@ export const BasmaProductCard: React.FC<BasmaProductCardProps> = ({
           />
         ) : (
           onEdit ? (
-            <div className="flex flex-col items-center justify-center text-center p-3 w-full h-full text-[#141414]/50 group-hover:text-[#141414] transition-colors">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#ffdbe7]/60 flex items-center justify-center mb-1.5 text-[#141414] group-hover:scale-110 transition-transform">
+            <div className="flex flex-col items-center justify-center text-center p-3 w-full h-full text-[#C98BAA]/50 group-hover:text-[#C98BAA] transition-colors">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#ffdbe7]/60 flex items-center justify-center mb-1.5 text-[#C98BAA] group-hover:scale-110 transition-transform">
                 <ImagePlus size={20} />
               </div>
               <span className="text-[11px] font-semibold block leading-tight">Ajouter une image</span>
-              <span className="text-[9px] text-[#141414]/40 mt-0.5">Cliquer pour modifier</span>
+              <span className="text-[9px] text-[#C98BAA]/40 mt-0.5">Cliquer pour modifier</span>
             </div>
           ) : (
-            <span className="text-[11px] text-[#141414]/45">Image indisponible</span>
+            <span className="text-[11px] text-[#C98BAA]/45">Image indisponible</span>
           )
         )}
 
@@ -87,19 +87,19 @@ export const BasmaProductCard: React.FC<BasmaProductCardProps> = ({
 
         {/* Discount Badge */}
         {!isSoldOut && product.off > 0 && (
-          <div className="absolute top-2 left-2 bg-[#141414] text-[#ffdbe7] text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-full shadow-xs">
+          <div className="absolute top-2 left-2 bg-[#C98BAA] text-[#ffdbe7] text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-full shadow-xs">
             -{product.off}%
           </div>
         )}
 
         {/* Bestseller Badge */}
         {!isSoldOut && product.tag === 'best' && product.off === 0 && (
-          <div className="absolute top-2 left-2 bg-[#ffdbe7] text-[#141414] text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
+          <div className="absolute top-2 left-2 bg-[#ffdbe7] text-[#C98BAA] text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
             Top
           </div>
         )}
         {!isSoldOut && product.tag === 'new' && product.off === 0 && (
-          <div className="absolute top-2 left-2 bg-[#141414] text-[#ffdbe7] text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
+          <div className="absolute top-2 left-2 bg-[#C98BAA] text-[#ffdbe7] text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full">
             Nouveau
           </div>
         )}
@@ -114,40 +114,40 @@ export const BasmaProductCard: React.FC<BasmaProductCardProps> = ({
       <div className="flex-1 flex flex-col justify-between">
         <div className="cursor-pointer" onClick={() => onSelect(product)}>
           {/* Brand Name */}
-          <span className="text-[11px] font-bold uppercase tracking-wider text-[#141414]/70 block truncate">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-[#C98BAA]/70 block truncate">
             {product.brand}
           </span>
 
           {/* Product Title */}
-          <h3 className="text-xs sm:text-sm font-medium text-[#141414] leading-snug line-clamp-2 mt-0.5 group-hover:text-[#e0558b] transition-colors min-h-[38px]">
+          <h3 className="text-xs sm:text-sm font-medium text-[#C98BAA] leading-snug line-clamp-2 mt-0.5 group-hover:text-[#e0558b] transition-colors min-h-[38px]">
             {product.name}
           </h3>
 
           {/* Stars & Reviews */}
-          <div className="flex items-center gap-1 mt-1 text-[11px] text-[#141414]/70">
+          <div className="flex items-center gap-1 mt-1 text-[11px] text-[#C98BAA]/70">
             <span className="text-amber-500 font-bold">★★★★★</span>
-            <span className="font-semibold text-[#141414]">4.9</span>
+            <span className="font-semibold text-[#C98BAA]">4.9</span>
             <span>({product.reviewsCount})</span>
           </div>
 
           {/* Volume */}
-          <span className="text-[11px] text-[#141414]/50 block mt-0.5 font-normal">
+          <span className="text-[11px] text-[#C98BAA]/50 block mt-0.5 font-normal">
             {product.vol}
           </span>
         </div>
 
         {/* Price & Actions */}
-        <div className="mt-3 pt-2 border-t border-[#141414]/5">
+        <div className="mt-3 pt-2 border-t border-[#C98BAA]/5">
           {/* Prices in Moroccan Dirhams (DH) */}
           <div className="flex items-baseline gap-2 mb-2 min-h-[26px]">
             {displayPrice > 0 ? (
               <>
                 {originalPrice > 0 && (
-                  <span className="text-xs text-[#141414]/40 line-through">
+                  <span className="text-xs text-[#C98BAA]/40 line-through">
                     {formatPriceMAD(originalPrice)}
                   </span>
                 )}
-                <span className="text-sm sm:text-base font-extrabold text-[#141414]">
+                <span className="text-sm sm:text-base font-extrabold text-[#C98BAA]">
                   {formatPriceMAD(displayPrice)}
                 </span>
               </>
@@ -158,15 +158,15 @@ export const BasmaProductCard: React.FC<BasmaProductCardProps> = ({
                   e.stopPropagation();
                   onEdit?.(product);
                 }}
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-dashed border-[#141414]/30 hover:border-[#141414] bg-[#ffdbe7]/30 hover:bg-[#ffdbe7]/70 text-[#141414] transition-all text-xs font-semibold group/price cursor-pointer shadow-2xs"
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-dashed border-[#C98BAA]/30 hover:border-[#C98BAA] bg-[#ffdbe7]/30 hover:bg-[#ffdbe7]/70 text-[#C98BAA] transition-all text-xs font-semibold group/price cursor-pointer shadow-2xs"
                 title="Cliquer pour définir votre prix en DH"
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-[#e0558b] animate-pulse" />
                 <span>+ Ajouter un prix</span>
-                <span className="text-[10px] text-[#141414]/40 font-normal">(-- DH)</span>
+                <span className="text-[10px] text-[#C98BAA]/40 font-normal">(-- DH)</span>
               </button>
             ) : (
-              <span className="text-xs text-[#141414]/50">Prix indisponible</span>
+              <span className="text-xs text-[#C98BAA]/50">Prix indisponible</span>
             )}
           </div>
 
@@ -179,10 +179,10 @@ export const BasmaProductCard: React.FC<BasmaProductCardProps> = ({
               disabled={displayPrice <= 0 || isSoldOut}
               className={`flex-1 py-1.5 px-3 rounded-full text-xs font-semibold tracking-wide transition-all flex items-center justify-center gap-1.5 border shadow-xs disabled:cursor-not-allowed disabled:opacity-60 ${
                 displayPrice <= 0 || isSoldOut
-                  ? 'bg-[#f5f2f3] text-[#141414]/50 border-[#141414]/10'
+                  ? 'bg-[#f5f2f3] text-[#C98BAA]/50 border-[#C98BAA]/10'
                   : isAdded
                   ? 'bg-emerald-700 text-white border-emerald-700'
-                  : 'bg-[#fff9fa] hover:bg-[#141414] text-[#141414] hover:text-[#ffdbe7] border-[#141414]/20 hover:border-[#141414]'
+                  : 'bg-[#fff9fa] hover:bg-[#C98BAA] text-[#C98BAA] hover:text-[#ffdbe7] border-[#C98BAA]/20 hover:border-[#C98BAA]'
               }`}
             >
               {isSoldOut ? (
@@ -205,7 +205,7 @@ export const BasmaProductCard: React.FC<BasmaProductCardProps> = ({
               className={`p-1.5 sm:p-2 rounded-full border transition-all ${
                 isFav
                   ? 'bg-[#ffdbe7] text-[#e0558b] border-[#ffdbe7]'
-                  : 'bg-white text-[#141414]/50 border-[#141414]/15 hover:border-[#ffdbe7] hover:bg-[#fff9fa]'
+                  : 'bg-white text-[#C98BAA]/50 border-[#C98BAA]/15 hover:border-[#ffdbe7] hover:bg-[#fff9fa]'
               }`}
               aria-label="Ajouter aux favoris"
             >

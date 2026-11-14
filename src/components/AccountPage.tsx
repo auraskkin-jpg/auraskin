@@ -143,23 +143,23 @@ export default function AccountPage() {
 
   if (isLoading) {
     return (
-      <main className="min-h-screen bg-[#fff9fa] px-4 py-12 text-[#141414] grid place-items-center">
-        <p className="text-sm text-[#141414]/70">Chargement de votre compte...</p>
+      <main className="min-h-screen bg-[#fff9fa] px-4 py-12 text-[#C98BAA] grid place-items-center">
+        <p className="text-sm text-[#C98BAA]/70">Chargement de votre compte...</p>
       </main>
     );
   }
 
   if (!token || !user) {
     return (
-      <main className="min-h-screen bg-[#fff9fa] px-4 py-12 text-[#141414]">
-        <div className="mx-auto max-w-md rounded-3xl border border-[#141414]/10 bg-white p-6 shadow-lg text-center space-y-4">
+      <main className="min-h-screen bg-[#fff9fa] px-4 py-12 text-[#C98BAA]">
+        <div className="mx-auto max-w-md rounded-3xl border border-[#C98BAA]/10 bg-white p-6 shadow-lg text-center space-y-4">
           <h1 className="font-brand text-2xl font-semibold">Mon compte</h1>
           {error && <p className="text-xs text-rose-700">{error}</p>}
-          <p className="text-sm text-[#141414]/70">Connectez-vous pour voir vos commandes et gérer votre compte.</p>
+          <p className="text-sm text-[#C98BAA]/70">Connectez-vous pour voir vos commandes et gérer votre compte.</p>
           <div className="flex flex-col gap-2">
-            <a href="/login" className="rounded-full bg-[#141414] px-4 py-3 text-xs font-bold text-[#ffdbe7]">Se connecter</a>
-            <a href="/signup" className="rounded-full border border-[#141414]/15 px-4 py-3 text-xs font-semibold">Créer un compte</a>
-            <a href="/" className="text-xs text-[#141414]/60 hover:text-[#141414]">Retour à la boutique</a>
+            <a href="/login" className="rounded-full bg-[#C98BAA] px-4 py-3 text-xs font-bold text-[#ffdbe7]">Se connecter</a>
+            <a href="/signup" className="rounded-full border border-[#C98BAA]/15 px-4 py-3 text-xs font-semibold">Créer un compte</a>
+            <a href="/" className="text-xs text-[#C98BAA]/60 hover:text-[#C98BAA]">Retour à la boutique</a>
           </div>
         </div>
       </main>
@@ -167,19 +167,19 @@ export default function AccountPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#fff9fa] px-4 py-8 text-[#141414] sm:px-8">
+    <main className="min-h-screen bg-[#fff9fa] px-4 py-8 text-[#C98BAA] sm:px-8">
       <div className="mx-auto max-w-5xl space-y-6">
-        <header className="flex flex-col gap-4 border-b border-[#141414]/10 pb-5 sm:flex-row sm:items-center sm:justify-between">
+        <header className="flex flex-col gap-4 border-b border-[#C98BAA]/10 pb-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <a href="/" className="inline-flex items-center gap-2 text-xs text-[#141414]/60 hover:text-[#141414]">
+            <a href="/" className="inline-flex items-center gap-2 text-xs text-[#C98BAA]/60 hover:text-[#C98BAA]">
               <ArrowLeft size={14} /> Retour à la boutique
             </a>
             <h1 className="mt-2 font-brand text-3xl font-semibold">Mon compte</h1>
-            <p className="text-xs text-[#141414]/60">Bonjour {user.name} — {user.email}</p>
+            <p className="text-xs text-[#C98BAA]/60">Bonjour {user.name} — {user.email}</p>
           </div>
           <button
             onClick={handleLogout}
-            className="inline-flex items-center gap-2 self-start rounded-full border border-[#141414]/15 px-4 py-2 text-xs font-semibold hover:bg-white sm:self-auto"
+            className="inline-flex items-center gap-2 self-start rounded-full border border-[#C98BAA]/15 px-4 py-2 text-xs font-semibold hover:bg-white sm:self-auto"
           >
             <LogOut size={14} /> Se déconnecter
           </button>
@@ -188,26 +188,26 @@ export default function AccountPage() {
         {error && <p role="alert" className="rounded-xl border border-rose-200 bg-rose-50 p-3 text-xs text-rose-700">{error}</p>}
         {notice && <p role="status" className="rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-xs text-emerald-800">{notice}</p>}
 
-        <section className="rounded-2xl border border-[#141414]/10 bg-white p-4 shadow-sm sm:p-6">
+        <section className="rounded-2xl border border-[#C98BAA]/10 bg-white p-4 shadow-sm sm:p-6">
           <div className="mb-4 flex items-center gap-2">
             <Package size={18} />
             <h2 className="font-brand text-2xl font-semibold">Mes achats</h2>
           </div>
           {orders.length === 0 ? (
-            <div className="rounded-xl border border-dashed border-[#141414]/15 p-6 text-center">
-              <p className="text-sm text-[#141414]/70">Vous n’avez pas encore de commande.</p>
-              <a href="/" className="mt-3 inline-block rounded-full bg-[#141414] px-4 py-2 text-xs font-bold text-[#ffdbe7]">
+            <div className="rounded-xl border border-dashed border-[#C98BAA]/15 p-6 text-center">
+              <p className="text-sm text-[#C98BAA]/70">Vous n’avez pas encore de commande.</p>
+              <a href="/" className="mt-3 inline-block rounded-full bg-[#C98BAA] px-4 py-2 text-xs font-bold text-[#ffdbe7]">
                 Découvrir la boutique
               </a>
             </div>
           ) : (
             <div className="space-y-4">
               {orders.map((order) => (
-                <article key={order.id} className="rounded-xl border border-[#141414]/10 p-4">
+                <article key={order.id} className="rounded-xl border border-[#C98BAA]/10 p-4">
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div>
                       <div className="text-xs font-bold">{order.id}</div>
-                      <div className="text-[11px] text-[#141414]/60">{formatDate(order.createdAt)}</div>
+                      <div className="text-[11px] text-[#C98BAA]/60">{formatDate(order.createdAt)}</div>
                     </div>
                     <div className="text-right">
                       <div className="inline-block rounded-full bg-[#ffdbe7]/60 px-2.5 py-0.5 text-[11px] font-semibold">
@@ -216,25 +216,25 @@ export default function AccountPage() {
                       <div className="mt-1 text-sm font-extrabold">{formatPriceMAD(order.total)}</div>
                     </div>
                   </div>
-                  <div className="mt-3 space-y-2 border-t border-[#141414]/10 pt-3">
+                  <div className="mt-3 space-y-2 border-t border-[#C98BAA]/10 pt-3">
                     {order.items.map((item, idx) => (
                       <div key={`${order.id}-${item.productId}-${idx}`} className="flex items-center justify-between gap-3 text-xs">
                         <div className="flex items-center gap-2 min-w-0">
                           {item.img ? (
-                            <img src={item.img} alt="" className="h-10 w-10 rounded-lg object-contain bg-[#fff9fa] border border-[#141414]/10" />
+                            <img src={item.img} alt="" className="h-10 w-10 rounded-lg object-contain bg-[#fff9fa] border border-[#C98BAA]/10" />
                           ) : (
-                            <div className="h-10 w-10 rounded-lg bg-[#fff9fa] border border-[#141414]/10" />
+                            <div className="h-10 w-10 rounded-lg bg-[#fff9fa] border border-[#C98BAA]/10" />
                           )}
                           <div className="min-w-0">
                             <div className="truncate font-semibold">{item.brand} — {item.name}</div>
-                            <div className="text-[11px] text-[#141414]/60">Qté {item.quantity} · {formatPriceMAD(item.price)}</div>
+                            <div className="text-[11px] text-[#C98BAA]/60">Qté {item.quantity} · {formatPriceMAD(item.price)}</div>
                           </div>
                         </div>
                         <div className="font-semibold shrink-0">{formatPriceMAD(item.price * item.quantity)}</div>
                       </div>
                     ))}
                   </div>
-                  <div className="mt-3 grid gap-1 text-[11px] text-[#141414]/70 sm:grid-cols-2">
+                  <div className="mt-3 grid gap-1 text-[11px] text-[#C98BAA]/70 sm:grid-cols-2">
                     <div><span className="font-semibold">Livraison :</span> {order.address}, {order.cityCode}</div>
                     <div><span className="font-semibold">Paiement :</span> À la livraison</div>
                     <div><span className="font-semibold">Sous-total :</span> {formatPriceMAD(order.subtotal)}</div>
@@ -246,7 +246,7 @@ export default function AccountPage() {
           )}
         </section>
 
-        <section className="rounded-2xl border border-[#141414]/10 bg-white p-4 shadow-sm sm:p-6">
+        <section className="rounded-2xl border border-[#C98BAA]/10 bg-white p-4 shadow-sm sm:p-6">
           <div className="mb-4 flex items-center gap-2">
             <Settings size={18} />
             <h2 className="font-brand text-2xl font-semibold">Paramètres du compte</h2>
@@ -254,8 +254,8 @@ export default function AccountPage() {
           <form onSubmit={handleSave} className="grid gap-4 sm:grid-cols-2">
             <label className="block text-xs font-semibold sm:col-span-2">
               Nom (surnom affiché)
-              <div className="mt-1 flex items-center gap-2 rounded-xl border border-[#141414]/15 bg-[#fff9fa] px-3">
-                <UserRound size={15} className="text-[#141414]/50" />
+              <div className="mt-1 flex items-center gap-2 rounded-xl border border-[#C98BAA]/15 bg-[#fff9fa] px-3">
+                <UserRound size={15} className="text-[#C98BAA]/50" />
                 <input
                   type="text"
                   required
@@ -273,7 +273,7 @@ export default function AccountPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 w-full rounded-xl border border-[#141414]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#141414]"
+                className="mt-1 w-full rounded-xl border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#C98BAA]"
               />
             </label>
             <label className="block text-xs font-semibold sm:col-span-2">
@@ -284,7 +284,7 @@ export default function AccountPage() {
                 autoComplete="current-password"
                 value={currentPassword}
                 onChange={(e) => setCurrentPassword(e.target.value)}
-                className="mt-1 w-full rounded-xl border border-[#141414]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#141414]"
+                className="mt-1 w-full rounded-xl border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#C98BAA]"
               />
             </label>
             <label className="block text-xs font-semibold">
@@ -296,7 +296,7 @@ export default function AccountPage() {
                 maxLength={128}
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
-                className="mt-1 w-full rounded-xl border border-[#141414]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#141414]"
+                className="mt-1 w-full rounded-xl border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#C98BAA]"
                 placeholder="10 caractères minimum"
               />
             </label>
@@ -309,14 +309,14 @@ export default function AccountPage() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 disabled={!newPassword}
-                className="mt-1 w-full rounded-xl border border-[#141414]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#141414] disabled:opacity-50"
+                className="mt-1 w-full rounded-xl border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#C98BAA] disabled:opacity-50"
               />
             </label>
             <div className="sm:col-span-2 flex justify-end">
               <button
                 type="submit"
                 disabled={isSaving}
-                className="rounded-full bg-[#141414] px-5 py-2.5 text-xs font-bold text-[#ffdbe7] disabled:opacity-60"
+                className="rounded-full bg-[#C98BAA] px-5 py-2.5 text-xs font-bold text-[#ffdbe7] disabled:opacity-60"
               >
                 {isSaving ? 'Enregistrement...' : 'Enregistrer les modifications'}
               </button>

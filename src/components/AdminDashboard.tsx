@@ -284,17 +284,17 @@ export default function AdminDashboard() {
 
   if (!token) {
     return (
-      <main className="min-h-screen bg-[#fff9fa] px-4 py-12 text-[#141414]">
+      <main className="min-h-screen bg-[#fff9fa] px-4 py-12 text-[#C98BAA]">
         <div className="mx-auto max-w-md">
-          <a href="/" className="inline-flex items-center gap-2 text-sm text-[#141414]/70 hover:text-[#141414]">
+          <a href="/" className="inline-flex items-center gap-2 text-sm text-[#C98BAA]/70 hover:text-[#C98BAA]">
             <ArrowLeft size={16} /> Retour à la boutique
           </a>
-          <form onSubmit={handleLogin} className="mt-8 space-y-4 rounded-3xl border border-[#141414]/10 bg-white p-6 shadow-lg">
+          <form onSubmit={handleLogin} className="mt-8 space-y-4 rounded-3xl border border-[#C98BAA]/10 bg-white p-6 shadow-lg">
             <div className="flex items-center gap-3">
               <ShieldCheck className="text-[#e0558b]" />
               <div>
                 <h1 className="font-brand text-2xl font-semibold">Administration Aura Skin</h1>
-                <p className="text-xs text-[#141414]/60">Connectez-vous avec votre compte administrateur.</p>
+                <p className="text-xs text-[#C98BAA]/60">Connectez-vous avec votre compte administrateur.</p>
               </div>
             </div>
             <label className="block text-xs font-semibold">
@@ -305,7 +305,7 @@ export default function AdminDashboard() {
                 autoComplete="username"
                 value={loginEmail}
                 onChange={(event) => setLoginEmail(event.target.value)}
-                className="mt-1 w-full rounded-xl border border-[#141414]/15 bg-[#fff9fa] px-3 py-2.5 font-normal"
+                className="mt-1 w-full rounded-xl border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2.5 font-normal"
               />
             </label>
             <label className="block text-xs font-semibold">
@@ -316,14 +316,14 @@ export default function AdminDashboard() {
                 autoComplete="current-password"
                 value={loginPassword}
                 onChange={(event) => setLoginPassword(event.target.value)}
-                className="mt-1 w-full rounded-xl border border-[#141414]/15 bg-[#fff9fa] px-3 py-2.5 font-normal"
+                className="mt-1 w-full rounded-xl border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2.5 font-normal"
               />
             </label>
             {error && <p role="alert" className="text-xs text-rose-700">{error}</p>}
             <button
               type="submit"
               disabled={isLoggingIn}
-              className="w-full rounded-full bg-[#141414] px-4 py-3 text-xs font-bold text-[#ffdbe7] disabled:opacity-60"
+              className="w-full rounded-full bg-[#C98BAA] px-4 py-3 text-xs font-bold text-[#ffdbe7] disabled:opacity-60"
             >
               {isLoggingIn ? 'Connexion...' : 'Se connecter'}
             </button>
@@ -335,24 +335,24 @@ export default function AdminDashboard() {
 
   if (!user || isLoading) {
     return (
-      <main className="grid min-h-screen place-items-center bg-[#fff9fa] px-4 text-sm text-[#141414]/70">
+      <main className="grid min-h-screen place-items-center bg-[#fff9fa] px-4 text-sm text-[#C98BAA]/70">
         {error || 'Vérification de la session administrateur...'}
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-[#fff9fa] px-4 py-6 text-[#141414] sm:px-8">
+    <main className="min-h-screen bg-[#fff9fa] px-4 py-6 text-[#C98BAA] sm:px-8">
       <div className="mx-auto max-w-6xl">
-        <header className="flex flex-col gap-4 border-b border-[#141414]/10 pb-5 sm:flex-row sm:items-center sm:justify-between">
+        <header className="flex flex-col gap-4 border-b border-[#C98BAA]/10 pb-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <a href="/" className="inline-flex items-center gap-2 text-xs text-[#141414]/60 hover:text-[#141414]">
+            <a href="/" className="inline-flex items-center gap-2 text-xs text-[#C98BAA]/60 hover:text-[#C98BAA]">
               <ArrowLeft size={14} /> Retour à la boutique
             </a>
             <h1 className="mt-2 font-brand text-3xl font-semibold">Tableau de bord</h1>
-            <p className="text-xs text-[#141414]/60">Connecté en tant que {user.email}</p>
+            <p className="text-xs text-[#C98BAA]/60">Connecté en tant que {user.email}</p>
           </div>
-          <button onClick={handleLogout} className="inline-flex items-center gap-2 self-start rounded-full border border-[#141414]/15 px-4 py-2 text-xs font-semibold hover:bg-white sm:self-auto">
+          <button onClick={handleLogout} className="inline-flex items-center gap-2 self-start rounded-full border border-[#C98BAA]/15 px-4 py-2 text-xs font-semibold hover:bg-white sm:self-auto">
             <LogOut size={14} /> Déconnexion
           </button>
         </header>
@@ -367,7 +367,7 @@ export default function AdminDashboard() {
                 setNotice('');
               }}
               className={`inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-xs font-semibold transition-colors ${
-                activeTab === id ? 'bg-[#141414] text-[#ffdbe7]' : 'border border-[#141414]/15 bg-white hover:bg-[#ffdbe7]/40'
+                activeTab === id ? 'bg-[#C98BAA] text-[#ffdbe7]' : 'border border-[#C98BAA]/15 bg-white hover:bg-[#ffdbe7]/40'
               }`}
             >
               <Icon size={15} /> {label}
@@ -379,11 +379,11 @@ export default function AdminDashboard() {
         {notice && <p role="status" className="mb-4 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-xs text-emerald-800">{notice}</p>}
 
         {activeTab === 'orders' && (
-          <section className="rounded-2xl border border-[#141414]/10 bg-white p-4 shadow-sm sm:p-6">
+          <section className="rounded-2xl border border-[#C98BAA]/10 bg-white p-4 shadow-sm sm:p-6">
             <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
               <div>
                 <h2 className="font-brand text-2xl font-semibold">Commandes</h2>
-                <p className="text-xs text-[#141414]/60">Toutes les commandes passées sur le site (clients connectés et invités).</p>
+                <p className="text-xs text-[#C98BAA]/60">Toutes les commandes passées sur le site (clients connectés et invités).</p>
               </div>
               <button
                 onClick={async () => {
@@ -397,13 +397,13 @@ export default function AdminDashboard() {
                     setError(e instanceof Error ? e.message : 'Impossible de charger les commandes.');
                   }
                 }}
-                className="rounded-full border border-[#141414]/15 px-4 py-2.5 text-xs font-semibold hover:bg-[#fff9fa]"
+                className="rounded-full border border-[#C98BAA]/15 px-4 py-2.5 text-xs font-semibold hover:bg-[#fff9fa]"
               >
                 Actualiser
               </button>
             </div>
             {orders.length === 0 ? (
-              <p className="py-8 text-center text-xs text-[#141414]/60">Aucune commande pour le moment.</p>
+              <p className="py-8 text-center text-xs text-[#C98BAA]/60">Aucune commande pour le moment.</p>
             ) : (
               <div className="space-y-4">
                 {orders.map((order) => {
@@ -425,12 +425,12 @@ export default function AdminDashboard() {
                     }
                   };
                   return (
-                    <article key={order.id} className="rounded-xl border border-[#141414]/10 p-4">
+                    <article key={order.id} className="rounded-xl border border-[#C98BAA]/10 p-4">
                       <div className="flex flex-wrap items-start justify-between gap-3">
                         <div className="min-w-0">
                           <div className="flex flex-wrap items-center gap-2">
                             <span className="text-xs font-bold">{order.id}</span>
-                            <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${order.customerId ? 'bg-emerald-100 text-emerald-800' : 'bg-[#141414]/5 text-[#141414]/70'}`}>
+                            <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${order.customerId ? 'bg-emerald-100 text-emerald-800' : 'bg-[#C98BAA]/5 text-[#C98BAA]/70'}`}>
                               {order.customerId ? 'Compte client' : 'Invité'}
                             </span>
                             <select
@@ -450,7 +450,7 @@ export default function AdminDashboard() {
                                   setError(err instanceof Error ? err.message : 'Impossible de mettre à jour le statut.');
                                 }
                               }}
-                              className="rounded-full border border-[#141414]/15 bg-[#fff9fa] px-2.5 py-1 text-[10px] font-semibold outline-none focus:border-[#141414]"
+                              className="rounded-full border border-[#C98BAA]/15 bg-[#fff9fa] px-2.5 py-1 text-[10px] font-semibold outline-none focus:border-[#C98BAA]"
                               aria-label={`Statut de la commande ${order.id}`}
                             >
                               <option value="pending">En attente</option>
@@ -460,32 +460,32 @@ export default function AdminDashboard() {
                               <option value="cancelled">Annulée</option>
                             </select>
                           </div>
-                          <div className="mt-1 text-[11px] text-[#141414]/60">{created}</div>
+                          <div className="mt-1 text-[11px] text-[#C98BAA]/60">{created}</div>
                           <div className="mt-2 text-xs">
                             <div><span className="font-semibold">Client :</span> {order.customerName} · {order.phone}</div>
-                            <div className="text-[#141414]/70"><span className="font-semibold text-[#141414]">Adresse :</span> {order.address} ({order.cityCode}) — {order.deliveryType === 'home' ? 'Livraison à domicile' : order.deliveryType}</div>
-                            <div className="text-[#141414]/70"><span className="font-semibold text-[#141414]">Paiement :</span> {order.paymentMethod === 'cod' ? 'À la livraison' : order.paymentMethod}</div>
+                            <div className="text-[#C98BAA]/70"><span className="font-semibold text-[#C98BAA]">Adresse :</span> {order.address} ({order.cityCode}) — {order.deliveryType === 'home' ? 'Livraison à domicile' : order.deliveryType}</div>
+                            <div className="text-[#C98BAA]/70"><span className="font-semibold text-[#C98BAA]">Paiement :</span> {order.paymentMethod === 'cod' ? 'À la livraison' : order.paymentMethod}</div>
                           </div>
                         </div>
                         <div className="text-right shrink-0">
                           <div className="text-sm font-extrabold">{order.total.toFixed(2)} DH</div>
-                          <div className="text-[10px] text-[#141414]/60">Sous-total {order.subtotal.toFixed(2)} DH</div>
-                          <div className="text-[10px] text-[#141414]/60">Livraison {order.deliveryFee.toFixed(2)} DH</div>
+                          <div className="text-[10px] text-[#C98BAA]/60">Sous-total {order.subtotal.toFixed(2)} DH</div>
+                          <div className="text-[10px] text-[#C98BAA]/60">Livraison {order.deliveryFee.toFixed(2)} DH</div>
                           {order.discount > 0 && <div className="text-[10px] text-emerald-700">Remise -{order.discount.toFixed(2)} DH</div>}
                         </div>
                       </div>
-                      <div className="mt-3 space-y-2 border-t border-[#141414]/10 pt-3">
+                      <div className="mt-3 space-y-2 border-t border-[#C98BAA]/10 pt-3">
                         {order.items.map((item, idx) => (
                           <div key={`${order.id}-${item.productId}-${idx}`} className="flex items-center justify-between gap-3 text-xs">
                             <div className="flex items-center gap-2 min-w-0">
                               {item.img ? (
-                                <img src={item.img} alt="" className="h-10 w-10 rounded-lg object-contain bg-[#fff9fa] border border-[#141414]/10" />
+                                <img src={item.img} alt="" className="h-10 w-10 rounded-lg object-contain bg-[#fff9fa] border border-[#C98BAA]/10" />
                               ) : (
-                                <div className="h-10 w-10 rounded-lg bg-[#fff9fa] border border-[#141414]/10" />
+                                <div className="h-10 w-10 rounded-lg bg-[#fff9fa] border border-[#C98BAA]/10" />
                               )}
                               <div className="min-w-0">
                                 <div className="truncate font-semibold">{item.brand} — {item.name}</div>
-                                <div className="text-[11px] text-[#141414]/60">Qté {item.quantity} · {item.price.toFixed(2)} DH {item.vol ? `· ${item.vol}` : ''}</div>
+                                <div className="text-[11px] text-[#C98BAA]/60">Qté {item.quantity} · {item.price.toFixed(2)} DH {item.vol ? `· ${item.vol}` : ''}</div>
                               </div>
                             </div>
                             <div className="font-semibold shrink-0">{(item.price * item.quantity).toFixed(2)} DH</div>
@@ -503,52 +503,52 @@ export default function AdminDashboard() {
         {activeTab === 'analytics' && <AdminAnalytics token={token} />}
 
         {activeTab === 'products' && (
-          <section className="rounded-2xl border border-[#141414]/10 bg-white p-4 shadow-sm sm:p-6">
+          <section className="rounded-2xl border border-[#C98BAA]/10 bg-white p-4 shadow-sm sm:p-6">
             <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
               <div>
                 <h2 className="font-brand text-2xl font-semibold">Catalogue produits</h2>
-                <p className="text-xs text-[#141414]/60">Images, prix, descriptions et tags boutique.</p>
+                <p className="text-xs text-[#C98BAA]/60">Images, prix, descriptions et tags boutique.</p>
               </div>
-              <button onClick={openNewProduct} className="rounded-full bg-[#141414] px-4 py-2.5 text-xs font-bold text-[#ffdbe7]">
+              <button onClick={openNewProduct} className="rounded-full bg-[#C98BAA] px-4 py-2.5 text-xs font-bold text-[#ffdbe7]">
                 + Ajouter un produit
               </button>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full min-w-[640px] text-left text-xs">
-                <thead className="border-b border-[#141414]/10 text-[#141414]/60">
+                <thead className="border-b border-[#C98BAA]/10 text-[#C98BAA]/60">
                   <tr><th className="py-3 pr-3">Produit</th><th className="py-3 pr-3">Prix</th><th className="py-3 pr-3">Tag</th><th className="py-3">Action</th></tr>
                 </thead>
                 <tbody>
                   {products.map((product) => (
-                    <tr key={product.id} className="border-b border-[#141414]/5">
+                    <tr key={product.id} className="border-b border-[#C98BAA]/5">
                       <td className="py-3 pr-3">
                         <div className="flex items-center gap-3">
                           <div className="h-12 w-12 shrink-0 overflow-hidden rounded-lg bg-[#fff9fa]">
                             {product.img && <img src={product.img} alt="" className="h-full w-full object-contain" />}
                           </div>
-                          <div><strong>{product.name}</strong><span className="block text-[#141414]/50">{product.brand}</span></div>
+                          <div><strong>{product.name}</strong><span className="block text-[#C98BAA]/50">{product.brand}</span></div>
                         </div>
                       </td>
                       <td className="py-3 pr-3">{product.sale > 0 ? `${product.sale} DH (promo)` : `${product.price} DH`}</td>
                       <td className="py-3 pr-3">{product.tag || '—'}</td>
-                      <td className="py-3"><button onClick={() => openProduct(product)} className="rounded-full border border-[#141414]/15 px-3 py-1.5 font-semibold hover:bg-[#ffdbe7]/40">Modifier</button></td>
+                      <td className="py-3"><button onClick={() => openProduct(product)} className="rounded-full border border-[#C98BAA]/15 px-3 py-1.5 font-semibold hover:bg-[#ffdbe7]/40">Modifier</button></td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-              {products.length === 0 && <p className="py-8 text-center text-xs text-[#141414]/60">Aucun produit.</p>}
+              {products.length === 0 && <p className="py-8 text-center text-xs text-[#C98BAA]/60">Aucun produit.</p>}
             </div>
           </section>
         )}
 
         {activeTab === 'reviews' && (
-          <section className="rounded-2xl border border-[#141414]/10 bg-white p-4 shadow-sm sm:p-6">
+          <section className="rounded-2xl border border-[#C98BAA]/10 bg-white p-4 shadow-sm sm:p-6">
             <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
               <div>
                 <h2 className="font-brand text-2xl font-semibold">Avis clients</h2>
-                <p className="text-xs text-[#141414]/60">Ajoutez, modifiez ou supprimez les avis affichés sur la boutique.</p>
+                <p className="text-xs text-[#C98BAA]/60">Ajoutez, modifiez ou supprimez les avis affichés sur la boutique.</p>
               </div>
-              <button onClick={startNewReview} className="rounded-full bg-[#141414] px-4 py-2.5 text-xs font-bold text-[#ffdbe7]">
+              <button onClick={startNewReview} className="rounded-full bg-[#C98BAA] px-4 py-2.5 text-xs font-bold text-[#ffdbe7]">
                 + Ajouter un avis
               </button>
             </div>
@@ -556,61 +556,61 @@ export default function AdminDashboard() {
             {reviewDraft && (
               <form onSubmit={handleSaveReview} className="mb-6 grid gap-3 rounded-xl border border-[#ffdbe7] bg-[#fff9fa] p-4 sm:grid-cols-2">
                 <label className="text-xs font-semibold">Nom
-                  <input required value={reviewDraft.name} onChange={(event) => setReviewDraft({ ...reviewDraft, name: event.target.value })} className="mt-1 w-full rounded-lg border border-[#141414]/15 bg-white px-3 py-2 font-normal" />
+                  <input required value={reviewDraft.name} onChange={(event) => setReviewDraft({ ...reviewDraft, name: event.target.value })} className="mt-1 w-full rounded-lg border border-[#C98BAA]/15 bg-white px-3 py-2 font-normal" />
                 </label>
                 <label className="text-xs font-semibold">Ville
-                  <input required value={reviewDraft.wilaya} onChange={(event) => setReviewDraft({ ...reviewDraft, wilaya: event.target.value })} className="mt-1 w-full rounded-lg border border-[#141414]/15 bg-white px-3 py-2 font-normal" />
+                  <input required value={reviewDraft.wilaya} onChange={(event) => setReviewDraft({ ...reviewDraft, wilaya: event.target.value })} className="mt-1 w-full rounded-lg border border-[#C98BAA]/15 bg-white px-3 py-2 font-normal" />
                 </label>
                 <label className="text-xs font-semibold">Date affichée
-                  <input required value={reviewDraft.date} onChange={(event) => setReviewDraft({ ...reviewDraft, date: event.target.value })} className="mt-1 w-full rounded-lg border border-[#141414]/15 bg-white px-3 py-2 font-normal" />
+                  <input required value={reviewDraft.date} onChange={(event) => setReviewDraft({ ...reviewDraft, date: event.target.value })} className="mt-1 w-full rounded-lg border border-[#C98BAA]/15 bg-white px-3 py-2 font-normal" />
                 </label>
                 <label className="text-xs font-semibold">Note
-                  <select value={reviewDraft.rating} onChange={(event) => setReviewDraft({ ...reviewDraft, rating: Number(event.target.value) })} className="mt-1 w-full rounded-lg border border-[#141414]/15 bg-white px-3 py-2 font-normal">
+                  <select value={reviewDraft.rating} onChange={(event) => setReviewDraft({ ...reviewDraft, rating: Number(event.target.value) })} className="mt-1 w-full rounded-lg border border-[#C98BAA]/15 bg-white px-3 py-2 font-normal">
                     {[5, 4, 3, 2, 1].map((rating) => <option key={rating} value={rating}>{rating} / 5</option>)}
                   </select>
                 </label>
                 <label className="text-xs font-semibold sm:col-span-2">Commentaire
-                  <textarea required rows={3} value={reviewDraft.comment} onChange={(event) => setReviewDraft({ ...reviewDraft, comment: event.target.value })} className="mt-1 w-full rounded-lg border border-[#141414]/15 bg-white px-3 py-2 font-normal" />
+                  <textarea required rows={3} value={reviewDraft.comment} onChange={(event) => setReviewDraft({ ...reviewDraft, comment: event.target.value })} className="mt-1 w-full rounded-lg border border-[#C98BAA]/15 bg-white px-3 py-2 font-normal" />
                 </label>
                 <div className="flex justify-end gap-2 sm:col-span-2">
-                  <button type="button" onClick={() => setReviewDraft(null)} className="rounded-full border border-[#141414]/15 px-4 py-2 text-xs">Annuler</button>
-                  <button type="submit" className="rounded-full bg-[#141414] px-4 py-2 text-xs font-bold text-[#ffdbe7]">Enregistrer l’avis</button>
+                  <button type="button" onClick={() => setReviewDraft(null)} className="rounded-full border border-[#C98BAA]/15 px-4 py-2 text-xs">Annuler</button>
+                  <button type="submit" className="rounded-full bg-[#C98BAA] px-4 py-2 text-xs font-bold text-[#ffdbe7]">Enregistrer l’avis</button>
                 </div>
               </form>
             )}
 
             <div className="space-y-3">
               {reviews.map((review) => (
-                <article key={review.id} className="flex flex-col gap-3 rounded-xl border border-[#141414]/10 p-4 sm:flex-row sm:items-center sm:justify-between">
+                <article key={review.id} className="flex flex-col gap-3 rounded-xl border border-[#C98BAA]/10 p-4 sm:flex-row sm:items-center sm:justify-between">
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2 text-xs font-semibold">
-                      <span>{review.name}</span><span className="text-[#141414]/50">{review.wilaya}</span><span className="text-amber-600">{'★'.repeat(review.rating)}</span>
+                      <span>{review.name}</span><span className="text-[#C98BAA]/50">{review.wilaya}</span><span className="text-amber-600">{'★'.repeat(review.rating)}</span>
                     </div>
-                    <p className="mt-1 text-xs text-[#141414]/70">{review.comment}</p>
-                    <span className="mt-1 block text-[10px] text-[#141414]/50">{review.date}</span>
+                    <p className="mt-1 text-xs text-[#C98BAA]/70">{review.comment}</p>
+                    <span className="mt-1 block text-[10px] text-[#C98BAA]/50">{review.date}</span>
                   </div>
                   <div className="flex shrink-0 gap-2">
-                    <button onClick={() => { setReviewDraft({ ...review }); setIsNewReview(false); }} className="rounded-full border border-[#141414]/15 px-3 py-1.5 text-xs font-semibold">Modifier</button>
+                    <button onClick={() => { setReviewDraft({ ...review }); setIsNewReview(false); }} className="rounded-full border border-[#C98BAA]/15 px-3 py-1.5 text-xs font-semibold">Modifier</button>
                     <button onClick={() => void handleDeleteReview(review)} className="rounded-full border border-rose-200 px-3 py-1.5 text-xs font-semibold text-rose-700">Supprimer</button>
                   </div>
                 </article>
               ))}
-              {reviews.length === 0 && <p className="py-8 text-center text-xs text-[#141414]/60">Aucun avis.</p>}
+              {reviews.length === 0 && <p className="py-8 text-center text-xs text-[#C98BAA]/60">Aucun avis.</p>}
             </div>
           </section>
         )}
 
         {activeTab === 'texts' && (
-          <section className="rounded-2xl border border-[#141414]/10 bg-white p-4 shadow-sm sm:p-6">
+          <section className="rounded-2xl border border-[#C98BAA]/10 bg-white p-4 shadow-sm sm:p-6">
             <div className="mb-5">
               <h2 className="font-brand text-2xl font-semibold">Textes du site</h2>
-              <p className="text-xs text-[#141414]/60">
+              <p className="text-xs text-[#C98BAA]/60">
                 Modifiez les textes affichés sur le site (bandeau, bannière, sections, FAQ, pied de page). Laissez vide pour revenir au texte par défaut.
               </p>
             </div>
             <form onSubmit={handleSaveSiteTexts} className="space-y-6">
-              <div className="rounded-xl border border-[#141414]/10 p-4">
-                <h3 className="mb-3 text-sm font-bold text-[#141414]">Logos & images</h3>
+              <div className="rounded-xl border border-[#C98BAA]/10 p-4">
+                <h3 className="mb-3 text-sm font-bold text-[#C98BAA]">Logos & images</h3>
                 <div className="grid gap-4 sm:grid-cols-2">
                   {([
                     { key: 'image.logo.header', label: 'Logo en-tête (header)', fallback: '/assets/aura_skin_logo_transparent.png' },
@@ -619,7 +619,7 @@ export default function AdminDashboard() {
                     <div key={item.key} className="space-y-2">
                       <label className="block text-xs font-semibold">{item.label}</label>
                       <div className="flex items-center gap-3">
-                        <div className="h-16 w-28 rounded-lg border border-[#141414]/10 bg-[#fff9fa] flex items-center justify-center overflow-hidden">
+                        <div className="h-16 w-28 rounded-lg border border-[#C98BAA]/10 bg-[#fff9fa] flex items-center justify-center overflow-hidden">
                           <img
                             src={siteTexts[item.key] || item.fallback}
                             alt={item.label}
@@ -656,19 +656,19 @@ export default function AdminDashboard() {
                     </div>
                   ))}
                 </div>
-                <p className="mt-3 text-[10px] text-[#141414]/55">Formats conseillés : PNG transparent. Cliquez sur « Enregistrer les textes » pour appliquer.</p>
+                <p className="mt-3 text-[10px] text-[#C98BAA]/55">Formats conseillés : PNG transparent. Cliquez sur « Enregistrer les textes » pour appliquer.</p>
               </div>
 
-              <div className="rounded-xl border border-[#141414]/10 p-4">
-                <h3 className="mb-1 text-sm font-bold text-[#141414]">Icônes — Nos catégories de soins</h3>
-                <p className="mb-3 text-[10px] text-[#141414]/55">Remplace l’icône (emoji) par une image pour chaque catégorie. Laisse vide pour garder l’emoji.</p>
+              <div className="rounded-xl border border-[#C98BAA]/10 p-4">
+                <h3 className="mb-1 text-sm font-bold text-[#C98BAA]">Icônes — Nos catégories de soins</h3>
+                <p className="mb-3 text-[10px] text-[#C98BAA]/55">Remplace l’icône (emoji) par une image pour chaque catégorie. Laisse vide pour garder l’emoji.</p>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {CATEGORIES.map((cat) => {
                     const key = `image.category.${cat.id}`;
                     const current = siteTexts[key];
                     return (
-                      <div key={cat.id} className="flex items-center gap-3 rounded-lg border border-[#141414]/10 p-2.5">
-                        <div className="h-12 w-12 rounded-full bg-[#fff9fa] border border-[#141414]/10 flex items-center justify-center overflow-hidden shrink-0 text-xl">
+                      <div key={cat.id} className="flex items-center gap-3 rounded-lg border border-[#C98BAA]/10 p-2.5">
+                        <div className="h-12 w-12 rounded-full bg-[#fff9fa] border border-[#C98BAA]/10 flex items-center justify-center overflow-hidden shrink-0 text-xl">
                           {current ? <img src={current} alt="" className="w-full h-full object-cover" /> : <span>{cat.icon}</span>}
                         </div>
                         <div className="min-w-0 flex-1">
@@ -702,16 +702,16 @@ export default function AdminDashboard() {
                 </div>
               </div>
 
-              <div className="rounded-xl border border-[#141414]/10 p-4">
-                <h3 className="mb-1 text-sm font-bold text-[#141414]">Icônes — Par problème de peau</h3>
-                <p className="mb-3 text-[10px] text-[#141414]/55">Remplace l’icône (emoji) par une image pour chaque problème. Laisse vide pour garder l’emoji.</p>
+              <div className="rounded-xl border border-[#C98BAA]/10 p-4">
+                <h3 className="mb-1 text-sm font-bold text-[#C98BAA]">Icônes — Par problème de peau</h3>
+                <p className="mb-3 text-[10px] text-[#C98BAA]/55">Remplace l’icône (emoji) par une image pour chaque problème. Laisse vide pour garder l’emoji.</p>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {CONCERNS.map((concern) => {
                     const key = `image.concern.${concern.id}`;
                     const current = siteTexts[key];
                     return (
-                      <div key={concern.id} className="flex items-center gap-3 rounded-lg border border-[#141414]/10 p-2.5">
-                        <div className="h-12 w-12 rounded-full bg-white border border-[#141414]/10 flex items-center justify-center overflow-hidden shrink-0 text-xl">
+                      <div key={concern.id} className="flex items-center gap-3 rounded-lg border border-[#C98BAA]/10 p-2.5">
+                        <div className="h-12 w-12 rounded-full bg-white border border-[#C98BAA]/10 flex items-center justify-center overflow-hidden shrink-0 text-xl">
                           {current ? <img src={current} alt="" className="w-full h-full object-cover" /> : <span>{concern.icon}</span>}
                         </div>
                         <div className="min-w-0 flex-1">
@@ -745,12 +745,12 @@ export default function AdminDashboard() {
                 </div>
               </div>
               {SITE_TEXT_GROUPS.map((group) => (
-                <div key={group} className="rounded-xl border border-[#141414]/10 p-4">
-                  <h3 className="mb-3 text-sm font-bold text-[#141414]">{group}</h3>
+                <div key={group} className="rounded-xl border border-[#C98BAA]/10 p-4">
+                  <h3 className="mb-3 text-sm font-bold text-[#C98BAA]">{group}</h3>
                   <div className="space-y-4">
                     {SITE_TEXTS.filter((item) => item.group === group).map((item) => (
                       <div key={item.key} className="grid gap-3 sm:grid-cols-2">
-                        <div className="sm:col-span-2 text-[11px] font-semibold uppercase tracking-wider text-[#141414]/60">
+                        <div className="sm:col-span-2 text-[11px] font-semibold uppercase tracking-wider text-[#C98BAA]/60">
                           {item.label}
                         </div>
                         <label className="block text-xs font-semibold">
@@ -762,7 +762,7 @@ export default function AdminDashboard() {
                               onChange={(e) =>
                                 setSiteTexts((prev) => ({ ...prev, [`${item.key}.fr`]: e.target.value }))
                               }
-                              className="mt-1 w-full rounded-lg border border-[#141414]/15 bg-[#fff9fa] px-3 py-2 font-normal"
+                              className="mt-1 w-full rounded-lg border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2 font-normal"
                               placeholder={item.fr}
                             />
                           ) : (
@@ -772,7 +772,7 @@ export default function AdminDashboard() {
                               onChange={(e) =>
                                 setSiteTexts((prev) => ({ ...prev, [`${item.key}.fr`]: e.target.value }))
                               }
-                              className="mt-1 w-full rounded-lg border border-[#141414]/15 bg-[#fff9fa] px-3 py-2 font-normal"
+                              className="mt-1 w-full rounded-lg border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2 font-normal"
                               placeholder={item.fr}
                             />
                           )}
@@ -787,7 +787,7 @@ export default function AdminDashboard() {
                               onChange={(e) =>
                                 setSiteTexts((prev) => ({ ...prev, [`${item.key}.ar`]: e.target.value }))
                               }
-                              className="mt-1 w-full rounded-lg border border-[#141414]/15 bg-[#fff9fa] px-3 py-2 font-normal"
+                              className="mt-1 w-full rounded-lg border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2 font-normal"
                               placeholder={item.ar || ''}
                             />
                           ) : (
@@ -798,12 +798,12 @@ export default function AdminDashboard() {
                               onChange={(e) =>
                                 setSiteTexts((prev) => ({ ...prev, [`${item.key}.ar`]: e.target.value }))
                               }
-                              className="mt-1 w-full rounded-lg border border-[#141414]/15 bg-[#fff9fa] px-3 py-2 font-normal"
+                              className="mt-1 w-full rounded-lg border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2 font-normal"
                               placeholder={item.ar || ''}
                             />
                           )}
                         </label>
-                        <div className="sm:col-span-2 text-[10px] text-[#141414]/50">
+                        <div className="sm:col-span-2 text-[10px] text-[#C98BAA]/50">
                           Défaut : {item.fr}
                         </div>
                       </div>
@@ -815,14 +815,14 @@ export default function AdminDashboard() {
                 <button
                   type="button"
                   onClick={() => setSiteTexts(siteTextDefaults())}
-                  className="rounded-full border border-[#141414]/15 px-4 py-2 text-xs font-semibold hover:bg-[#fff9fa]"
+                  className="rounded-full border border-[#C98BAA]/15 px-4 py-2 text-xs font-semibold hover:bg-[#fff9fa]"
                 >
                   Réinitialiser aux valeurs par défaut
                 </button>
                 <button
                   type="submit"
                   disabled={isSavingTexts}
-                  className="rounded-full bg-[#141414] px-5 py-2.5 text-xs font-bold text-[#ffdbe7] disabled:opacity-60"
+                  className="rounded-full bg-[#C98BAA] px-5 py-2.5 text-xs font-bold text-[#ffdbe7] disabled:opacity-60"
                 >
                   {isSavingTexts ? 'Enregistrement...' : 'Enregistrer les textes'}
                 </button>
@@ -832,25 +832,25 @@ export default function AdminDashboard() {
         )}
 
         {activeTab === 'account' && (
-          <section className="max-w-2xl rounded-2xl border border-[#141414]/10 bg-white p-4 shadow-sm sm:p-6">
+          <section className="max-w-2xl rounded-2xl border border-[#C98BAA]/10 bg-white p-4 shadow-sm sm:p-6">
             <h2 className="font-brand text-2xl font-semibold">Accès administrateur</h2>
-            <p className="mb-5 text-xs text-[#141414]/60">Confirmez votre mot de passe actuel pour modifier l’e-mail ou le mot de passe.</p>
+            <p className="mb-5 text-xs text-[#C98BAA]/60">Confirmez votre mot de passe actuel pour modifier l’e-mail ou le mot de passe.</p>
             <form onSubmit={handleUpdateAccount} className="space-y-4">
               <label className="block text-xs font-semibold">Nouvel e-mail
-                <input type="email" required value={newEmail} onChange={(event) => setNewEmail(event.target.value)} className="mt-1 w-full rounded-lg border border-[#141414]/15 bg-[#fff9fa] px-3 py-2.5 font-normal" />
+                <input type="email" required value={newEmail} onChange={(event) => setNewEmail(event.target.value)} className="mt-1 w-full rounded-lg border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2.5 font-normal" />
               </label>
               <label className="block text-xs font-semibold">Mot de passe actuel
-                <input type="password" required autoComplete="current-password" value={currentPassword} onChange={(event) => setCurrentPassword(event.target.value)} className="mt-1 w-full rounded-lg border border-[#141414]/15 bg-[#fff9fa] px-3 py-2.5 font-normal" />
+                <input type="password" required autoComplete="current-password" value={currentPassword} onChange={(event) => setCurrentPassword(event.target.value)} className="mt-1 w-full rounded-lg border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2.5 font-normal" />
               </label>
               <label className="block text-xs font-semibold">Nouveau mot de passe (facultatif, 10 caractères minimum)
-                <input type="password" autoComplete="new-password" value={newPassword} onChange={(event) => setNewPassword(event.target.value)} className="mt-1 w-full rounded-lg border border-[#141414]/15 bg-[#fff9fa] px-3 py-2.5 font-normal" />
+                <input type="password" autoComplete="new-password" value={newPassword} onChange={(event) => setNewPassword(event.target.value)} className="mt-1 w-full rounded-lg border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2.5 font-normal" />
               </label>
               {newPassword && (
                 <label className="block text-xs font-semibold">Confirmer le nouveau mot de passe
-                  <input type="password" required autoComplete="new-password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} className="mt-1 w-full rounded-lg border border-[#141414]/15 bg-[#fff9fa] px-3 py-2.5 font-normal" />
+                  <input type="password" required autoComplete="new-password" value={confirmPassword} onChange={(event) => setConfirmPassword(event.target.value)} className="mt-1 w-full rounded-lg border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2.5 font-normal" />
                 </label>
               )}
-              <button type="submit" className="rounded-full bg-[#141414] px-5 py-2.5 text-xs font-bold text-[#ffdbe7]">Mettre à jour l’accès</button>
+              <button type="submit" className="rounded-full bg-[#C98BAA] px-5 py-2.5 text-xs font-bold text-[#ffdbe7]">Mettre à jour l’accès</button>
             </form>
           </section>
         )}

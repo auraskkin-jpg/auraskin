@@ -80,7 +80,7 @@ export default function AuthPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#fff9fa] px-4 py-8 text-[#141414]">
+    <main className="min-h-screen bg-[#fff9fa] px-4 py-8 text-[#C98BAA]">
       <div className="mx-auto flex w-full max-w-5xl items-center justify-between">
         <a href="/" className="flex items-center gap-2 text-xs font-semibold hover:text-[#e0558b]">
           <ArrowLeft size={16} />
@@ -96,7 +96,7 @@ export default function AuthPage() {
       </div>
 
       <section className="mx-auto flex max-w-5xl justify-center py-12 sm:py-16">
-        <div className="w-full max-w-md rounded-3xl border border-[#141414]/10 bg-white p-6 shadow-xl sm:p-8">
+        <div className="w-full max-w-md rounded-3xl border border-[#C98BAA]/10 bg-white p-6 shadow-xl sm:p-8">
           <div className="mb-6 text-center">
             <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-[#ffdbe7]">
               <Sparkles size={20} />
@@ -104,7 +104,7 @@ export default function AuthPage() {
             <h1 className="font-brand text-2xl font-semibold">
               {user ? `Bonjour ${user.name}` : isSignUp ? 'Créer un compte' : 'Connexion'}
             </h1>
-            <p className="mt-1 text-xs text-[#141414]/60">
+            <p className="mt-1 text-xs text-[#C98BAA]/60">
               {user
                 ? 'Vous êtes connectée à votre compte Aura Skin.'
                 : isSignUp
@@ -114,29 +114,29 @@ export default function AuthPage() {
           </div>
 
           {isCheckingSession ? (
-            <p className="py-6 text-center text-sm text-[#141414]/60">Vérification de votre session...</p>
+            <p className="py-6 text-center text-sm text-[#C98BAA]/60">Vérification de votre session...</p>
           ) : user ? (
             <div className="space-y-4">
               <div className="rounded-2xl bg-[#fff9fa] p-4 text-sm">
                 <span className="block font-semibold">{user.name}</span>
-                <span className="mt-1 block text-[#141414]/60">{user.email}</span>
+                <span className="mt-1 block text-[#C98BAA]/60">{user.email}</span>
               </div>
               <a
                 href="/compte"
-                className="block w-full rounded-full bg-[#141414] px-4 py-3 text-center text-xs font-bold text-[#ffdbe7]"
+                className="block w-full rounded-full bg-[#C98BAA] px-4 py-3 text-center text-xs font-bold text-[#ffdbe7]"
               >
                 Voir mon compte & mes achats
               </a>
               <a
                 href="/"
-                className="block w-full rounded-full border border-[#141414]/15 px-4 py-3 text-center text-xs font-semibold"
+                className="block w-full rounded-full border border-[#C98BAA]/15 px-4 py-3 text-center text-xs font-semibold"
               >
                 Continuer mes achats
               </a>
               <button
                 type="button"
                 onClick={handleLogout}
-                className="mx-auto flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold text-[#141414]/70 hover:bg-[#141414]/5"
+                className="mx-auto flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold text-[#C98BAA]/70 hover:bg-[#C98BAA]/5"
               >
                 <LogOut size={14} />
                 Se déconnecter
@@ -160,7 +160,7 @@ export default function AuthPage() {
                       maxLength={120}
                       value={name}
                       onChange={(event) => setName(event.target.value)}
-                      className="mt-1 w-full rounded-xl border border-[#141414]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#141414]"
+                      className="mt-1 w-full rounded-xl border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#C98BAA]"
                     />
                   </label>
                 )}
@@ -172,7 +172,7 @@ export default function AuthPage() {
                     required
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
-                    className="mt-1 w-full rounded-xl border border-[#141414]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#141414]"
+                    className="mt-1 w-full rounded-xl border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#C98BAA]"
                   />
                 </label>
                 <label className="block text-xs font-semibold">
@@ -185,9 +185,9 @@ export default function AuthPage() {
                     maxLength={128}
                     value={password}
                     onChange={(event) => setPassword(event.target.value)}
-                    className="mt-1 w-full rounded-xl border border-[#141414]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#141414]"
+                    className="mt-1 w-full rounded-xl border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#C98BAA]"
                   />
-                  {isSignUp && <span className="mt-1 block text-[10px] font-normal text-[#141414]/55">10 caractères minimum.</span>}
+                  {isSignUp && <span className="mt-1 block text-[10px] font-normal text-[#C98BAA]/55">10 caractères minimum.</span>}
                 </label>
                 {isSignUp && (
                   <label className="block text-xs font-semibold">
@@ -200,14 +200,14 @@ export default function AuthPage() {
                       maxLength={128}
                       value={confirmPassword}
                       onChange={(event) => setConfirmPassword(event.target.value)}
-                      className="mt-1 w-full rounded-xl border border-[#141414]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#141414]"
+                      className="mt-1 w-full rounded-xl border border-[#C98BAA]/15 bg-[#fff9fa] px-3 py-2.5 font-normal outline-none focus:border-[#C98BAA]"
                     />
                   </label>
                 )}
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full rounded-full bg-[#141414] px-4 py-3 text-xs font-bold text-[#ffdbe7] disabled:opacity-60"
+                  className="w-full rounded-full bg-[#C98BAA] px-4 py-3 text-xs font-bold text-[#ffdbe7] disabled:opacity-60"
                 >
                   {isSubmitting
                     ? 'Veuillez patienter...'
@@ -217,11 +217,11 @@ export default function AuthPage() {
                 </button>
               </form>
 
-              <p className="mt-5 text-center text-xs text-[#141414]/65">
+              <p className="mt-5 text-center text-xs text-[#C98BAA]/65">
                 {isSignUp ? 'Vous avez déjà un compte ?' : 'Vous n’avez pas de compte ?'}{' '}
                 <a
                   href={isSignUp ? '/login' : '/signup'}
-                  className="font-bold text-[#141414] underline underline-offset-2"
+                  className="font-bold text-[#C98BAA] underline underline-offset-2"
                 >
                   {isSignUp ? 'Se connecter' : 'Créer un compte'}
                 </a>

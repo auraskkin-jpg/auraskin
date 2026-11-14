@@ -12,13 +12,13 @@ export const BasmaConcerns: React.FC<BasmaConcernsProps> = ({ onSelectConcern, l
   const t = useT();
   const { texts } = useSiteTexts();
   return (
-    <section className="py-8 sm:py-12 max-w-6xl mx-auto px-4 bg-white rounded-3xl my-6 border border-[#141414]/10 shadow-xs">
+    <section className="py-8 sm:py-12 max-w-6xl mx-auto px-4 bg-white rounded-3xl my-6 border border-[#C98BAA]/10 shadow-xs">
       {!hideHeader && (
         <div className="text-center mb-8">
-          <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414]/70 font-bold block">
+          <span className="text-[11px] uppercase tracking-[0.18em] text-[#C98BAA]/70 font-bold block">
             {t('concerns.eyebrow', lang)}
           </span>
-          <h2 className="font-brand text-2xl sm:text-3xl text-[#141414] font-normal mt-0.5">
+          <h2 className="font-brand text-2xl sm:text-3xl text-[#C98BAA] font-normal mt-0.5">
             {t('concerns.title', lang)}
           </h2>
         </div>
@@ -31,7 +31,7 @@ export const BasmaConcerns: React.FC<BasmaConcernsProps> = ({ onSelectConcern, l
           <button
             key={concern.id}
             onClick={() => onSelectConcern(concern.id)}
-            className="flex flex-col items-center p-3 rounded-2xl bg-[#fff9fa] border border-[#141414]/10 hover:border-[#ffdbe7] hover:bg-[#ffdbe7]/20 group cursor-pointer focus:outline-none transition-all duration-300 hover:scale-102"
+            className="flex flex-col items-center p-3 rounded-2xl bg-[#fff9fa] border border-[#C98BAA]/10 hover:border-[#ffdbe7] hover:bg-[#ffdbe7]/20 group cursor-pointer focus:outline-none transition-all duration-300 hover:scale-102"
           >
             {/* Circular Concern Icon */}
             <div className="w-14 h-14 rounded-full bg-white shadow-xs flex items-center justify-center text-2xl mb-2 group-hover:scale-110 transition-transform overflow-hidden">
@@ -42,10 +42,10 @@ export const BasmaConcerns: React.FC<BasmaConcernsProps> = ({ onSelectConcern, l
               )}
             </div>
             {/* Concern Title */}
-            <span className="text-xs font-semibold text-[#141414] group-hover:text-[#e0558b] text-center transition-colors">
+            <span className="text-xs font-semibold text-[#C98BAA] group-hover:text-[#e0558b] text-center transition-colors">
               {lang === 'ar' ? concern.nameAr : concern.name}
             </span>
-            <span className="text-[10px] text-[#141414]/50 text-center mt-0.5">
+            <span className="text-[10px] text-[#C98BAA]/50 text-center mt-0.5">
               {concern.desc}
             </span>
           </button>

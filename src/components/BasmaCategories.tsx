@@ -19,10 +19,10 @@ export const BasmaCategories: React.FC<BasmaCategoriesProps> = ({
     <section className="py-6 sm:py-10 max-w-6xl mx-auto px-4">
       {/* Section Title */}
       <div className="text-center mb-6">
-        <span className="text-[11px] uppercase tracking-[0.18em] text-[#141414]/70 font-bold block">
+        <span className="text-[11px] uppercase tracking-[0.18em] text-[#C98BAA]/70 font-bold block">
           {t('categories.eyebrow', lang)}
         </span>
-        <h2 className="font-brand text-2xl sm:text-3xl text-[#141414] font-normal mt-0.5">
+        <h2 className="font-brand text-2xl sm:text-3xl text-[#C98BAA] font-normal mt-0.5">
           {t('categories.title', lang)}
         </h2>
       </div>
@@ -42,8 +42,8 @@ export const BasmaCategories: React.FC<BasmaCategoriesProps> = ({
               <div
                 className={`w-16 h-16 sm:w-18 sm:h-18 rounded-full overflow-hidden transition-all duration-300 shadow-xs flex items-center justify-center text-2xl sm:text-3xl bg-gradient-to-br ${cat.color} ${
                   isSelected
-                    ? 'ring-2 ring-[#141414] scale-105 shadow-md'
-                    : 'border border-[#141414]/10 hover:border-[#ffdbe7] group-hover:scale-105'
+                    ? 'ring-2 ring-[#C98BAA] scale-105 shadow-md'
+                    : 'border border-[#C98BAA]/10 hover:border-[#ffdbe7] group-hover:scale-105'
                 }`}
               >
                 {customIcon ? (
@@ -56,7 +56,7 @@ export const BasmaCategories: React.FC<BasmaCategoriesProps> = ({
               {/* Label */}
               <span
                 className={`text-[11px] sm:text-xs font-medium text-center max-w-[80px] leading-tight transition-colors ${
-                  isSelected ? 'text-[#141414] font-bold' : 'text-[#141414]/80 group-hover:text-[#141414]'
+                  isSelected ? 'text-[#C98BAA] font-bold' : 'text-[#C98BAA]/80 group-hover:text-[#C98BAA]'
                 }`}
               >
                 {lang === 'ar' ? cat.nameAr : cat.name}
